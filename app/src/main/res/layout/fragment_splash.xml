@@ -15,6 +15,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:src="@drawable/wisnu"
-        android:contentDescription="@string/logowisnu" />
+        android:contentDescription="@string/logowisnu"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

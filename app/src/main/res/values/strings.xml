@@ -3,4 +3,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="logowisnu">logoWisnu\n</string>
+    <string name="daftar">DAFTAR</string>
+    <string name="masuk">MASUK</string>
+    <string name="wisnu">Wisnu</string>
+    <string name="password">password</string>
+    <string name="email">email</string>
+    <string name="lupa_kata_sandi">Lupa Kata Sandi?</string>
+    <string name="selamat_datang_kembali">Selamat datang kembali 👐🏻</string>
 </resources>
