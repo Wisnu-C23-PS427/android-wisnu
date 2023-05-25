@@ -1,0 +1,57 @@
+{
+    "status": 200,
+    "message": "OK",
+    "data": [
+        {
+            "id": 1,
+            "name": "POI Name",
+            "location": "POI Location",
+            "image": "www.path/to/poi_image.jpg",
+            "tickets": {
+                "is_ticketing_enabled": true,
+                "adult_price": 10000,
+                "child_price": 5000
+            }
+        },
+        {
+            "id": 2,
+            "name": "POI Name",
+            "location": "POI Location",
+            "image": "www.path/to/poi_image.jpg",
+            "tickets": {
+                "is_ticketing_enabled": true,
+                "adult_price": 10000,
+                "child_price": 5000
+            }
+        },
+        {
+            "id": 3,
+            "name": "POI Name",
+            "location": "POI Location",
+            "image": "www.path/to/poi_image.jpg",
+            "tickets": {
+                "is_ticketing_enabled": true,
+                "adult_price": 10000,
+                "child_price": 5000
+            }
+        },
+        {
+            "id": 4,
+            "name": "POI Name",
+            "location": "POI Location",
+            "image": "www.path/to/poi_image.jpg",
+            "tickets": {
+                "is_ticketing_enabled": false
+            }
+        },
+        {
+            "id": 5,
+            "name": "POI Name",
+            "location": "POI Location",
+            "image": "www.path/to/poi_image.jpg",
+            "tickets": {
+                "is_ticketing_enabled": false
+            }
+        }
+    ]
+}

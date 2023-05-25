@@ -1,0 +1,12 @@
+{
+    "status": 200,
+    "message": "OK",
+    "data": {
+        "id": 1,
+        "name": "Guide Name",
+        "image": "www.path/to/guide_image.jpg",
+        "start_date": "YMDTZ",
+        "end_date": "YMDTZ",
+        "created_at": "YMDTZ"
+    }
+}

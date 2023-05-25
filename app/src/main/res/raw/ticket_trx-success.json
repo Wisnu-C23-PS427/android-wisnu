@@ -1,0 +1,66 @@
+{
+    "status": 200,
+    "message": "OK",
+    "data": {
+        "ticket": [
+            {
+                "id": "WSNU-ABC-XXXX",
+                "poi": {
+                    "id": 1,
+                    "name": "POI Name",
+                    "location": "POI Location"
+                },
+                "valid_date": "YMD",
+                "adult": [
+                    {
+                        "name": "Ticket Buyer 1",
+                        "price": 10000
+                    },
+                    {
+                        "name": "Ticket Buyer 2",
+                        "price": 10000
+                    }
+                ],
+                "child": [
+                    {
+                        "name": "Ticket Buyer 1 - child",
+                        "price": 5000
+                    }
+                ]
+            },
+            {
+                "id": "WSNU-ABC-XYXY",
+                "poi": {
+                    "id": 2,
+                    "name": "POI Name",
+                    "location": "POI Location"
+                },
+                "valid_date": "YMD",
+                "adult": [
+                    {
+                        "name": "Ticket Buyer 1",
+                        "price": 10000
+                    },
+                    {
+                        "name": "Ticket Buyer 2",
+                        "price": 10000
+                    }
+                ],
+                "child": [
+                    {
+                        "name": "Ticket Buyer 1 - child",
+                        "price": 5000
+                    }
+                ]
+            }
+        ],
+        "guide": {
+            "id": 1,
+            "name": "Guide Name",
+            "image": "www.path/to/guide_image.jpg",
+            "start_date": "YMDTZ",
+            "end_date": "YMDTZ"
+        },
+        "created_at": "YMDTZ"
+    }
+}

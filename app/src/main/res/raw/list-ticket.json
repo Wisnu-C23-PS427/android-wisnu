@@ -1,0 +1,36 @@
+{
+    "status": 200,
+    "message": "OK",
+    "data": [
+        {
+            "id": "WSNU-ABC-XXXX",
+            "is_active": true,
+            "poi": {
+                "id": 1,
+                "name": "POI Name",
+                "location": "POI Location"
+            },
+            "created_at": "YMDTZ"
+        },
+        {
+            "id": "WSNU-ABC-XXXX",
+            "is_active": true,
+            "poi": {
+                "id": 2,
+                "name": "POI Name",
+                "location": "POI Location"
+            },
+            "created_at": "YMDTZ"
+        },
+        {
+            "id": "WSNU-ABC-XXXX",
+            "is_active": false,
+            "poi": {
+                "id": 3,
+                "name": "POI Name",
+                "location": "POI Location"
+            },
+            "created_at": "YMDTZ"
+        }
+    ]
+}
