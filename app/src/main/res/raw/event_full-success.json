@@ -1,0 +1,69 @@
+{
+    "status": 200,
+    "message": "OK",
+    "preview": false,
+    "size": 10,
+    "page": 1,
+    "data": [
+        {
+            "id": 1,
+            "name": "Event Name",
+            "location": "Event Location",
+            "image": "www.path/to/event_image.jpg"
+        },
+        {
+            "id": 2,
+            "name": "Event Name",
+            "location": "Event Location",
+            "image": "www.path/to/event_image.jpg"
+        },
+        {
+            "id": 3,
+            "name": "Event Name",
+            "location": "Event Location",
+            "image": "www.path/to/event_image.jpg"
+        },
+        {
+            "id": 4,
+            "name": "Event Name",
+            "location": "Event Location",
+            "image": "www.path/to/event_image.jpg"
+        },
+        {
+            "id": 5,
+            "name": "Event Name",
+            "location": "Event Location",
+            "image": "www.path/to/event_image.jpg"
+        },
+        {
+            "id": 6,
+            "name": "Event Name",
+            "location": "Event Location",
+            "image": "www.path/to/event_image.jpg"
+        },
+        {
+            "id": 7,
+            "name": "Event Name",
+            "location": "Event Location",
+            "image": "www.path/to/event_image.jpg"
+        },
+        {
+            "id": 8,
+            "name": "Event Name",
+            "location": "Event Location",
+            "image": "www.path/to/event_image.jpg"
+        },
+        {
+            "id": 9,
+            "name": "Event Name",
+            "location": "Event Location",
+            "image": "www.path/to/event_image.jpg"
+        },
+        {
+            "id": 10,
+            "name": "Event Name",
+            "location": "Event Location",
+            "image": "www.path/to/event_image.jpg"
+        }
+    ]
+}
