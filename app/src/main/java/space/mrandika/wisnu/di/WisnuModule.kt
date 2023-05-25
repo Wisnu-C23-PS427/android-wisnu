@@ -5,6 +5,7 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -12,9 +13,9 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class WisnuModule {
 
-    @Singleton
     @Provides
     fun provideContext(
-        application: Application
-    ): Context = application.applicationContext
+        @ApplicationContext
+        context: Context
+    ): Context = context
 }

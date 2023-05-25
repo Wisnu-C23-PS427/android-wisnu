@@ -1,6 +1,5 @@
 package space.mrandika.wisnu.repository
 
-import android.content.Context
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -13,13 +12,12 @@ import space.mrandika.wisnu.model.auth.RegisterRequest
 import space.mrandika.wisnu.model.auth.RegisterResponse
 import space.mrandika.wisnu.prefs.TokenPreferences
 import space.mrandika.wisnu.service.WisnuAPIService
-import space.mrandika.wisnu.utils.getJsonAsString
 import javax.inject.Inject
 
 class AuthRepository @Inject constructor(
     private val service: WisnuAPIService,
     private val pref: TokenPreferences,
-    private val context: Context
+    private val assetManager: AssetManager
 ) {
     // Auth call
     suspend fun login(email: String, password: String): Flow<Result<LoginResponse>> = flow {
@@ -28,9 +26,9 @@ class AuthRepository @Inject constructor(
                 service.login(email, password)
             } else {
                 val gson = Gson()
+                val stringJson = assetManager.getStringJson(R.raw.login)
 
-                val jsonResponse = getJsonAsString(context, R.raw.login)
-                gson.fromJson(jsonResponse, LoginResponse::class.java)
+                gson.fromJson(stringJson, LoginResponse::class.java)
             }
 
             emit(Result.success(response))
@@ -54,9 +52,9 @@ class AuthRepository @Inject constructor(
                 service.register(request)
             } else {
                 val gson = Gson()
+                val stringJson = assetManager.getStringJson(R.raw.register)
 
-                val jsonResponse = getJsonAsString(context, R.raw.register)
-                gson.fromJson(jsonResponse, RegisterResponse::class.java)
+                gson.fromJson(stringJson, RegisterResponse::class.java)
             }
 
             emit(Result.success(response))
