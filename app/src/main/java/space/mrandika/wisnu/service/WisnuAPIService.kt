@@ -13,10 +13,12 @@ import space.mrandika.wisnu.model.auth.RegisterResponse
 import space.mrandika.wisnu.model.city.CitiesResponse
 import space.mrandika.wisnu.model.city.CityResponse
 import space.mrandika.wisnu.model.event.EventResponse
+import space.mrandika.wisnu.model.event.EventsResponse
 import space.mrandika.wisnu.model.guide.GuideResponse
 import space.mrandika.wisnu.model.poi.POIResponse
 import space.mrandika.wisnu.model.poi.POIsResponse
 import space.mrandika.wisnu.model.search.SearchResponse
+import space.mrandika.wisnu.model.ticket.TicketResponse
 import space.mrandika.wisnu.model.ticket.TicketsResponse
 import space.mrandika.wisnu.model.transaction.OrderRequest
 import space.mrandika.wisnu.model.transaction.OrderResponse
@@ -44,12 +46,12 @@ interface WisnuAPIService {
 
     @GET("city/{id}")
     suspend fun getCity(
-        @Path("id") id: String
+        @Path("id") id: Int
     ): CityResponse
 
     @GET("city/{id}/itinerary")
     suspend fun getCityItinerary(
-        @Path("id") id: String
+        @Path("id") id: Int
     ): POIsResponse
 
     @FormUrlEncoded
@@ -64,11 +66,16 @@ interface WisnuAPIService {
         @Query("preview") preview: Boolean,
         @Query("page") page: Int,
         @Query("size") size: Int,
+    ): EventsResponse
+
+    @GET("events")
+    suspend fun getEvent(
+        @Path("id") id: Int
     ): EventResponse
 
     @GET("guide/{id}")
     suspend fun getGuide(
-        @Path("id") id: String
+        @Path("id") id: Int
     ): GuideResponse
 
     @GET("pois/recommendation")
@@ -85,7 +92,7 @@ interface WisnuAPIService {
 
     @GET("poi/{id}")
     suspend fun getPOIdetail(
-        @Path("id") id: String
+        @Path("id") id: Int
     ): POIResponse
 
     @GET("tickets")
@@ -96,7 +103,7 @@ interface WisnuAPIService {
     @GET("ticket/{id}")
     suspend fun getTicket(
         @Path("id") id: String,
-    ): TicketsResponse
+    ): TicketResponse
 
     @POST("orders/new")
     suspend fun createOrder(
