@@ -35,11 +35,10 @@ class RegisterNameFragment : Fragment() {
         val tvTitle : TextView? = activity?.findViewById(R.id.tv_title)
         val tvDescription : TextView? = activity?.findViewById(R.id.tv_description)
         ViewUtils.hideViews(btnSecondary,tvForgotPassword)
-        btnMain?.text = "LANJUT"
 
-        tvTitle?.text = "Mari berkeliling\n" +
-                "Indonesia \uD83C\uDDEE\uD83C\uDDE9"
-        tvDescription?.text = "Kenalan, yuk!"
+        tvTitle?.setText(R.string.title_register_name)
+        tvDescription?.setText(R.string.description_register_name)
+        btnMain?.setText(R.string.next)
 
         btnMain?.setOnClickListener {
             findNavController().navigate(R.id.action_registerNameFragment_to_registerEmailFragment)

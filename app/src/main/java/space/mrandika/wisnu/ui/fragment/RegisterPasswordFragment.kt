@@ -35,12 +35,10 @@ class RegisterPasswordFragment : Fragment() {
         val tvTitle : TextView? = activity?.findViewById(R.id.tv_title)
         val tvDescription : TextView? = activity?.findViewById(R.id.tv_description)
         ViewUtils.hideViews(btnSecondary,tvForgotPassword)
-        btnMain?.text = "LANJUT"
 
-        tvTitle?.text = "Masukin\n" +
-                "kata sandi \uD83D\uDD10"
-        tvDescription?.text = "Kata sandi ini digunakan untuk masuk\n" +
-                "ke akunmu."
+        tvTitle?.setText(R.string.title_register_password)
+        tvDescription?.setText(R.string.description_register_password)
+        btnMain?.setText(R.string.next)
         btnMain?.setOnClickListener {
             findNavController().navigate(R.id.action_registerPasswordFragment_to_referensiFragment)
         }

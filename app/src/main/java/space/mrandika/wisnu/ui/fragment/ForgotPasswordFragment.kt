@@ -31,11 +31,10 @@ class ForgotPasswordFragment : Fragment() {
         val tvDescription : TextView? = activity?.findViewById(R.id.tv_description)
         val btnMain: Button? = activity?.findViewById(R.id.btn_main)
 
-        btnMain?.text = "KIRIM"
-        tvTitle?.text = "Pemulihan\n" +
-                "akun \uD83D\uDEE0️"
-        tvDescription?.text = "Kami akan kirimkan email untuk\n" +
-                "mengatur ulang kata sandi kamu."
+        btnMain?.setText(R.string.send)
+        tvTitle?.setText(R.string.title_forgot_password)
+        tvDescription?.setText(R.string.description_forgot_password)
+
         btnMain?.setOnClickListener {
 
         }

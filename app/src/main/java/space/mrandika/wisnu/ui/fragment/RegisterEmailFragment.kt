@@ -36,9 +36,9 @@ class RegisterEmailFragment : Fragment() {
         val tvDescription : TextView? = activity?.findViewById(R.id.tv_description)
         ViewUtils.hideViews(btnSecondary,tvForgotPassword)
 
-        tvTitle?.text = "Hai,\n" +
-                "Andika \uD83D\uDC4B\uD83C\uDFFB"
-        tvDescription?.text = "Hubungin kamu kemana nih?"
+        tvTitle?.setText(R.string.title_register_email)
+        tvDescription?.setText(R.string.description_register_email)
+        btnMain?.setText(R.string.next)
 
         btnMain?.setOnClickListener {
             findNavController().navigate(R.id.action_registerEmailFragment_to_registerPasswordFragment)

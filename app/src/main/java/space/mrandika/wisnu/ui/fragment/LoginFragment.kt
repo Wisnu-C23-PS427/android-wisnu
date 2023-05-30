@@ -31,14 +31,13 @@ class LoginFragment : Fragment() {
         val btnSecondary: Button? = activity?.findViewById(R.id.btn_secondary)
         val tvForgotPassword : TextView? = activity?.findViewById(R.id.tv_forget_password)
         val tvTitle : TextView? = activity?.findViewById(R.id.tv_title)
-//        val tvDescription : TextView? = activity?.findViewById(R.id.tv_description)
+        val tvDescription : TextView? = activity?.findViewById(R.id.tv_description)
         ViewUtils.hideViews(btnSecondary)
         ViewUtils.showViews(tvForgotPassword)
-        btnMain?.text = "MASUK"
+        btnMain?.setText(R.string.login)
 
-        tvTitle?.text = "Selamat datang\n" +
-                "kembali \uD83D\uDC50\uD83C\uDFFB"
-
+        tvTitle?.setText(R.string.title_login)
+        tvForgotPassword?.setText(R.string.forget_password)
         btnMain?.setOnClickListener {
 
         }

@@ -31,6 +31,7 @@ class WelcomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val cardView: CardView? = activity?.findViewById(R.id.card_view)
         val btnMain: Button? = activity?.findViewById(R.id.btn_main)
         val btnSecondary: Button? = activity?.findViewById(R.id.btn_secondary)
@@ -38,12 +39,14 @@ class WelcomeFragment : Fragment() {
         val toolbar : Toolbar? = activity?.findViewById(R.id.toolbar)
         ViewUtils.hideViews(tvForgotPassword)
         ViewUtils.showViews(cardView,toolbar,btnMain,btnSecondary)
-        btnMain?.text = "DAFTAR"
+
+        btnMain?.setText(R.string.login)
+        btnSecondary?.setText(R.string.register)
         btnSecondary?.setOnClickListener {
-            findNavController().navigate(R.id.action_welcomeFragment_to_loginFragment)
+            findNavController().navigate(R.id.action_welcomeFragment_to_registerNameFragment)
         }
         btnMain?.setOnClickListener {
-            findNavController().navigate(R.id.action_welcomeFragment_to_registerNameFragment)
+            findNavController().navigate(R.id.action_welcomeFragment_to_loginFragment)
         }
     }
     override fun onDestroyView() {
