@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chip_ticket_filter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_active"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/active_ticket" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_expired"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/expired_ticket" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_tickets"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/chip_ticket_filter"
+        app:layout_constraintStart_toStartOf="@+id/chip_ticket_filter"
+        app:layout_constraintTop_toBottomOf="@+id/chip_ticket_filter"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_ticket" />
+</androidx.constraintlayout.widget.ConstraintLayout>
