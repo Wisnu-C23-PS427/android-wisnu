@@ -26,4 +26,16 @@
     <string name="description_register_referensi">Wisnu akan merekomendasikan tempat yang mungkin kamu sukai.</string>
     <string name="title_register_check">Cek kembali 📝</string>
     <string name="description_register_check">Informasi kamu sudah benar?</string>
+    <string name="name">Nama Kamu</string>
+    <string name="no_telp">Nomor Telepon</string>
+    <string name="referensi">Referensi</string>
+    <string name="beranda">Beranda</string>
+    <string name="recomendation">Rekomendasi Buat Kamu</string>
+    <string name="look_all">lihat semua</string>
+    <string name="any_event">Ada Event, Nih~</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
 </resources>

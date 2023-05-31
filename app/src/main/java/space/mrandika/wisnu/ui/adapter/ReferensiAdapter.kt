@@ -1,4 +1,4 @@
-package space.mrandika.wisnu.ui.recycleview
+package space.mrandika.wisnu.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
