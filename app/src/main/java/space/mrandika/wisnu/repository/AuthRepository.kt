@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
+import space.mrandika.wisnu.model.auth.LoginRequest
 import space.mrandika.wisnu.model.auth.LoginResponse
 import space.mrandika.wisnu.model.auth.RegisterRequest
 import space.mrandika.wisnu.model.auth.RegisterResponse
@@ -22,8 +23,10 @@ class AuthRepository @Inject constructor(
     // Auth call
     suspend fun login(email: String, password: String): Flow<Result<LoginResponse>> = flow {
         try {
+            val request = LoginRequest(email, password)
+
             val response: LoginResponse = if (BuildConfig.IS_SERVICE_UP) {
-                service.login(email, password)
+                service.login(request)
             } else {
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.login)

@@ -7,6 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
+import space.mrandika.wisnu.model.auth.LoginRequest
 import space.mrandika.wisnu.model.auth.LoginResponse
 import space.mrandika.wisnu.model.auth.RegisterRequest
 import space.mrandika.wisnu.model.auth.RegisterResponse
@@ -33,8 +34,7 @@ interface WisnuAPIService {
     @FormUrlEncoded
     @POST("login")
     suspend fun login(
-        @Field("email") email: String,
-        @Field("password") password: String
+        @Body request: LoginRequest
     ): LoginResponse
 
     @GET("city")
