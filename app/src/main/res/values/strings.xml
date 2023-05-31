@@ -10,4 +10,12 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="active_ticket">Tiket Aktif</string>
     <string name="expired_ticket">Tiket Non-Aktif</string>
+    <string name="page_ticktet_detail">Detail Tiket</string>
+    <string name="action_see_ticket">LIHAT TIKET</string>
+    <string name="ticket_date">Tanggal Tiket</string>
+    <string name="adult">Dewasa</string>
+    <string name="child">Anak-anak</string>
+    <string name="total_price">Total Harga</string>
+    <string name="ticket_information">Informasi Tiket</string>
+    <string name="ticket_information_value">Tampilkan tiket kamu pada gerbang pemeriksaan tiket. Pastikan tiket kamu sesuai dengan detail pemesanan. Kesalahan dalam pembelian tidak ditanggung oleh Wisnu.</string>
 </resources>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.ticket.TicketDetailActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/page_ticktet_detail" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_show_ticket"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image_background"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/shape_circle_primary_25" />
+
+            <ImageView
+                android:id="@+id/image_ticket"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                app:layout_constraintBottom_toBottomOf="@+id/image_background"
+                app:layout_constraintEnd_toEndOf="@+id/image_background"
+                app:layout_constraintStart_toStartOf="@+id/image_background"
+                app:layout_constraintTop_toTopOf="@+id/image_background"
+                app:srcCompat="@drawable/baseline_confirmation_number_64_primary" />
+
+            <TextView
+                android:id="@+id/text_ticket_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="32dp"
+                android:fontFamily="@font/poppins_bold"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@+id/image_background"
+                app:layout_constraintStart_toStartOf="@+id/image_background"
+                app:layout_constraintTop_toBottomOf="@+id/image_background"
+                tools:text="Taman Safari Citayem Indah" />
+
+            <TextView
+                android:id="@+id/ticket_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/ticket_date"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_ticket_name" />
+
+            <TextView
+                android:id="@+id/ticket_adult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/adult"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/text_ticket_date"
+                app:layout_constraintTop_toBottomOf="@+id/text_ticket_date" />
+
+            <TextView
+                android:id="@+id/text_ticket_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/playfair_display_medium"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/ticket_date"
+                app:layout_constraintStart_toStartOf="@+id/ticket_date"
+                app:layout_constraintTop_toBottomOf="@+id/ticket_date"
+                tools:text="22 Juni, 2024 (Fullday)" />
+
+            <TextView
+                android:id="@+id/text_ticket_adult_qty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/black_75"
+                app:layout_constraintBottom_toBottomOf="@+id/ticket_adult"
+                app:layout_constraintEnd_toEndOf="@+id/text_ticket_date"
+                app:layout_constraintTop_toTopOf="@+id/ticket_adult"
+                tools:text="2x Rp. 25.000" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_adult_ticket_holder"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="@+id/text_ticket_adult_qty"
+                app:layout_constraintStart_toStartOf="@+id/ticket_adult"
+                app:layout_constraintTop_toBottomOf="@+id/ticket_adult"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_ticket_holder" />
+
+            <TextView
+                android:id="@+id/ticket_child"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/child"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/rv_adult_ticket_holder"
+                app:layout_constraintTop_toBottomOf="@+id/rv_adult_ticket_holder" />
+
+            <TextView
+                android:id="@+id/text_ticket_child_qty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/black_75"
+                app:layout_constraintBottom_toBottomOf="@+id/ticket_child"
+                app:layout_constraintEnd_toEndOf="@+id/rv_adult_ticket_holder"
+                app:layout_constraintTop_toTopOf="@+id/ticket_child"
+                tools:text="2x Rp. 25.000" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_child_ticket_holder"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="@+id/text_ticket_adult_qty"
+                app:layout_constraintStart_toStartOf="@+id/ticket_child"
+                app:layout_constraintTop_toBottomOf="@+id/ticket_child"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_ticket_holder" />
+
+            <TextView
+                android:id="@+id/ticket_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/total_price"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@+id/rv_child_ticket_holder"
+                app:layout_constraintStart_toStartOf="@+id/rv_child_ticket_holder"
+                app:layout_constraintTop_toBottomOf="@+id/rv_child_ticket_holder" />
+
+            <TextView
+                android:id="@+id/text_ticket_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/playfair_display_medium"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/ticket_price"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/ticket_price"
+                app:layout_constraintTop_toBottomOf="@+id/ticket_price"
+                tools:text="Rp. 65.000" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_show_ticket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/primary"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/action_see_ticket"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
