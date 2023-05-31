@@ -18,12 +18,18 @@
             android:id="@+id/chip_active"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/WisnuChip"
+            android:textAppearance="@style/WisnuChip"
+            tools:checked="true"
             android:text="@string/active_ticket" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_expired"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/WisnuChip"
+            android:textAppearance="@style/WisnuChip"
+            tools:checked="false"
             android:text="@string/expired_ticket" />
     </com.google.android.material.chip.ChipGroup>
 
