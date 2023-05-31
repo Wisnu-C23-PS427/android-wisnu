@@ -1,4 +1,4 @@
-package space.mrandika.wisnu.ui.fragment
+package space.mrandika.wisnu.ui.register
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,10 +10,12 @@ import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.ViewUtils
-import space.mrandika.wisnu.databinding.FragmentLoginBinding
+import space.mrandika.wisnu.databinding.FragmentRegisterNameBinding
 
-class LoginFragment : Fragment() {
-    private var _binding: FragmentLoginBinding? = null
+class RegisterNameFragment : Fragment() {
+    private var _binding: FragmentRegisterNameBinding? = null
+    // This property is only valid between onCreateView and
+// onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -21,7 +23,7 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding = FragmentRegisterNameBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -32,17 +34,14 @@ class LoginFragment : Fragment() {
         val tvForgotPassword : TextView? = activity?.findViewById(R.id.tv_forget_password)
         val tvTitle : TextView? = activity?.findViewById(R.id.tv_title)
         val tvDescription : TextView? = activity?.findViewById(R.id.tv_description)
-        ViewUtils.hideViews(btnSecondary)
-        ViewUtils.showViews(tvForgotPassword)
-        btnMain?.setText(R.string.login)
+        ViewUtils.hideViews(btnSecondary,tvForgotPassword)
 
-        tvTitle?.setText(R.string.title_login)
-        tvForgotPassword?.setText(R.string.forget_password)
+        tvTitle?.setText(R.string.title_register_name)
+        tvDescription?.setText(R.string.description_register_name)
+        btnMain?.setText(R.string.next)
+
         btnMain?.setOnClickListener {
-
-        }
-        tvForgotPassword?.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
+            findNavController().navigate(R.id.action_registerNameFragment_to_registerEmailFragment)
         }
     }
     override fun onDestroyView() {

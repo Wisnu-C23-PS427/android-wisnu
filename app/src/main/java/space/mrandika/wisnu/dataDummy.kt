@@ -1,4 +1,9 @@
 package space.mrandika.wisnu
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import space.mrandika.wisnu.databinding.ActivityNavigationBinding
+
 data class Recomedation(
     val id: Int,
     val image: String,
@@ -13,7 +18,8 @@ object DataDummy {
         R.drawable.montain,
         R.drawable.beach,
         R.drawable.forest,
-    )
+        R.drawable.montain,
+        R.drawable.beach,)
 
     val listRecomendation = listOf(
         Recomedation(
@@ -64,4 +70,16 @@ object DataDummy {
 
 
     )
+}
+
+class NavigationActivity : AppCompatActivity() {
+
+private lateinit var binding: ActivityNavigationBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = ActivityNavigationBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+    }
 }

@@ -1,4 +1,4 @@
-package space.mrandika.wisnu.ui.fragment
+package space.mrandika.wisnu.ui.register
 
 
 import android.content.Intent
@@ -9,11 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.navigation.Navigation
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.ViewUtils
 import space.mrandika.wisnu.databinding.FragmentCheckBinding
-import space.mrandika.wisnu.ui.NavigationActivity
+import space.mrandika.wisnu.NavigationActivity
 
 
 class CheckFragment : Fragment() {
@@ -45,7 +44,7 @@ class CheckFragment : Fragment() {
         tvDescription?.setText(R.string.description_register_check)
 
         btnMain?.setOnClickListener {
-            startActivity(Intent(requireActivity(),NavigationActivity::class.java))
+            startActivity(Intent(requireActivity(), NavigationActivity::class.java))
         }
     }
     override fun onDestroyView() {

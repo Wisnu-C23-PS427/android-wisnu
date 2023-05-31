@@ -1,4 +1,4 @@
-package space.mrandika.wisnu.ui.fragment
+package space.mrandika.wisnu.ui.home
 
 import IconsAdapter
 import android.os.Bundle

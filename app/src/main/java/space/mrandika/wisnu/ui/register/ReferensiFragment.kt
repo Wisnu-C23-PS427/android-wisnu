@@ -1,4 +1,4 @@
-package space.mrandika.wisnu.ui.fragment
+package space.mrandika.wisnu.ui.register
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

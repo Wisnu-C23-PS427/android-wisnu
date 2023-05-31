@@ -1,4 +1,4 @@
-package space.mrandika.wisnu.ui.fragment
+package space.mrandika.wisnu.ui.splashfragment
 
 import android.os.Bundle
 import android.os.Handler
