@@ -1,0 +1,26 @@
+{
+    "status": 200,
+    "message": "OK",
+    "data": {
+        "id": 1,
+        "name": "Guide Name",
+        "price": 10000,
+        "image": "www.path/to/guide_image.jpg",
+        "time_duration_in_min": 60,
+        "avg_star": 4.5,
+        "reviews": [
+            {
+                "id": 1,
+                "name": "Nama lengkap",
+                "review": "Review goes here",
+                "star": 5
+            },
+            {
+                "id": 1,
+                "name": "Nama lengkap",
+                "review": "Review goes here",
+                "star": 4
+            }
+        ]
+    }
+}

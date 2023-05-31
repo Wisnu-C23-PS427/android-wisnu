@@ -1,7 +1,7 @@
 package space.mrandika.wisnu
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import space.mrandika.wisnu.databinding.ActivityMainBinding
 
