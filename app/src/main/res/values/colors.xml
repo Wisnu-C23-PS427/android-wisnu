@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="black_75">#BF000000</color>
+    <color name="black_50">#80000000</color>
+    <color name="black_25">#40000000</color>
+    <color name="black_10">#1A000000</color>
+
+    <color name="primary">#FFDC602A</color>
+    <color name="primary_75">#BFDC602A</color>
+    <color name="primary_50">#80DC602A</color>
+    <color name="primary_25">#40DC602A</color>
+    <color name="primary_10">#1ADC602A</color>
+
     <color name="white">#FFFFFFFF</color>
 </resources>
