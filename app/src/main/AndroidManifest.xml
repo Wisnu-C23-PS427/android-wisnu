@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Wisnu"
         tools:targetApi="31">
         <activity
-            android:name=".ui.ticket.TicketDetailActivity"
+            android:name=".ui.ticket.detail.TicketDetailActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
