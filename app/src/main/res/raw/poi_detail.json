@@ -1,0 +1,69 @@
+{
+    "status": 200,
+    "message": "OK",
+    "data": {
+        "id": 1,
+        "name": "POI Name",
+        "location": "POI Location",
+        "image": "www.path/to/poi_image.jpg",
+        "background_story": "Lorem ipsum POI story",
+        "position": {
+            "long": 0.1,
+            "lat": -6.0
+        },
+        "guides": [
+            {
+                "id": 1,
+                "name": "Guide Name",
+                "price": 10000,
+                "image": "www.path/to/guide_image.jpg",
+                "time_duration_in_min": 60
+            },
+            {
+                "id": 2,
+                "name": "Guide Name",
+                "price": 10000,
+                "image": "www.path/to/guide_image.jpg",
+                "time_duration_in_min": 60
+            },
+            {
+                "id": 3,
+                "name": "Guide Name",
+                "price": 10000,
+                "image": "www.path/to/guide_image.jpg",
+                "time_duration_in_min": 60
+            }
+        ],
+        "tickets": {
+            "is_ticketing_enabled": true,
+            "adult_price": 10000,
+            "child_price": 5000
+        },
+        "galleries": [
+            {
+                "id": 1,
+                "name": "Image Name",
+                "is_from_wisnu_team": true,
+                "is_vr_capable": true,
+                "image": "www.path/to/poi_image.jpg",
+                "created_at": "YMDTZ"
+            },
+            {
+                "id": 2,
+                "name": "Image Name",
+                "is_from_wisnu_team": true,
+                "is_vr_capable": false,
+                "image": "www.path/to/poi_image.jpg",
+                "created_at": "YMDTZ"
+            },
+            {
+                "id": 3,
+                "name": "Image Name",
+                "is_from_wisnu_team": false,
+                "is_vr_capable": false,
+                "image": "www.path/to/poi_image.jpg",
+                "created_at": "YMDTZ"
+            }
+        ]
+    }
+}

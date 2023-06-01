@@ -1,0 +1,14 @@
+{
+    "status": 200,
+    "message": "Verify mail",
+    "data": {
+        "account": {
+            "name": "Nama lengkap",
+            "email": "email@mail.com",
+            "phone": "0812345678910"
+        },
+        "preference": [
+            "a", "b", "c", "d"
+        ]
+    }
+}
