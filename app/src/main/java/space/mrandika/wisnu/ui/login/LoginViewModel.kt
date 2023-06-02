@@ -19,11 +19,10 @@ class LoginViewModel @Inject constructor(private val repo:AuthRepository):ViewMo
     suspend fun userLogin(email: String, password : String){
         setError(false)
         setLoading(true)
-
         repo.login(email,password).collect{ result ->
             setLoading(false)
-            Log.d("cek Result Login",result.toString())
             result.onSuccess {
+                it.data?.token?.let { token -> repo.saveAccessToken(token) }
                 setResult(it)
             }
             result.onFailure {

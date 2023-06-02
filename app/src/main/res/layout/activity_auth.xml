@@ -5,102 +5,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.AuthActivity">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/baseline_arrow_back_24"/>
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:textColor="@color/black"
-        android:textSize="28sp"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintStart_toStartOf="parent" />
-    <TextView
-        android:id="@+id/tv_description"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-5dp"
-        android:textSize="18sp"
-        android:layout_marginStart="16dp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/playfair_display_medium"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title"
-        />
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/nav_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <include
+        android:id="@+id/auth_content"
+        layout="@layout/auth_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:defaultNavHost="true"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_view"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/main_navigation" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_view"
-        style="@style/MyCardView"
-        android:layout_width="match_parent"
+        />
+    <include
+        android:id="@+id/state_error"
+        layout="@layout/state_error"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:contentPaddingLeft="20dp"
-        app:contentPaddingRight="20dp"
-        app:contentPaddingTop="30dp"
-        app:contentPaddingBottom="30dp"
-        app:cardBackgroundColor="@color/white"
-        app:strokeWidth="0dp"
-        android:layout_gravity="bottom"
-        app:layout_constraintBottom_toBottomOf="parent">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_main"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:backgroundTint="@color/mainColor"
-                app:cornerRadius="50dp"
-                app:rippleColor="#33AAAAAA"
-                app:strokeColor="@color/mainColor"
-                android:text="DAFTAR"
-                android:layout_marginBottom="10dp"
-                app:strokeWidth="2dp"
-                />
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_secondary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:backgroundTint="@android:color/transparent"
-                app:cornerRadius="50dp"
-                app:rippleColor="#33AAAAAA"
-                app:strokeColor="@color/mainColor"
-                android:textColor="@color/mainColor"
-                android:text="MASUK"
-                app:strokeWidth="2dp"
-                />
-            <TextView
-                android:id="@+id/tv_forget_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lupa Kata Sandi?"
-                android:layout_gravity="center"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:fontFamily="@font/poppins_bold"
-                android:textColor="@color/mainColor"
-                android:layout_marginBottom="16dp"
-                />
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+        android:visibility="gone"
+        tools:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <include
+        android:id="@+id/state_loading"
+        layout="@layout/state_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="invisible" />
 </androidx.constraintlayout.widget.ConstraintLayout>

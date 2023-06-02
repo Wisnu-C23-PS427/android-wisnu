@@ -3,6 +3,7 @@ package space.mrandika.wisnu.ui.login
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,9 @@ import kotlinx.coroutines.launch
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.ViewUtils
 import space.mrandika.wisnu.databinding.FragmentLoginBinding
+import space.mrandika.wisnu.databinding.StateLoadingBinding
+import space.mrandika.wisnu.model.auth.LoginResponse
+
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
@@ -47,14 +51,47 @@ class LoginFragment : Fragment() {
         tvForgotPassword?.setText(R.string.forget_password)
         btnMain?.setOnClickListener {
             lifecycleScope.launch {
-                viewModel.userLogin(binding.tfLoginEmail.text.toString(),binding.tfLoginPassword.text.toString())
+                viewModel.userLogin(binding.tfLoginEmail.text.toString(), binding.tfLoginPassword.text.toString())
             }
+
+            lifecycleScope.launch {
+                viewModel.state.collect { uiState ->
+                    Log.d("cek isLoading", uiState.isLoading.toString())
+                    loadingStateIsToggled(uiState.isLoading)
+                    errorStateIsToggled(uiState.isError)
+                    successStateIsToggled(uiState.LoginResult)
+                }
+            }
+
         }
         tvForgotPassword?.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
         }
     }
 
+    private fun successStateIsToggled(loginResult: LoginResponse?) {
+        if (loginResult?.data != null){
+            findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
+        }
+    }
+
+    private fun loadingStateIsToggled(value: Boolean) {
+        binding.apply {
+            val loadingState : View? = activity?.findViewById(R.id.state_loading)
+            val authContent : View? = activity?.findViewById(R.id.auth_content)
+            Log.d("LoadingState", loadingState.toString())
+            loadingState?.visibility = if (value) View.VISIBLE else View.GONE
+            authContent?.visibility = if (!value) View.VISIBLE else View.GONE
+        }
+    }
+    private fun errorStateIsToggled(value: Boolean) {
+        binding.apply {
+            val errorState : View? = activity?.findViewById(R.id.state_error)
+            val authContent : View? = activity?.findViewById(R.id.auth_content)
+            errorState?.visibility = if (value) View.VISIBLE else View.GONE
+            authContent?.visibility = if (!value) View.VISIBLE else View.GONE
+        }
+    }
     private fun errorCheck() {
         binding.tfLoginEmail.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {

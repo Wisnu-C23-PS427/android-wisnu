@@ -3,6 +3,7 @@ package space.mrandika.wisnu.ui.register
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,10 +12,13 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.ViewUtils
 import space.mrandika.wisnu.databinding.FragmentCheckBinding
+import space.mrandika.wisnu.model.auth.LoginResponse
+import space.mrandika.wisnu.model.auth.RegisterResponse
 
 
 class CheckFragment : Fragment() {
@@ -48,11 +52,41 @@ class CheckFragment : Fragment() {
         btnMain?.setOnClickListener {
             val data = viewModel.state.value
             lifecycleScope.launch {
-
+                viewModel.registerUsers(data.name,data.email,data.phoneNumber,data.password,data.interest)
+            }
+            lifecycleScope.launch {
+                viewModel.state.collect { uiState ->
+                    Log.d("cek isLoading", uiState.isLoading.toString())
+                    loadingStateIsToggled(uiState.isLoading)
+                    errorStateIsToggled(uiState.isError)
+                    successStateIsToggled(uiState.result)
+                }
             }
         }
     }
+    private fun successStateIsToggled(result: RegisterResponse?) {
+        if (result?.data != null){
 
+        }
+    }
+
+    private fun loadingStateIsToggled(value: Boolean) {
+        binding.apply {
+            val loadingState : View? = activity?.findViewById(R.id.state_loading)
+            val authContent : View? = activity?.findViewById(R.id.auth_content)
+            Log.d("LoadingState", loadingState.toString())
+            loadingState?.visibility = if (value) View.VISIBLE else View.GONE
+            authContent?.visibility = if (!value) View.VISIBLE else View.GONE
+        }
+    }
+    private fun errorStateIsToggled(value: Boolean) {
+        binding.apply {
+            val errorState : View? = activity?.findViewById(R.id.state_error)
+            val authContent : View? = activity?.findViewById(R.id.auth_content)
+            errorState?.visibility = if (value) View.VISIBLE else View.GONE
+            authContent?.visibility = if (!value) View.VISIBLE else View.GONE
+        }
+    }
     private fun setData(){
         binding.tvNameCheck.text = viewModel.state.value.name
         binding.tvEmailCheck.text = viewModel.state.value.email
