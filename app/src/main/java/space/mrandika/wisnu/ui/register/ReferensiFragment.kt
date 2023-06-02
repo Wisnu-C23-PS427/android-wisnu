@@ -7,20 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import dagger.hilt.android.AndroidEntryPoint
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.ViewUtils
 import space.mrandika.wisnu.databinding.FragmentReferensiBinding
-import space.mrandika.wisnu.ui.adapter.ReferensiAdapter
 
-
+@AndroidEntryPoint
 class ReferensiFragment : Fragment() {
     private var _binding: FragmentReferensiBinding? = null
     private lateinit var chipRecyclerView: RecyclerView
 
     private val binding get() = _binding!!
+    private val viewModel : RegisterViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,8 +55,8 @@ class ReferensiFragment : Fragment() {
         chipRecyclerView = binding.rvChip
         val spanCount = 3
         chipRecyclerView.layoutManager = GridLayoutManager(context, spanCount)
-        val chipData = listOf("Chip 1", "Chip 2", "Chip 3","Chip 1", "Chip 2", "Chip 3")
-        val chipAdapter = ReferensiAdapter(chipData)
+        val chipData = listOf("Gunung", "Pantai","Event","Sungai", "Danau","Hutan")
+        val chipAdapter = ReferenceAdapter(chipData, viewModel)
         chipRecyclerView.adapter = chipAdapter
     }
     override fun onDestroyView() {

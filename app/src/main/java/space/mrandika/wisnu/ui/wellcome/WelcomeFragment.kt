@@ -39,7 +39,7 @@ class WelcomeFragment : Fragment() {
         val toolbar : Toolbar? = activity?.findViewById(R.id.toolbar)
         ViewUtils.hideViews(tvForgotPassword)
         ViewUtils.showViews(cardView,toolbar,btnMain,btnSecondary)
-
+        btnMain?.isEnabled = true
         btnMain?.setText(R.string.login)
         btnSecondary?.setText(R.string.register)
         btnSecondary?.setOnClickListener {

@@ -1,12 +1,15 @@
 package space.mrandika.wisnu.ui.register
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.ViewUtils
@@ -16,7 +19,7 @@ class RegisterPasswordFragment : Fragment() {
     private var _binding: FragmentRegisterPasswordBinding? = null
 
     private val binding get() = _binding!!
-
+    private val viewModel : RegisterViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,13 +38,41 @@ class RegisterPasswordFragment : Fragment() {
         val tvTitle : TextView? = activity?.findViewById(R.id.tv_title)
         val tvDescription : TextView? = activity?.findViewById(R.id.tv_description)
         ViewUtils.hideViews(btnSecondary,tvForgotPassword)
-
+        btnMain?.isEnabled = false
         tvTitle?.setText(R.string.title_register_password)
         tvDescription?.setText(R.string.description_register_password)
         btnMain?.setText(R.string.next)
+        errorCheck()
         btnMain?.setOnClickListener {
             findNavController().navigate(R.id.action_registerPasswordFragment_to_referensiFragment)
         }
+    }
+    private fun errorCheck(){
+        binding.tfRegisterPassword.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                val password = p0.toString().trim()
+                binding.tfRegisterPassword.error = when {
+                    password.isEmpty() -> "Field ini tidak boleh kosong"
+                    else -> {
+                        enableButton()
+                        null
+                    }
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                viewModel.updatePassword(p0.toString())
+            }
+        })
+    }
+    private fun enableButton(){
+        val password = binding.tfRegisterPassword.text
+        val btnMain: Button? = activity?.findViewById(R.id.btn_main)
+        btnMain?.isEnabled = !password.isNullOrEmpty()
     }
     override fun onDestroyView() {
         super.onDestroyView() 

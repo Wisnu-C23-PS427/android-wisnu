@@ -9,16 +9,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.ViewUtils
 import space.mrandika.wisnu.databinding.FragmentCheckBinding
-import space.mrandika.wisnu.NavigationActivity
 
 
 class CheckFragment : Fragment() {
     private var _binding: FragmentCheckBinding? = null
     private val binding get() = _binding!!
-
+    private val viewModel : RegisterViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,10 +44,21 @@ class CheckFragment : Fragment() {
         tvChangeInformation?.setText(R.string.change_information)
         tvTitle?.setText(R.string.title_register_check)
         tvDescription?.setText(R.string.description_register_check)
-
+        setData()
         btnMain?.setOnClickListener {
-            startActivity(Intent(requireActivity(), NavigationActivity::class.java))
+            val data = viewModel.state.value
+            lifecycleScope.launch {
+
+            }
         }
+    }
+
+    private fun setData(){
+        binding.tvNameCheck.text = viewModel.state.value.name
+        binding.tvEmailCheck.text = viewModel.state.value.email
+        binding.tvHandphoneCheck.text = viewModel.state.value.phoneNumber
+        binding.tvReferensiCheck.text = viewModel.state.value.interest.joinToString(", ")
+
     }
     override fun onDestroyView() {
         super.onDestroyView()
