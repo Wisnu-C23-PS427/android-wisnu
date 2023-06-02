@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Wisnu</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="email">Email</string>
     <string name="kata_sandi">Kata sandi</string>
@@ -29,4 +28,10 @@
     <string name="name">Nama Kamu</string>
     <string name="no_telp">Nomor Telepon</string>
     <string name="referensi">Referensi</string>
+    <string name="state_data_empty_title">Sepertinya masih kosong...</string>
+    <string name="state_data_empty_subtitle">Belum ada informasinya nih. \nCari yang lain yuk?</string>
+    <string name="state_error_title">Waduh, ada yang salah.</string>
+    <string name="state_error_subtitle">Wisnu coba perbaiki.\nKamu lihat yang lain dulu ya</string>
+    <string name="action_try_again">COBA LAGI</string>
+    <string name="action_loading">Memuat...</string>
 </resources>
