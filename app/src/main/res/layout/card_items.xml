@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Place Name"
-        android:textColor=""
+        android:textColor="@color/black_50"
         android:fontFamily="@font/poppins_medium"
         android:textSize="12sp" />
 

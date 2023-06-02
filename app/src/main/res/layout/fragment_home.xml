@@ -8,8 +8,6 @@
     android:gravity="center"
     tools:context=".ui.home.HomeFragment">
 
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_icon"
         android:layout_width="wrap_content"
