@@ -32,5 +32,9 @@
         <item name="android:statusBarColor">@android:color/white</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
+        <item name="cornerSize">10%</item>
+    </style>
+
     <style name="Theme.Wisnu" parent="Base.Theme.Wisnu" />
 </resources>

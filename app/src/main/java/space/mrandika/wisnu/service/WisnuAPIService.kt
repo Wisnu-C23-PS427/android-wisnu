@@ -11,6 +11,7 @@ import space.mrandika.wisnu.model.auth.LoginRequest
 import space.mrandika.wisnu.model.auth.LoginResponse
 import space.mrandika.wisnu.model.auth.RegisterRequest
 import space.mrandika.wisnu.model.auth.RegisterResponse
+import space.mrandika.wisnu.model.category.CategoriesResponse
 import space.mrandika.wisnu.model.city.CitiesResponse
 import space.mrandika.wisnu.model.city.CityResponse
 import space.mrandika.wisnu.model.event.EventResponse
@@ -77,6 +78,9 @@ interface WisnuAPIService {
     suspend fun getGuide(
         @Path("id") id: Int
     ): GuideResponse
+
+    @GET("pois/categories")
+    suspend fun getCategories(): CategoriesResponse
 
     @GET("pois/recommendation")
     suspend fun getPOIsRecommendation(
