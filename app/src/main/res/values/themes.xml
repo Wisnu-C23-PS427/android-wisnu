@@ -28,9 +28,18 @@
         <item name="colorSurfaceInverse">@color/md_theme_light_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/md_theme_light_inversePrimary</item>
 
+        <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:statusBarColor">@android:color/white</item>
     </style>
 
     <style name="Theme.Wisnu" parent="Base.Theme.Wisnu" />
+
+    <style name="WisnuChip" parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/chip_background_color_state</item>
+        <item name="chipStrokeColor">@color/primary_50</item>
+        <item name="chipStrokeWidth">1dip</item>
+        <item name="android:textColor">@color/chip_text_color_state</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>

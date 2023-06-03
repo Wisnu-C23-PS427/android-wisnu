@@ -1,8 +1,16 @@
 package space.mrandika.wisnu.model.transaction
 
 import com.google.gson.annotations.SerializedName
+import space.mrandika.wisnu.model.guide.Guide
+import space.mrandika.wisnu.model.poi.POI
 
 data class Transaction(
+    @field:SerializedName("pois")
+    val pois: List<POI> = emptyList(),
+
+    @field:SerializedName("guide")
+    val guide: Guide? = null,
+
     @field:SerializedName("is_ticket_order")
     val isTicketOrder: Boolean? = null,
 

@@ -6,4 +6,18 @@
     <string name="state_error_subtitle">Wisnu coba perbaiki.\nKamu lihat yang lain dulu ya</string>
     <string name="action_try_again">COBA LAGI</string>
     <string name="action_loading">Memuat...</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="all_order">Semua</string>
+    <string name="ticket_order">Tiket</string>
+    <string name="guide_order">TemanWisnu</string>
+    <string name="trip_package">Paket Perjalanan</string>
+    <string name="trip_guide">Jasa TemanWisnu</string>
+    <string name="trip_ticket">Pembelian Tiket</string>
+    <string name="order_date">Tanggal Transaksi</string>
+    <string name="total_price">Total Harga</string>
+    <string name="page_order_detail">Detail Transaksi\n</string>
+    <string name="teman_wisnu">TemanWisnu</string>
+    <string name="travel_destination">Destinasi Wisata</string>
+    <string name="action_contact_guide">HUBUNGI TEMANWISNU</string>
 </resources>
