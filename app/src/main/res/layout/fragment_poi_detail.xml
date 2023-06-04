@@ -3,126 +3,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/detail_content">
-    
-    <ImageView
-        android:id="@+id/iv_image_detail"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/state_loading"
+        layout="@layout/state_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/depok"
-        tools:src="@drawable/depok" />
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_detail"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:layout_constraintTop_toBottomOf="@+id/iv_image_detail"
-        android:layout_marginTop="-50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:cardCornerRadius="10dp"
-        app:contentPaddingRight="16dp"
-        app:contentPaddingLeft="16dp"
-        app:contentPaddingTop="14dp"
-        app:contentPaddingBottom="10dp"
-        android:elevation="4dp"
-        app:cardBackgroundColor="@color/white"
-        >
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/tv_place"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:fontFamily="@font/poppins_semibold"
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                tools:text="Pantai Depok" />
-            <TextView
-                android:id="@+id/tv_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_place"
-                android:fontFamily="@font/poppins_medium"
-                android:layout_marginTop="-5dp"
-                android:textSize="12sp"
-                android:textColor="@color/black_50"
-                tools:text="Depok, Yogyakarta" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:fontFamily="@font/poppins_medium"
-                android:textSize="10sp"
-                android:textColor="@color/black_25"
-                tools:text="Depok, Yogyakarta" />
-            <ImageView
-                android:id="@+id/btn_gallery"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:src="@drawable/baseline_image_main_color_24"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+        tools:visibility="invisible" />
 
-    <TextView
-        android:id="@+id/tv_title"
+    <include
+        android:id="@+id/state_error"
+        layout="@layout/state_error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:textSize="14sp"
-        android:text="Ceritanya..."
-        app:layout_constraintTop_toBottomOf="@+id/cv_detail"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-    <TextView
-        android:id="@+id/tv_backgroundStory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/playfair_display_medium"
-        android:textSize="14sp"
-        android:layout_marginEnd="16dp"
-        tools:text="Pantai Depok merupakan objek wisata pantai yang terletak di Kecamatan Kretek, Kabupaten Bantul, Daerah Istimewa Yogyakarta, sekitar tiga puluh kilometer di sebelah selatan Kota Yogyakarta. Pantai ini terkenal akan pasar ikannya yang ikannya merupakan hasil tangkapan nelayan Pantai Depok."
-        app:layout_constraintTop_toBottomOf="@+id/tv_title"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-    <TextView
-        android:id="@+id/tv_teman_wisnu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_semibold"
-        android:layout_marginTop="14dp"
-        android:textSize="14sp"
-        android:text="TemanWisnu disini"
-        app:layout_constraintTop_toBottomOf="@+id/tv_backgroundStory"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_guide"
-        android:layout_width="match_parent"
-        android:layout_height= "0dp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_teman_wisnu"
-        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/card_guide"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="invisible" />
+
+    <include
+        android:id="@+id/state_empty"
+        layout="@layout/state_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="invisible" />
+
+    <include
+        android:id="@+id/detail_content"
+        layout="@layout/content_detail_poi"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
