@@ -32,5 +32,18 @@
         <item name="android:statusBarColor">@android:color/white</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
+        <item name="cornerSize">10%</item>
+    </style>
+
     <style name="Theme.Wisnu" parent="Base.Theme.Wisnu" />
+
+    <style name="WisnuSecondaryChip" parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="ensureMinTouchTargetSize">false</item>
+        <item name="chipStartPadding">0dp</item>
+        <item name="chipBackgroundColor">@color/white</item>
+        <item name="android:textColor">@color/chip_secondary_text_color_state</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>

@@ -6,4 +6,11 @@
     <string name="state_error_subtitle">Wisnu coba perbaiki.\nKamu lihat yang lain dulu ya</string>
     <string name="action_try_again">COBA LAGI</string>
     <string name="action_loading">Memuat...</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="top_city">Kota paling ramai</string>
+    <string name="placeholder_search">Mau kemana?</string>
+    <string name="action_all">Semua</string>
+    <string name="top_destination">Destinasi paling TOP</string>
+    <string name="search_result_query">Hasil pencarian %1$s</string>
 </resources>

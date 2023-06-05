@@ -1,8 +1,9 @@
-package space.mrandika.wisnu.model.search
+package space.mrandika.wisnu.model.category
 
 import com.google.gson.annotations.SerializedName
+import space.mrandika.wisnu.model.transaction.Transaction
 
-data class SearchResponse(
+data class CategoriesResponse(
     @field:SerializedName("message")
     val message: String,
 
@@ -10,5 +11,5 @@ data class SearchResponse(
     val status: Int,
 
     @field:SerializedName("data")
-    val data: SearchResult? = null,
+    val data: List<Category> = emptyList(),
 )

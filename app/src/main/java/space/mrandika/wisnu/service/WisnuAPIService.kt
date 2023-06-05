@@ -11,6 +11,7 @@ import space.mrandika.wisnu.model.auth.LoginRequest
 import space.mrandika.wisnu.model.auth.LoginResponse
 import space.mrandika.wisnu.model.auth.RegisterRequest
 import space.mrandika.wisnu.model.auth.RegisterResponse
+import space.mrandika.wisnu.model.category.CategoriesResponse
 import space.mrandika.wisnu.model.city.CitiesResponse
 import space.mrandika.wisnu.model.city.CityResponse
 import space.mrandika.wisnu.model.event.EventResponse
@@ -37,7 +38,7 @@ interface WisnuAPIService {
         @Body request: LoginRequest
     ): LoginResponse
 
-    @GET("city")
+    @GET("cities")
     suspend fun getCities(
         @Query("preview") preview: Boolean,
         @Query("page") page: Int,
@@ -61,6 +62,9 @@ interface WisnuAPIService {
         @Field("filter") filter: String,
     ): SearchResponse
 
+    @GET("discover")
+    suspend fun discover(): SearchResponse
+
     @GET("events")
     suspend fun getEvents(
         @Query("preview") preview: Boolean,
@@ -77,6 +81,9 @@ interface WisnuAPIService {
     suspend fun getGuide(
         @Path("id") id: Int
     ): GuideResponse
+
+    @GET("pois/categories")
+    suspend fun getCategories(): CategoriesResponse
 
     @GET("pois/recommendation")
     suspend fun getPOIsRecommendation(

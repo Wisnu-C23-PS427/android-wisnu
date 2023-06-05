@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
+import space.mrandika.wisnu.model.category.CategoriesResponse
 import space.mrandika.wisnu.model.poi.POIResponse
 import space.mrandika.wisnu.model.poi.POIsResponse
 import space.mrandika.wisnu.service.WisnuAPIService
@@ -29,6 +30,24 @@ class POIRepository @Inject constructor(
                 val stringJson = assetManager.getStringJson(R.raw.recom_home)
 
                 gson.fromJson(stringJson, POIsResponse::class.java)
+            }
+
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun getCategories(): Flow<Result<CategoriesResponse>> = flow {
+        try {
+            val response: CategoriesResponse = if (BuildConfig.IS_SERVICE_UP) {
+                service.getCategories()
+            } else {
+                val gson = Gson()
+                val stringJson = assetManager.getStringJson(R.raw.category)
+
+                gson.fromJson(stringJson, CategoriesResponse::class.java)
             }
 
             emit(Result.success(response))
