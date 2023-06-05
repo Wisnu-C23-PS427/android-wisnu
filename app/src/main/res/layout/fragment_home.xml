@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/btn_event_all"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:itemCount="1"
@@ -94,6 +94,6 @@
         android:textColorLink="@color/primary"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="@+id/rv_recomendation"
+        app:layout_constraintEnd_toEndOf="@+id/btn_poi_all"
         app:layout_constraintTop_toTopOf="@+id/textView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
