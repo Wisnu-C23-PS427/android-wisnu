@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.poi.poicategory.PoiCategoryFragment">
+    tools:context=".ui.poi.categories.POICategoryFragment">
 
 
     <include
@@ -40,7 +40,7 @@
         android:visibility="gone"
         />
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_category"
+        android:id="@+id/rv_pois"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"

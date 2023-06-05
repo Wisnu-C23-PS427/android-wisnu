@@ -1,4 +1,4 @@
-package space.mrandika.wisnu.ui.poi.poidetail
+package space.mrandika.wisnu.ui.poi.detail
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,9 +12,9 @@ import space.mrandika.wisnu.repository.POIRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class PoiDetailViewModel @Inject constructor(private val repoPOI : POIRepository, private val repoGuide : GuideRepository) :ViewModel(){
-    private val _state = MutableStateFlow(PoiDetailUiState())
-    val state : StateFlow<PoiDetailUiState> = _state
+class POIDetailViewModel @Inject constructor(private val repoPOI : POIRepository, private val repoGuide : GuideRepository) :ViewModel(){
+    private val _state = MutableStateFlow(POIDetailUiState())
+    val state : StateFlow<POIDetailUiState> = _state
 
     suspend fun getDetailPoi(id: Int){
         isLoading(true)

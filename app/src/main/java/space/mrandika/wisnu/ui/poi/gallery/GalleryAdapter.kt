@@ -1,10 +1,10 @@
-package space.mrandika.wisnu.ui.poi.poigalery
+package space.mrandika.wisnu.ui.poi.gallery
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.GaleryItemsBinding
 import space.mrandika.wisnu.model.gallery.Gallery
@@ -27,9 +27,13 @@ class GalleryAdapter(private val galleryList : List<Gallery>): RecyclerView.Adap
 
         fun bind(item: Gallery) {
             binding.apply {
-                Glide.with(imageGallery)
-                    .load(item)
-                    .into(imageGallery)
+                if (BuildConfig.IS_SERVICE_UP) {
+                    Glide.with(imageGallery)
+                        .load(item)
+                        .into(imageGallery)
+                } else {
+                    imageGallery.setImageResource(R.drawable.mock_attraction_item)
+                }
             }
         }
     }
