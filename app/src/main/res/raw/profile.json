@@ -1,0 +1,16 @@
+{
+    "status": 200,
+    "message": "OK",
+    "data": {
+        "account": {
+            "name": "Nama lengkap",
+            "email": "email@mail.com",
+            "phone": "0812345678910",
+            "image": "www.path/to/image.jpg",
+            "created_at": "YMDTZ"
+        },
+        "preference": [
+            "a", "b", "c", "d"
+        ]
+    }
+}

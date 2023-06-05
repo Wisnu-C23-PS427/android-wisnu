@@ -1,0 +1,12 @@
+{
+  "status": 200,
+  "message": "OK",
+  "data": {
+    "id": 1,
+    "name": "Event Name",
+    "description": "Lorem ipsum",
+    "location": "Event Location",
+    "image": "www.path/to/event_image.jpg",
+    "date": "YMD"
+  }
+}

@@ -1,0 +1,27 @@
+{
+    "status": 200,
+    "message": "OK",
+    "data": [
+        {
+            "id": 1,
+            "is_guide_order": true,
+            "is_ticket_order": false,
+            "price": 10000,
+            "created_at": "YMDTZ"
+        },
+        {
+            "id": 2,
+            "is_guide_order": false,
+            "is_ticket_order": true,
+            "price": 10000,
+            "created_at": "YMDTZ"
+        },
+        {
+            "id": 3,
+            "is_guide_order": true,
+            "is_ticket_order": true,
+            "price": 10000,
+            "created_at": "YMDTZ"
+        }
+    ]
+}
