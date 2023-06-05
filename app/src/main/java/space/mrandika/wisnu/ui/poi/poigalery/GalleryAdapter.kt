@@ -9,8 +9,7 @@ import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.GaleryItemsBinding
 import space.mrandika.wisnu.model.gallery.Gallery
 
-class GalleryAdapter(private val galleryList : List<Int>): RecyclerView.Adapter<GalleryAdapter.ViewHolder>() {
-    private val set = ConstraintSet()
+class GalleryAdapter(private val galleryList : List<Gallery>): RecyclerView.Adapter<GalleryAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryAdapter.ViewHolder {
         val binding = GaleryItemsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
@@ -26,12 +25,11 @@ class GalleryAdapter(private val galleryList : List<Int>): RecyclerView.Adapter<
     inner class ViewHolder(private val binding: GaleryItemsBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Int) {
+        fun bind(item: Gallery) {
             binding.apply {
                 Glide.with(imageGallery)
                     .load(item)
                     .into(imageGallery)
-
             }
         }
     }

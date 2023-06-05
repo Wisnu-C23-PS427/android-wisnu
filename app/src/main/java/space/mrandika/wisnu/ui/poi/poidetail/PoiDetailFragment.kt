@@ -17,6 +17,7 @@ import space.mrandika.wisnu.databinding.FragmentPoiDetailBinding
 import space.mrandika.wisnu.databinding.GuideSheetBinding
 import space.mrandika.wisnu.model.guide.Guide
 import space.mrandika.wisnu.model.poi.POI
+import space.mrandika.wisnu.ui.poi.poicategory.PoiCategoryFragment
 import space.mrandika.wisnu.ui.poi.poigalery.GalleryPoiFragment
 
 @AndroidEntryPoint
@@ -49,6 +50,14 @@ class PoiDetailFragment: Fragment() {
                 }
 
             }
+        }
+        binding.detailContent.apply {
+            tvPlace.setOnClickListener {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainer, PoiCategoryFragment())
+                    .commit()
+            }
+
         }
         binding.detailContent.btnGallery.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
