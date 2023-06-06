@@ -6,14 +6,21 @@
     <string name="state_error_subtitle">Wisnu coba perbaiki.\nKamu lihat yang lain dulu ya</string>
     <string name="action_try_again">COBA LAGI</string>
     <string name="action_loading">Memuat...</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ada_event_nih">Ada Event, Nih~</string>
     <string name="action_all">Lihat semua</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="top_city">Kota paling ramai</string>
     <string name="placeholder_search">Mau kemana?</string>
     <string name="action_all">Semua</string>
     <string name="top_destination">Destinasi paling TOP</string>
     <string name="search_result_query">Hasil pencarian %1$s</string>
+    <string name="active_ticket">Tiket Aktif</string>
+    <string name="expired_ticket">Tiket Non-Aktif</string>
+    <string name="page_ticktet_detail">Detail Tiket</string>
+    <string name="action_see_ticket">LIHAT TIKET</string>
+    <string name="ticket_date">Tanggal Tiket</string>
+    <string name="adult">Dewasa</string>
+    <string name="child">Anak-anak</string>
+    <string name="total_price">Total Harga</string>
+    <string name="ticket_information">Informasi Tiket</string>
+    <string name="ticket_information_value">Tampilkan tiket kamu pada gerbang pemeriksaan tiket. Pastikan tiket kamu sesuai dengan detail pemesanan. Kesalahan dalam pembelian tidak ditanggung oleh Wisnu.</string>
 </resources>
