@@ -35,4 +35,8 @@
     <string name="teman_wisnu">TemanWisnu</string>
     <string name="travel_destination">Destinasi Wisata</string>
     <string name="action_contact_guide">HUBUNGI TEMANWISNU</string>
+    <string name="join_date">Jalan-jalan bersama sejak %1$s</string>
+    <string name="my_trip">Perjalananku</string>
+    <string name="page_list_trip">Perjalananku</string>
+    <string name="day_num">Hari ke-%1$s</string>
 </resources>
