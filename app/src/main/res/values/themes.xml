@@ -57,8 +57,6 @@
 
     <style name="WisnuToolbar" parent="@style/Widget.MaterialComponents.Toolbar">
         <item name="android:fontFamily">@font/roboto_bold</item>
-    <style name="ShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
-        <item name="cornerSize">10%</item>
     </style>
 
     <style name="circleImageView" parent="">
