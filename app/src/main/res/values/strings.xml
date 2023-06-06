@@ -23,4 +23,16 @@
     <string name="total_price">Total Harga</string>
     <string name="ticket_information">Informasi Tiket</string>
     <string name="ticket_information_value">Tampilkan tiket kamu pada gerbang pemeriksaan tiket. Pastikan tiket kamu sesuai dengan detail pemesanan. Kesalahan dalam pembelian tidak ditanggung oleh Wisnu.</string>
+    <string name="all_order">Semua</string>
+    <string name="ticket_order">Tiket</string>
+    <string name="guide_order">TemanWisnu</string>
+    <string name="trip_package">Paket Perjalanan</string>
+    <string name="trip_guide">Jasa TemanWisnu</string>
+    <string name="trip_ticket">Pembelian Tiket</string>
+    <string name="order_date">Tanggal Transaksi</string>
+    <string name="total_price">Total Harga</string>
+    <string name="page_order_detail">Detail Transaksi\n</string>
+    <string name="teman_wisnu">TemanWisnu</string>
+    <string name="travel_destination">Destinasi Wisata</string>
+    <string name="action_contact_guide">HUBUNGI TEMANWISNU</string>
 </resources>

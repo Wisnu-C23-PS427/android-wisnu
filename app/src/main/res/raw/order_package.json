@@ -1,0 +1,31 @@
+{
+  "status": 200,
+  "message": "OK",
+  "data": {
+    "id": 1,
+    "is_guide_order": true,
+    "is_ticket_order": true,
+    "price": 10000,
+    "created_at": "YMDTZ",
+    "guide": {
+      "id": 1,
+      "name": "Guide Name",
+      "image": "www.path/to/guide_image.jpg",
+      "phone_number": "+6212345678910",
+      "start_date": "YMDTZ",
+      "end_date": "YMDTZ"
+    },
+    "pois": [
+      {
+        "id": 1,
+        "name": "POI Name",
+        "location": "POI Location"
+      },
+      {
+        "id": 2,
+        "name": "POI Name",
+        "location": "POI Location"
+      }
+    ]
+  }
+}

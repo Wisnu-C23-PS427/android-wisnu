@@ -24,6 +24,7 @@ import space.mrandika.wisnu.model.ticket.TicketResponse
 import space.mrandika.wisnu.model.ticket.TicketsResponse
 import space.mrandika.wisnu.model.transaction.OrderRequest
 import space.mrandika.wisnu.model.transaction.OrderResponse
+import space.mrandika.wisnu.model.transaction.TransactionResponse
 import space.mrandika.wisnu.model.transaction.TransactionsResponse
 
 interface WisnuAPIService {
@@ -112,13 +113,18 @@ interface WisnuAPIService {
         @Path("id") id: String,
     ): TicketResponse
 
-    @POST("orders/new")
+    @POST("transaction/new")
     suspend fun createOrder(
         @Body request: OrderRequest
     ): OrderResponse
 
-    @GET("orders")
-    suspend fun getTransaction(
+    @GET("transactions")
+    suspend fun getTransactions(
         @Field("filter") filter: String,
     ): TransactionsResponse
+
+    @GET("transaction")
+    suspend fun getTransaction(
+        @Path("id") id: Int,
+    ): TransactionResponse
 }

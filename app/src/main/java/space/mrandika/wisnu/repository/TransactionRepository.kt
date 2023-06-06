@@ -11,6 +11,7 @@ import space.mrandika.wisnu.model.transaction.OrderRequest
 import space.mrandika.wisnu.model.transaction.OrderResponse
 import space.mrandika.wisnu.model.transaction.POIGuideOrder
 import space.mrandika.wisnu.model.transaction.POITicketOrder
+import space.mrandika.wisnu.model.transaction.TransactionResponse
 import space.mrandika.wisnu.model.transaction.TransactionsResponse
 import space.mrandika.wisnu.service.WisnuAPIService
 import javax.inject.Inject
@@ -47,12 +48,32 @@ class TransactionRepository @Inject constructor(
     ): Flow<Result<TransactionsResponse>> = flow {
         try {
             val response: TransactionsResponse = if (BuildConfig.IS_SERVICE_UP) {
-                service.getTransaction(filter)
+                service.getTransactions(filter)
             } else {
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.list_transaction)
 
                 gson.fromJson(stringJson, TransactionsResponse::class.java)
+            }
+
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun getTransaction(
+        id: Int
+    ): Flow<Result<TransactionResponse>> = flow {
+        try {
+            val response: TransactionResponse = if (BuildConfig.IS_SERVICE_UP) {
+                service.getTransaction(id)
+            } else {
+                val gson = Gson()
+                val stringJson = assetManager.getStringJson(R.raw.order_package)
+
+                gson.fromJson(stringJson, TransactionResponse::class.java)
             }
 
             emit(Result.success(response))

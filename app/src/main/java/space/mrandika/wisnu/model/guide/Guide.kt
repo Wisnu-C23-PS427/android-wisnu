@@ -7,6 +7,9 @@ data class Guide(
     @field:SerializedName("end_date")
     val endDate: String? = null,
 
+    @field:SerializedName("phone_number")
+    val phoneNumber: String? = null,
+
     @field:SerializedName("image")
     val image: String? = null,
 

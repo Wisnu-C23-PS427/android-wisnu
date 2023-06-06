@@ -17,6 +17,9 @@
             android:name=".ui.ticket.detail.TicketDetailActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.order.detail.OrderDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
