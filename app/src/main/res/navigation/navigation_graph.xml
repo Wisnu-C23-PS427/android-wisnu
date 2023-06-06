@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/home_fragment">
+
+    <fragment
+        android:id="@+id/home_fragment"
+        android:name="space.mrandika.wisnu.ui.home.HomeFragment"
+        android:label="@string/tab_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/search_fragment"
+        android:name="space.mrandika.wisnu.ui.search.SearchFragment"
+        android:label="@string/tab_search"
+        tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/ticket_list_fragment"
+        android:name="space.mrandika.wisnu.ui.ticket.list.TicketListFragment"
+        android:label="@string/tab_ticket"
+        tools:layout="@layout/fragment_ticket_list" />
+
+    <fragment
+        android:id="@+id/order_list_fragment"
+        android:name="space.mrandika.wisnu.ui.order.list.OrderListFragment"
+        android:label="@string/tab_order"
+        tools:layout="@layout/fragment_order_list" />
+
+    <fragment
+        android:id="@+id/account_fragment"
+        android:name="space.mrandika.wisnu.ui.profile.AccountFragment"
+        android:label="@string/tab_account"
+        tools:layout="@layout/fragment_account" />
+
+</navigation>

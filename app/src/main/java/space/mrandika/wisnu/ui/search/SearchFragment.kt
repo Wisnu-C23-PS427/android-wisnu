@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
@@ -43,6 +44,9 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val textTab: TextView? = activity?.findViewById(R.id.text_current_tab)
+        textTab?.text = resources.getString(R.string.tab_search)
 
         val fragmentManager = activity?.supportFragmentManager
 
