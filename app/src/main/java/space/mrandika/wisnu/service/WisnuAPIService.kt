@@ -38,7 +38,7 @@ interface WisnuAPIService {
         @Body request: LoginRequest
     ): LoginResponse
 
-    @GET("city")
+    @GET("cities")
     suspend fun getCities(
         @Query("preview") preview: Boolean,
         @Query("page") page: Int,
@@ -61,6 +61,9 @@ interface WisnuAPIService {
         @Field("keyword") keyword: String,
         @Field("filter") filter: String,
     ): SearchResponse
+
+    @GET("discover")
+    suspend fun discover(): SearchResponse
 
     @GET("events")
     suspend fun getEvents(
