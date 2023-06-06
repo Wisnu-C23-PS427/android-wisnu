@@ -6,4 +6,10 @@
     <string name="state_error_subtitle">Wisnu coba perbaiki.\nKamu lihat yang lain dulu ya</string>
     <string name="action_try_again">COBA LAGI</string>
     <string name="action_loading">Memuat...</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="join_date">Jalan-jalan bersama sejak %1$s</string>
+    <string name="my_trip">Perjalananku</string>
+    <string name="page_list_trip">Perjalananku</string>
+    <string name="day_num">Hari ke-%1$s</string>
 </resources>
