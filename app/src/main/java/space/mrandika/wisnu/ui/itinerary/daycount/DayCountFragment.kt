@@ -1,4 +1,4 @@
-package space.mrandika.wisnu.ui.itinerary
+package space.mrandika.wisnu.ui.itinerary.daycount
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import com.google.android.material.button.MaterialButton
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.FragmentDayCountBinding
+import space.mrandika.wisnu.ui.itinerary.ItineraryViewModel
 import space.mrandika.wisnu.ui.itinerary.itineraryperson.ItineraryPersonFragment
 import space.mrandika.wisnu.ui.itinerary.itineraryPoi.ItineraryPoiFragment
 
@@ -41,11 +42,6 @@ class DayCountFragment : Fragment() {
             }
             binding.tvDayCount.text = dayCount.toString()
         }
-        binding.tvDayCount.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer, ItineraryPoiFragment())
-                .commit()
-        }
         setView()
         setDataViewModel()
     }
@@ -63,7 +59,7 @@ class DayCountFragment : Fragment() {
             setIconResource(R.drawable.baseline_arrow_forward_24)
             setOnClickListener {
                 requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainer, ItineraryPersonFragment())
+                    .replace(R.id.fragmentContainer, ItineraryPoiFragment())
                     .commit()
             }
         }

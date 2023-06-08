@@ -6,12 +6,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.itinerary.itineraryPoi.ItineraryPoiFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <include
+        android:id="@+id/content_poi"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        layout="@layout/content_itinerary_poi"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/card_itinerary_items"
+        />
+    <include
+        android:id="@+id/state_loading"
+        layout="@layout/state_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+        />
+    <include
+        android:id="@+id/state_error"
+        layout="@layout/state_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

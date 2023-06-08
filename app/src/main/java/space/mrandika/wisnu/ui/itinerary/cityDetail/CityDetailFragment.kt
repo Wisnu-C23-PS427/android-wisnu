@@ -1,13 +1,12 @@
 package space.mrandika.wisnu.ui.itinerary.cityDetail
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -16,15 +15,13 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.FragmentCityDetailBinding
 import space.mrandika.wisnu.model.city.City
 import space.mrandika.wisnu.model.poi.POI
-import space.mrandika.wisnu.ui.itinerary.DayCountFragment
+import space.mrandika.wisnu.ui.itinerary.daycount.DayCountFragment
 import space.mrandika.wisnu.ui.itinerary.ItineraryViewModel
-import space.mrandika.wisnu.ui.itinerary.itineraryPoi.ItineraryPoiFragment
 
 @AndroidEntryPoint
 class CityDetailFragment : Fragment() {
@@ -90,4 +87,5 @@ class CityDetailFragment : Fragment() {
         val adapter = CityAdapter(listPOi)
         binding.rvPoi.adapter = adapter
     }
+
 }

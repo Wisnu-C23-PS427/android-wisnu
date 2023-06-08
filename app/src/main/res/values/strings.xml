@@ -8,4 +8,24 @@
     <string name="action_loading">Memuat...</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="durasi_perjalanan">Durasi \nPerjalanan</string>
+    <string name="card_description_duration">1 durasi sama dengan 60 menit.</string>
+    <string name="virtual_account">Virtual Account</string>
+    <string name="bank_name">Bank Citayam Jaya (0010)</string>
+    <string name="penerima">Penerima</string>
+    <string name="image">image</string>
+    <string name="biaya_aplikasi">Biaya Aplikasi</string>
+    <string name="jasa_temanwisnu">Jasa TemanWisnu</string>
+    <string name="tiket_masuk">Tiket Masuk</string>
+    <string name="rincian_transaksi">Rincian Transaksi</string>
+    <string name="detail_transaction">Detail Transaction</string>
+    <string name="lanjut">LANJUT</string>
+    <string name="lewati">Lewati</string>
+    <string name="aku_pergi_sendiri">Aku Pergi Sendiri</string>
+    <string name="buat_transaksi">Buat\nTransaksi</string>
+    <string name="tiket_kamu_diatur_wisnu">Tiket kamu diatur Wisnu.</string>
+    <string name="kamu_akan_ditemani_kang_martin">Kamu akan ditemani Kang Martin</string>
+    <string name="simpan_perjalanan">Simpan\nperjalanan</string>
+    <string name="kamu_dapat_melihat_perjalanan_yang_disimpan_pada_menu_akun">Kamu dapat melihat perjalanan yang\ndisimpan pada menu akun.</string>
+    <string name="simpan">SIMPAN</string>
 </resources>

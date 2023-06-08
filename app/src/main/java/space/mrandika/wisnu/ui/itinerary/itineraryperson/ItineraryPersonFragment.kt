@@ -12,6 +12,7 @@ import com.google.android.material.button.MaterialButton
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.FragmentItineraryPersonBinding
 import space.mrandika.wisnu.ui.itinerary.ItineraryViewModel
+import space.mrandika.wisnu.ui.itinerary.itineraryticket.ItineraryTicketFragment
 
 class ItineraryPersonFragment : Fragment() {
     private var _binding : FragmentItineraryPersonBinding? = null
@@ -77,19 +78,22 @@ class ItineraryPersonFragment : Fragment() {
         val tvButton : TextView? = activity?.findViewById(R.id.tv_text_button)
         tvButton?.apply {
             visibility = View.VISIBLE
-            text = "Aku Pergi Sendiri"
+            text = context.getString(R.string.aku_pergi_sendiri)
             setOnClickListener {
                 activityViewModel.setAdult(1)
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainer, ItineraryTicketFragment())
+                    .commit()
             }
         }
         btnMain?.apply {
-            text = "Lanjut"
+            getText(R.string.lanjut)
             setIconResource(R.drawable.baseline_arrow_forward_24)
             setOnClickListener {
                 activityViewModel.setAdult(adult)
                 activityViewModel.setChild(child)
                 requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainer, ItineraryPersonFragment())
+                    .replace(R.id.fragmentContainer, ItineraryTicketFragment())
                     .commit()
             }
         }

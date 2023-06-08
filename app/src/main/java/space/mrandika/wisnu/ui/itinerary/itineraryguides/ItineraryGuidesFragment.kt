@@ -1,4 +1,4 @@
-package space.mrandika.wisnu.ui.itinerary.itineraryticket
+package space.mrandika.wisnu.ui.itinerary.itineraryguides
 
 import android.os.Bundle
 import android.util.Log
@@ -13,48 +13,41 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.launch
 import space.mrandika.wisnu.R
-import space.mrandika.wisnu.databinding.FragmentItineraryTicketBinding
+import space.mrandika.wisnu.databinding.FragmentItinerartGuidesBinding
 import space.mrandika.wisnu.model.poi.POI
 import space.mrandika.wisnu.ui.itinerary.ItineraryViewModel
-import space.mrandika.wisnu.ui.itinerary.itineraryguides.ItineraryGuidesFragment
+import space.mrandika.wisnu.ui.itinerary.transaction.detailpayment.DetailTransactionFragment
 
-class ItineraryTicketFragment : Fragment() {
-    private var _binding : FragmentItineraryTicketBinding? = null
+class ItineraryGuidesFragment : Fragment() {
+    private var _binding : FragmentItinerartGuidesBinding? = null
     private val binding get() = _binding!!
-    private val activityViewModel : ItineraryViewModel by activityViewModels()
-
+    private val activityViewModel: ItineraryViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentItineraryTicketBinding.inflate(inflater,container,false)
+        _binding = FragmentItinerartGuidesBinding.inflate(inflater,container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setViewActivity()
         lifecycleScope.launch {
-            activityViewModel.state.value.apply{
-                PoiData?.let { setTicket(it) }
-                setViewActivity()
+            activityViewModel.state.value.apply {
+                PoiData?.let { setData(it) }
             }
         }
 
     }
+    private fun setData(data :List<POI>){
 
-    private fun setTicket(data: List<POI>){
-        val ticket : MutableList<POI> = mutableListOf()
-        for(POI in data){
-            if(POI.tickets != null ){
-                if (POI.tickets.isTicketingEnabled){
-                    Log.d("Enable ticket ", POI.tickets.isTicketingEnabled.toString())
-                    ticket.add(POI)
-                }
+        for(poi in data){
+            Log.d("data Guides", poi.toString())
+            binding.rvGuides.apply {
+                adapter = poi.guides?.let { ItineraryGuidesAdapter(it, activityViewModel) }
+                layoutManager = LinearLayoutManager(requireContext())
             }
-        }
-        binding.rvTicket.apply {
-            adapter = ItineraryTicketAdapter(ticket,activityViewModel)
-            layoutManager = LinearLayoutManager(requireContext())
         }
     }
     private fun setViewActivity() {
@@ -63,35 +56,34 @@ class ItineraryTicketFragment : Fragment() {
         val btnMain : MaterialButton? = activity?.findViewById(R.id.btn_main)
         val tvButton : TextView? = activity?.findViewById(R.id.tv_text_button)
         tvButton?.apply {
-            activityViewModel.state.value.includeTicket = false
             visibility = View.VISIBLE
-            text = context.getString(R.string.lewati)
-            activityViewModel.setTotalTicket(0)
+            text = "lewati"
             setOnClickListener {
-                activityViewModel.setAdult(1)
+                activityViewModel.state.value.includeGuide = false
+                activityViewModel.setTotalGuide(0)
                 requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainer, ItineraryGuidesFragment())
+                    .replace(R.id.fragmentContainer, DetailTransactionFragment())
                     .commit()
             }
         }
         btnMain?.apply {
-            text = context.getString(R.string.lanjut)
+            text = "Lanjut"
             setIconResource(R.drawable.baseline_arrow_forward_24)
             setOnClickListener {
-                activityViewModel.state.value.includeTicket = true
+                activityViewModel.state.value.includeGuide = true
                 requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainer, ItineraryGuidesFragment())
+                    .replace(R.id.fragmentContainer, DetailTransactionFragment())
                     .commit()
             }
         }
         tvDescription?.apply {
             visibility = View.VISIBLE
-            text = "Mau sekalian beli di Wisnu?"
+            text = "Rekomendasi TemanWisnu"
         }
 
         tvTitle?.apply {
             tvTitle.visibility = View.VISIBLE
-            tvTitle.text = "Perlu tiket\n" + "masuk, nih."
+            tvTitle.text = "Mau \nditemenin?"
         }
     }
 }
