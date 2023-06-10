@@ -44,7 +44,7 @@ class TicketRepository @Inject constructor(
                 service.getTicket(id)
             } else {
                 val gson = Gson()
-                val stringJson = assetManager.getStringJson(R.raw.list_ticket)
+                val stringJson = assetManager.getStringJson(R.raw.ticket_detail)
 
                 gson.fromJson(stringJson, TicketResponse::class.java)
             }
