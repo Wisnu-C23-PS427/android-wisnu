@@ -1,5 +1,6 @@
 package space.mrandika.wisnu.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,8 @@ import space.mrandika.wisnu.databinding.FragmentHomeBinding
 import space.mrandika.wisnu.model.category.Category
 import space.mrandika.wisnu.model.event.Event
 import space.mrandika.wisnu.model.poi.POI
+import space.mrandika.wisnu.ui.poi.categories.POICategoryActivity
+import space.mrandika.wisnu.ui.poi.detail.POIDetailActivity
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -59,6 +62,16 @@ class HomeFragment : Fragment() {
         binding?.apply {
             rvIcon.adapter = adapter
         }
+
+        adapter.setOnItemClickCallback(object : CategoriesAdapter.OnItemClickCallback {
+            override fun onItemClicked(name: String) {
+                val intent = Intent(requireActivity(), POICategoryActivity::class.java).apply {
+                    putExtra("category", name)
+                }
+
+                startActivity(intent)
+            }
+        })
     }
     private fun setRecommendation(recommendation : List<POI>){
         val adapter = RecommendationAdapter(recommendation)
@@ -67,6 +80,16 @@ class HomeFragment : Fragment() {
             rvRecomendation.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
             rvRecomendation.adapter = adapter
         }
+
+        adapter.setOnItemClickCallback(object : RecommendationAdapter.OnItemClickCallback {
+            override fun onItemClicked(id: Int) {
+                val intent = Intent(requireActivity(), POIDetailActivity::class.java).apply {
+                    putExtra("id", id)
+                }
+
+                startActivity(intent)
+            }
+        })
     }
     private fun setEvent(event: List<Event>){
         val adapter = EventsAdapter(event)

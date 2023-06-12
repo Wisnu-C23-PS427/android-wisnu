@@ -11,6 +11,13 @@ import space.mrandika.wisnu.databinding.ItemAttractionFullBinding
 import space.mrandika.wisnu.entity.POI
 
 class POIsAdapter(private val pois: List<POI>, private val context: Context) : RecyclerView.Adapter<POIsAdapter.ViewHolder>() {
+    private lateinit var onItemClickCallback: POIsAdapter.OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: POIsAdapter.OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
+
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemAttractionFullBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ViewHolder(binding)
@@ -37,7 +44,15 @@ class POIsAdapter(private val pois: List<POI>, private val context: Context) : R
 
                 tvTitle.text = item.name
                 tvSubtitle.text = item.location
+
+                itemView.setOnClickListener {
+                    onItemClickCallback.onItemClicked(item.id)
+                }
             }
         }
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(id: Int)
     }
 }

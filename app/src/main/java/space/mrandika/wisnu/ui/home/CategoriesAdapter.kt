@@ -8,8 +8,14 @@ import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.ItemCategoryBinding
 import space.mrandika.wisnu.model.category.Category
+import space.mrandika.wisnu.ui.ticket.list.TicketsAdapter
 
 class CategoriesAdapter(private val categories: List<Category>) : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
+    private lateinit var onItemClickCallback: CategoriesAdapter.OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: CategoriesAdapter.OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemCategoryBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
@@ -34,7 +40,15 @@ class CategoriesAdapter(private val categories: List<Category>) : RecyclerView.A
                 } else {
                     btnIcons.setImageResource(R.drawable.mock_category_mountain)
                 }
+
+                itemView.setOnClickListener {
+                    item.name?.let { name -> onItemClickCallback.onItemClicked(name) }
+                }
             }
         }
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(name: String)
     }
 }

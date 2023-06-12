@@ -1,6 +1,7 @@
 package space.mrandika.wisnu.ui.profile.trip.detail
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.ItemItineraryBinding
 import space.mrandika.wisnu.entity.ItineraryWithPOIs
+import space.mrandika.wisnu.ui.poi.detail.POIDetailActivity
 
 class ItinerariesAdapter(private val itineraries: List<ItineraryWithPOIs>, private val context: Context) : RecyclerView.Adapter<ItinerariesAdapter.ViewHolder>() {
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -27,9 +29,22 @@ class ItinerariesAdapter(private val itineraries: List<ItineraryWithPOIs>, priva
         fun bind(item: ItineraryWithPOIs) {
             binding.apply {
                 textDayNum.text = String.format(context.resources.getString(R.string.day_num, item.itinerary.day.toString()))
+
+                val poisAdapter = POIsAdapter(item.poi, context)
+
                 rvPoi.layoutManager = LinearLayoutManager(context)
-                rvPoi.adapter = POIsAdapter(item.poi, context)
+                rvPoi.adapter = poisAdapter
                 rvPoi.isNestedScrollingEnabled = false
+
+                poisAdapter.setOnItemClickCallback(object : POIsAdapter.OnItemClickCallback {
+                    override fun onItemClicked(id: Int) {
+                        val intent = Intent(context, POIDetailActivity::class.java).apply {
+                            putExtra("id", id)
+                        }
+
+                        context.startActivity(intent)
+                    }
+                })
             }
         }
     }

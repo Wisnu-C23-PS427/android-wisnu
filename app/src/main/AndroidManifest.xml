@@ -30,8 +30,6 @@
             android:name=".ui.order.detail.OrderDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.AuthActivity"
-            android:windowSoftInputMode="adjustPan"
             android:name=".ui.poi.categories.POICategoryActivity"
             android:exported="false" />
         <activity
