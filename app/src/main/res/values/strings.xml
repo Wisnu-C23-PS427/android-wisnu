@@ -35,4 +35,6 @@
     <string name="action_try_again">COBA LAGI</string>
     <string name="action_loading">Memuat...</string>
     <string name="password">Kata sandi</string>
+    <string name="full_name">Nama Lengkap</string>
+    <string name="phone_number">Nomor Telepon</string>
 </resources>

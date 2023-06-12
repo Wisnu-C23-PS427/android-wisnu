@@ -10,10 +10,18 @@
         android:label="WelcomeFragment" >
         <action
             android:id="@+id/action_welcomeFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_welcomeFragment_to_registerNameFragment"
-            app:destination="@id/registerNameFragment" />
+            app:destination="@id/registerNameFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -21,7 +29,11 @@
         android:label="LoginFragment" >
         <action
             android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
-            app:destination="@id/forgotPasswordFragment" />
+            app:destination="@id/forgotPasswordFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/registerNameFragment"
@@ -30,7 +42,11 @@
         tools:layout="@layout/fragment_register_name" >
         <action
             android:id="@+id/action_registerNameFragment_to_registerEmailFragment"
-            app:destination="@id/registerEmailFragment" />
+            app:destination="@id/registerEmailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/registerPasswordFragment"
@@ -38,7 +54,11 @@
         android:label="RegisterPasswordFragment" >
         <action
             android:id="@+id/action_registerPasswordFragment_to_preferenceFragment"
-            app:destination="@id/preferenceFragment" />
+            app:destination="@id/preferenceFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/registerEmailFragment"
@@ -47,7 +67,11 @@
         tools:layout="@layout/fragment_register_email" >
         <action
             android:id="@+id/action_registerEmailFragment_to_registerPasswordFragment"
-            app:destination="@id/registerPasswordFragment" />
+            app:destination="@id/registerPasswordFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/preferenceFragment"
@@ -56,22 +80,35 @@
         tools:layout="@layout/fragment_preference" >
         <action
             android:id="@+id/action_preferenceFragment_to_checkFragment"
-            app:destination="@id/checkFragment" />
+            app:destination="@id/checkFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
         android:name="space.mrandika.wisnu.ui.forgotpassword.ForgotPasswordFragment"
         android:label="ForgotPasswordFragment" />
+
     <fragment
         android:id="@+id/checkFragment"
         android:name="space.mrandika.wisnu.ui.register.CheckFragment"
         android:label="CheckFragment" >
             <action
             android:id="@+id/action_checkFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
             <action
             android:id="@+id/action_checkFragment_to_registerNameFragment"
-            app:destination="@id/registerNameFragment" />
+            app:destination="@id/registerNameFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 </navigation>

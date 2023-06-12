@@ -65,13 +65,15 @@ class RegisterNameFragment : Fragment() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 val name = p0.toString().trim()
-                binding?.tfRegisterName?.error = when {
+                val error = when {
                     name.isEmpty() -> "Field ini tidak boleh kosong"
                     else -> {
                         enableButton()
                         null
                     }
                 }
+
+                binding?.nameTextInputLayout?.error = error
             }
 
             override fun afterTextChanged(p0: Editable?) {

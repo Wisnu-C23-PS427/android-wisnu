@@ -110,7 +110,8 @@ class LoginFragment : Fragment() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 val email = p0.toString().trim()
-                val error = when {
+
+                binding?.emailTextInputLayout?.error = when {
                     email.isEmpty() -> "Field ini tidak boleh kosong"
                     !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() -> "Email tidak valid"
                     else -> {
@@ -118,8 +119,6 @@ class LoginFragment : Fragment() {
                         null
                     }
                 }
-
-                binding?.emailTextInputLayout?.setError(error)
             }
 
             override fun afterTextChanged(p0: Editable?) {
@@ -133,7 +132,8 @@ class LoginFragment : Fragment() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 val password = p0.toString().trim()
-                val error = when {
+
+                binding?.passwordTextInputLayout?.error = when {
                     password.isEmpty() -> "Field ini tidak boleh kosong"
                     password.length < 8 -> "Minimal 8 karakter"
                     else -> {
@@ -141,8 +141,6 @@ class LoginFragment : Fragment() {
                         null
                     }
                 }
-
-                binding?.passwordTextInputLayout?.setError(error)
             }
 
             override fun afterTextChanged(p0: Editable?) {

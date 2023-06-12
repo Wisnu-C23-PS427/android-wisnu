@@ -59,7 +59,7 @@ class RegisterEmailFragment : Fragment() {
     }
 
     private fun errorCheck(){
-        binding?.etRegisterEmail?.addTextChangedListener(object : TextWatcher {
+        binding?.tfRegisterEmail?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
@@ -67,7 +67,7 @@ class RegisterEmailFragment : Fragment() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 val email = p0.toString().trim()
 
-                binding?.etRegisterEmail?.error = when {
+                binding?.emailTextInputLayout?.error = when {
                     email.isEmpty() -> "Field ini tidak boleh kosong"
                     !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() -> "Email tidak valid"
                     else -> {
@@ -82,14 +82,14 @@ class RegisterEmailFragment : Fragment() {
             }
         })
 
-        binding?.etTelephoneNumber?.addTextChangedListener(object : TextWatcher {
+        binding?.tfRegisterPhone?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 val phoneNumber = p0.toString().trim()
-                binding?.etTelephoneNumber?.error = when {
+                binding?.phoneTextInputLayout?.error = when {
                     phoneNumber.isEmpty() -> "Field ini tidak boleh kosong"
                     phoneNumber.length > 10 -> "Minimal 10 "
                     else -> {
@@ -106,8 +106,8 @@ class RegisterEmailFragment : Fragment() {
     }
 
     private fun enableButton(){
-        val email  = binding?.etRegisterEmail?.text
-        val phoneNumber = binding?.etTelephoneNumber?.text
+        val email  = binding?.tfRegisterEmail?.text
+        val phoneNumber = binding?.tfRegisterPhone?.text
         val btnMain: Button? = activity?.findViewById(R.id.btn_main)
         btnMain?.isEnabled = !email.isNullOrEmpty() && !phoneNumber.isNullOrEmpty()
     }
