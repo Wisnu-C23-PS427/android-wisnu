@@ -16,14 +16,24 @@
         android:theme="@style/Theme.Wisnu"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.poi.categories.POICategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.poi.gallery.VRImageViewerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.poi.gallery.POIGalleryActivity"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".ui.poi.detail.POIDetailActivity" -->
+        <!-- android:exported="false" /> -->
+        <activity
+            android:name=".ui.poi.detail.POIDetailActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 

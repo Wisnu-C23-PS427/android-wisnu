@@ -63,6 +63,14 @@
                 "is_vr_capable": false,
                 "image": "www.path/to/poi_image.jpg",
                 "created_at": "YMDTZ"
+            },
+            {
+                "id": 4,
+                "name": "Image Name",
+                "is_from_wisnu_team": false,
+                "is_vr_capable": false,
+                "image": "www.path/to/poi_image.jpg",
+                "created_at": "YMDTZ"
             }
         ]
     }

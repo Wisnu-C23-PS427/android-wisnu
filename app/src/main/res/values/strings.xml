@@ -8,4 +8,10 @@
     <string name="action_loading">Memuat...</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="vr_enabled">Sekarang, kamu bisa berkeliling secara online menggunakan VR di Aplikasi Wisnu.</string>
+    <string name="new_info">Ada yang baru!</string>
+    <string name="gallery">Galeri</string>
+    <string name="from_wisnu">Dari Tim Wisnu</string>
+    <string name="from_visitor">Dari pengunjung</string>
+    <string name="vr_viewer">VR Viewer</string>
 </resources>

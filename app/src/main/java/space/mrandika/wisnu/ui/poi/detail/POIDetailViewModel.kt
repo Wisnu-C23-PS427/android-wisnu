@@ -29,14 +29,12 @@ class POIDetailViewModel @Inject constructor(private val repoPOI : POIRepository
             }
         }
     }
-    suspend fun getGuide(id:Int){
-        isLoading(true)
-        isError(false)
-        repoGuide.getGuide(id).collect{ result ->
-            isLoading(false)
+    suspend fun getGuide(id: Int){
+        repoGuide.getGuide(id).collect { result ->
             result.onFailure {
                 isError(value = true)
             }
+
             result.onSuccess {
                 if(it.data == null ){
                     isEmpty(true)

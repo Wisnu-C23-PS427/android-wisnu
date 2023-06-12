@@ -1,6 +1,7 @@
 package space.mrandika.wisnu.model.gallery
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Gallery(
 
@@ -21,4 +22,4 @@ data class Gallery(
 
 	@field:SerializedName("is_vr_capable")
 	val isVrCapable: Boolean? = null
-)
+): Serializable

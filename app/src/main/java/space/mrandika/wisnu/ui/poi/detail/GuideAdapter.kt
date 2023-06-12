@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
-import space.mrandika.wisnu.databinding.CardGuideBinding
+import space.mrandika.wisnu.databinding.ItemGuideBinding
 import space.mrandika.wisnu.model.guide.Guide
 
 class GuideAdapter(private val guides: List<Guide>): RecyclerView.Adapter<GuideAdapter.ViewHolder>() {
@@ -20,7 +20,7 @@ class GuideAdapter(private val guides: List<Guide>): RecyclerView.Adapter<GuideA
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        val binding = CardGuideBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
+        val binding = ItemGuideBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ViewHolder(binding)
     }
 
@@ -32,7 +32,7 @@ class GuideAdapter(private val guides: List<Guide>): RecyclerView.Adapter<GuideA
 
     override fun getItemCount(): Int = guides.size
 
-    inner class ViewHolder(private val binding: CardGuideBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemGuideBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Guide) {
             binding.apply {
                 if (BuildConfig.IS_SERVICE_UP) {

@@ -48,6 +48,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/card_items_category"/>
+        tools:listitem="@layout/item_poi_extended"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

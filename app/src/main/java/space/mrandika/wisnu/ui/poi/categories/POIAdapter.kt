@@ -4,13 +4,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
-import space.mrandika.wisnu.databinding.CardItemsCategoryBinding
+import space.mrandika.wisnu.databinding.ItemPoiExtendedBinding
 import space.mrandika.wisnu.model.poi.POI
 
 
 class POIAdapter(private val pois: List<POI>): RecyclerView.Adapter<POIAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): POIAdapter.ViewHolder {
-        val binding = CardItemsCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemPoiExtendedBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -21,7 +21,7 @@ class POIAdapter(private val pois: List<POI>): RecyclerView.Adapter<POIAdapter.V
 
     override fun getItemCount(): Int = pois.size
 
-    inner class ViewHolder(private val binding: CardItemsCategoryBinding) :
+    inner class ViewHolder(private val binding: ItemPoiExtendedBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: POI) {

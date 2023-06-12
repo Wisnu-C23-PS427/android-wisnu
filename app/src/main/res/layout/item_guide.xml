@@ -7,7 +7,7 @@
     android:layout_marginBottom="12dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <de.hdodenhof.circleimageview.CircleImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_image_guide"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -16,6 +16,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:src="@tools:sample/avatars"
+        app:shapeAppearanceOverlay="@style/circleImageView"
         />
 
     <TextView
@@ -41,6 +42,7 @@
         app:layout_constraintStart_toEndOf="@+id/iv_image_guide"
         app:layout_constraintTop_toBottomOf="@+id/tv_name"
         tools:text="IDR 75.000 / jam" />
+
     <ImageView
         android:id="@+id/btn_teman_wisnu"
         android:layout_width="15dp"
