@@ -15,15 +15,15 @@
     <string name="title_login">Selamat datang kembali 👐🏻</string>
     <string name="title_forgot_password">Pemulihan akun 🛠️</string>
     <string name="description_forgot_password">Kami akan kirimkan email untuk mengatur ulang kata sandi kamu.</string>
-    <string name="title_register_name">Mari berkeliling Indonesia 🇮🇩</string>
+    <string name="title_register_name">Mari berkeliling\nIndonesia 🇮🇩</string>
     <string name="description_register_name">Kenalan, yuk!</string>
-    <string name="title_register_email">Hai,Andika 👋🏻</string>
+    <string name="title_register_email">Hai,\n%1$s 👋🏻</string>
     <string name="description_register_email">Hubungin kamu kemana nih?</string>
-    <string name="title_register_password">Masukin kata sandi 🔐</string>
+    <string name="title_register_password">Masukin\nkata sandi 🔐</string>
     <string name="description_register_password">Kata sandi ini digunakan untuk masuk ke akunmu.</string>
-    <string name="title_register_referensi">Punya preferensi? 🤔</string>
+    <string name="title_register_referensi">Punya\npreferensi? 🤔</string>
     <string name="description_register_referensi">Wisnu akan merekomendasikan tempat yang mungkin kamu sukai.</string>
-    <string name="title_register_check">Cek kembali 📝</string>
+    <string name="title_register_check">Cek\nkembali 📝</string>
     <string name="description_register_check">Informasi kamu sudah benar?</string>
     <string name="name">Nama Kamu</string>
     <string name="no_telp">Nomor Telepon</string>
@@ -34,4 +34,5 @@
     <string name="state_error_subtitle">Wisnu coba perbaiki.\nKamu lihat yang lain dulu ya</string>
     <string name="action_try_again">COBA LAGI</string>
     <string name="action_loading">Memuat...</string>
+    <string name="password">Kata sandi</string>
 </resources>

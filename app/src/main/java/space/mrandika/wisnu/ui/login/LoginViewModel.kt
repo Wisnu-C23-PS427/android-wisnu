@@ -2,10 +2,12 @@ package space.mrandika.wisnu.ui.login
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import space.mrandika.wisnu.model.auth.LoginResponse
 import space.mrandika.wisnu.repository.AuthRepository
 import javax.inject.Inject
@@ -16,17 +18,19 @@ class LoginViewModel @Inject constructor(private val repo:AuthRepository):ViewMo
     private val _state = MutableStateFlow(LoginUiState())
     val state : StateFlow<LoginUiState> = _state
 
-    suspend fun userLogin(email: String, password : String){
-        setError(false)
-        setLoading(true)
-        repo.login(email,password).collect{ result ->
-            setLoading(false)
-            result.onSuccess {
-                it.data?.token?.let { token -> repo.saveAccessToken(token) }
-                setResult(it)
-            }
-            result.onFailure {
-                setError(true)
+    fun login(email: String, password : String) {
+        viewModelScope.launch {
+            setError(false)
+            setLoading(true)
+            repo.login(email,password).collect{ result ->
+                setLoading(false)
+                result.onSuccess {
+                    it.data?.token?.let { token -> repo.saveAccessToken(token) }
+                    setResult(it)
+                }
+                result.onFailure {
+                    setError(true)
+                }
             }
         }
     }

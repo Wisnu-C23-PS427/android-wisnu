@@ -3,19 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/splashFragment">
-    <fragment
-        android:id="@+id/splashFragment"
-        android:name="space.mrandika.wisnu.ui.splashfragment.SplashFragment"
-        android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
-        <action
-            android:id="@+id/action_splashFragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment" />
-    </fragment>
+    app:startDestination="@id/welcomeFragment">
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="space.mrandika.wisnu.ui.wellcome.WelcomeFragment"
+        android:name="space.mrandika.wisnu.ui.welcome.WelcomeFragment"
         android:label="WelcomeFragment" >
         <action
             android:id="@+id/action_welcomeFragment_to_loginFragment"
@@ -46,8 +37,8 @@
         android:name="space.mrandika.wisnu.ui.register.RegisterPasswordFragment"
         android:label="RegisterPasswordFragment" >
         <action
-            android:id="@+id/action_registerPasswordFragment_to_referensiFragment"
-            app:destination="@id/referensiFragment" />
+            android:id="@+id/action_registerPasswordFragment_to_preferenceFragment"
+            app:destination="@id/preferenceFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerEmailFragment"
@@ -59,12 +50,12 @@
             app:destination="@id/registerPasswordFragment" />
     </fragment>
     <fragment
-        android:id="@+id/referensiFragment"
-        android:name="space.mrandika.wisnu.ui.register.ReferensiFragment"
-        android:label="fragment_referensi"
-        tools:layout="@layout/fragment_referensi" >
+        android:id="@+id/preferenceFragment"
+        android:name="space.mrandika.wisnu.ui.register.PreferenceFragment"
+        android:label="fragment_preference"
+        tools:layout="@layout/fragment_preference" >
         <action
-            android:id="@+id/action_referensiFragment_to_checkFragment"
+            android:id="@+id/action_preferenceFragment_to_checkFragment"
             app:destination="@id/checkFragment" />
     </fragment>
     <fragment
@@ -74,5 +65,13 @@
     <fragment
         android:id="@+id/checkFragment"
         android:name="space.mrandika.wisnu.ui.register.CheckFragment"
-        android:label="CheckFragment" />
+        android:label="CheckFragment" >
+            <action
+            android:id="@+id/action_checkFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+
+            <action
+            android:id="@+id/action_checkFragment_to_registerNameFragment"
+            app:destination="@id/registerNameFragment" />
+    </fragment>
 </navigation>

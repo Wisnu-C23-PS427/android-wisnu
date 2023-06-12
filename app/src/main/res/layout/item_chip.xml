@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/chip"
     android:layout_width="100dp"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:textColor="@color/mainColor"
-    android:text="Gunung"
+    style="@style/WisnuChip"
+    tools:text="Gunung"
     android:clickable="true"
     android:checkable="true"
     android:layout_margin="6dp"
-    android:textAlignment="center"
-    app:chipStrokeColor="@color/mainColor" />
+    android:textAlignment="center" />

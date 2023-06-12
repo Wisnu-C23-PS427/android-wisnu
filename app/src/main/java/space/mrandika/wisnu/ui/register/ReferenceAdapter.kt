@@ -6,43 +6,42 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import space.mrandika.wisnu.R
+import space.mrandika.wisnu.databinding.ItemChipBinding
+import space.mrandika.wisnu.model.category.Category
 
-class ReferenceAdapter(private val chips: List<String>,private val viewModel : RegisterViewModel) : RecyclerView.Adapter<ReferenceAdapter.ChipViewHolder>() {
+class ReferenceAdapter(private val chips: List<Category>) : RecyclerView.Adapter<ReferenceAdapter.ViewHolder>() {
+    private lateinit var onItemClickCallback: OnItemClickCallback
 
-    private val selectedChips: MutableList<String>  = mutableListOf()
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChipViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.chips_items, parent, false)
-        return ChipViewHolder(view)
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
     }
 
-    override fun onBindViewHolder(holder: ChipViewHolder, position: Int) {
-        val chipText = chips[position]
-        holder.bind(chipText)
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
+        val binding = ItemChipBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
+        return ViewHolder(binding)
+    }
 
-        holder.chip.setOnClickListener {
-            val selectedChip = chips[position]
-
-            if (selectedChips.contains(selectedChip)) {
-                selectedChips.remove(selectedChip)
-                viewModel.updateInteresting(selectedChips)
-                holder.chip.isChecked = false
-            } else {
-                selectedChips.add(selectedChip)
-                viewModel.updateInteresting(selectedChips)
-                holder.chip.isChecked = true
-            }
-        }
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+        val chip = chips[position]
+        viewHolder.bind(chip)
     }
 
     override fun getItemCount(): Int = chips.size
 
-    inner class ChipViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val chip: Chip = itemView.findViewById(R.id.chip)
+    inner class ViewHolder(private val binding: ItemChipBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: Category) {
+            binding.apply {
+                chip.text = item.name
 
-        fun bind(chipText: String) {
-            chip.text = chipText
+                itemView.setOnClickListener {
+                    onItemClickCallback.onItemClicked(binding.chip)
+                }
+            }
         }
     }
 
+    interface OnItemClickCallback {
+        fun onItemClicked(chip: Chip)
+    }
 }

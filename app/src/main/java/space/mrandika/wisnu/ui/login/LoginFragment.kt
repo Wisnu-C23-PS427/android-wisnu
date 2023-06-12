@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -24,46 +25,55 @@ import space.mrandika.wisnu.model.auth.LoginResponse
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
     private val viewModel: LoginViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        lifecycleScope.launch {
+            viewModel.state.collect { uiState ->
+                Log.d("cek isLoading", uiState.isLoading.toString())
+                loadingStateIsToggled(uiState.isLoading)
+                errorStateIsToggled(uiState.isError)
+                successStateIsToggled(uiState.LoginResult)
+            }
+        }
+
         val btnMain: Button? = activity?.findViewById(R.id.btn_main)
         val btnSecondary: Button? = activity?.findViewById(R.id.btn_secondary)
         val tvForgotPassword : TextView? = activity?.findViewById(R.id.tv_forget_password)
         val tvTitle : TextView? = activity?.findViewById(R.id.tv_title)
         val tvDescription : TextView? = activity?.findViewById(R.id.tv_description)
+        val toolbar: Toolbar? = activity?.findViewById(R.id.toolbar)
+
         ViewUtils.hideViews(btnSecondary)
         ViewUtils.showViews(tvForgotPassword)
         btnMain?.setText(R.string.login)
         errorCheck()
         btnMain?.isEnabled = false
         tvTitle?.setText(R.string.title_login)
+
+        // TODO: Enable forgot password
+        tvForgotPassword?.visibility = View.GONE
         tvForgotPassword?.setText(R.string.forget_password)
-        btnMain?.setOnClickListener {
-            lifecycleScope.launch {
-                viewModel.userLogin(binding.tfLoginEmail.text.toString(), binding.tfLoginPassword.text.toString())
-            }
 
-            lifecycleScope.launch {
-                viewModel.state.collect { uiState ->
-                    Log.d("cek isLoading", uiState.isLoading.toString())
-                    loadingStateIsToggled(uiState.isLoading)
-                    errorStateIsToggled(uiState.isError)
-                    successStateIsToggled(uiState.LoginResult)
-                }
-            }
-
+        toolbar?.setNavigationOnClickListener {
+            findNavController().popBackStack()
         }
+
+        btnMain?.setOnClickListener {
+            viewModel.login(binding?.tfLoginEmail?.text.toString(), binding?.tfLoginPassword?.text.toString())
+        }
+
         tvForgotPassword?.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
         }
@@ -71,7 +81,7 @@ class LoginFragment : Fragment() {
 
     private fun successStateIsToggled(loginResult: LoginResponse?) {
         if (loginResult?.data != null){
-            findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
+
         }
     }
 
@@ -93,14 +103,14 @@ class LoginFragment : Fragment() {
         }
     }
     private fun errorCheck() {
-        binding.tfLoginEmail.addTextChangedListener(object : TextWatcher {
+        binding?.tfLoginEmail?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 val email = p0.toString().trim()
-                binding.tfLoginEmail.error = when {
+                val error = when {
                     email.isEmpty() -> "Field ini tidak boleh kosong"
                     !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() -> "Email tidak valid"
                     else -> {
@@ -108,26 +118,31 @@ class LoginFragment : Fragment() {
                         null
                     }
                 }
+
+                binding?.emailTextInputLayout?.setError(error)
             }
 
             override fun afterTextChanged(p0: Editable?) {
             }
         })
-        binding.tfLoginPassword.addTextChangedListener(object : TextWatcher {
+
+        binding?.tfLoginPassword?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 val password = p0.toString().trim()
-                binding.tfLoginPassword.error = when {
+                val error = when {
                     password.isEmpty() -> "Field ini tidak boleh kosong"
                     password.length < 8 -> "Minimal 8 karakter"
                     else -> {
                         enableButton()
                         null
                     }
-            }
+                }
+
+                binding?.passwordTextInputLayout?.setError(error)
             }
 
             override fun afterTextChanged(p0: Editable?) {
@@ -135,8 +150,8 @@ class LoginFragment : Fragment() {
         })
     }
     private fun enableButton(){
-        val email = binding.tfLoginEmail.text
-        val password = binding.tfLoginPassword.text
+        val email = binding?.tfLoginEmail?.text
+        val password = binding?.tfLoginPassword?.text
         val btnMain: Button? = activity?.findViewById(R.id.btn_main)
         btnMain?.isEnabled = !email.isNullOrEmpty() && !password.isNullOrEmpty()
     }

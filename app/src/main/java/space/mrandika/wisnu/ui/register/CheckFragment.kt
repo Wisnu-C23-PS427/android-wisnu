@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -23,15 +24,16 @@ import space.mrandika.wisnu.model.auth.RegisterResponse
 
 class CheckFragment : Fragment() {
     private var _binding: FragmentCheckBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
     private val viewModel : RegisterViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentCheckBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,6 +44,8 @@ class CheckFragment : Fragment() {
         val tvTitle : TextView? = activity?.findViewById(R.id.tv_title)
         val tvDescription : TextView? = activity?.findViewById(R.id.tv_description)
 
+        val toolbar: Toolbar? = activity?.findViewById(R.id.toolbar)
+
         ViewUtils.hideViews(btnSecondary)
         ViewUtils.showViews(tvChangeInformation)
         btnMain?.setText(R.string.register)
@@ -49,11 +53,17 @@ class CheckFragment : Fragment() {
         tvTitle?.setText(R.string.title_register_check)
         tvDescription?.setText(R.string.description_register_check)
         setData()
+
+        toolbar?.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
         btnMain?.setOnClickListener {
             val data = viewModel.state.value
             lifecycleScope.launch {
                 viewModel.registerUsers(data.name,data.email,data.phoneNumber,data.password,data.interest)
             }
+
             lifecycleScope.launch {
                 viewModel.state.collect { uiState ->
                     Log.d("cek isLoading", uiState.isLoading.toString())
@@ -63,17 +73,22 @@ class CheckFragment : Fragment() {
                 }
             }
         }
+
+        btnSecondary?.setOnClickListener {
+            findNavController().navigate(R.id.action_checkFragment_to_registerNameFragment)
+        }
     }
     private fun successStateIsToggled(result: RegisterResponse?) {
-        if (result?.data != null){
-
+        if (result?.data != null) {
+            findNavController().navigate(R.id.action_checkFragment_to_loginFragment)
         }
     }
 
     private fun loadingStateIsToggled(value: Boolean) {
+        val loadingState : View? = activity?.findViewById(R.id.state_loading)
+        val authContent : View? = activity?.findViewById(R.id.auth_content)
+
         binding.apply {
-            val loadingState : View? = activity?.findViewById(R.id.state_loading)
-            val authContent : View? = activity?.findViewById(R.id.auth_content)
             Log.d("LoadingState", loadingState.toString())
             loadingState?.visibility = if (value) View.VISIBLE else View.GONE
             authContent?.visibility = if (!value) View.VISIBLE else View.GONE
@@ -87,12 +102,13 @@ class CheckFragment : Fragment() {
             authContent?.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
-    private fun setData(){
-        binding.tvNameCheck.text = viewModel.state.value.name
-        binding.tvEmailCheck.text = viewModel.state.value.email
-        binding.tvHandphoneCheck.text = viewModel.state.value.phoneNumber
-        binding.tvReferensiCheck.text = viewModel.state.value.interest.joinToString(", ")
-
+    private fun setData() {
+        binding?.apply {
+            tvNameCheck.text = viewModel.state.value.name
+            tvEmailCheck.text = viewModel.state.value.email
+            tvHandphoneCheck.text = viewModel.state.value.phoneNumber
+            tvReferensiCheck.text = viewModel.state.value.interest.joinToString(", ")
+        }
     }
     override fun onDestroyView() {
         super.onDestroyView()

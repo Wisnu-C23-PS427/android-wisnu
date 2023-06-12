@@ -13,7 +13,4 @@
     <color name="primary_10">#1ADC602A</color>
 
     <color name="white">#FFFFFFFF</color>
-    <color name="mainColor">#DC602A</color>
-    <color name="mainColorWithOpacity">#1ADC602A</color>
-    <color name="blackWithOpacity">#80000000</color>
 </resources>
