@@ -1,5 +1,6 @@
 package space.mrandika.wisnu.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -16,6 +17,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import space.mrandika.wisnu.MainActivity
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.ViewUtils
 import space.mrandika.wisnu.databinding.FragmentLoginBinding
@@ -81,7 +83,8 @@ class LoginFragment : Fragment() {
 
     private fun successStateIsToggled(loginResult: LoginResponse?) {
         if (loginResult?.data != null){
-
+            val intent = Intent(activity, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 
