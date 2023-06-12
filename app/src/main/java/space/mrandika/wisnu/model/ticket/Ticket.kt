@@ -7,6 +7,12 @@ data class Ticket(
     @field:SerializedName("valid_date")
     val validDate: String? = null,
 
+    @field:SerializedName("created_at")
+    val createdAt: String? = null,
+
+    @field:SerializedName("total_price")
+    val totalPrice: Int? = null,
+
     @field:SerializedName("id")
     val id: String? = null,
 

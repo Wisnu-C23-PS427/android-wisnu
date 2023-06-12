@@ -10,5 +10,5 @@ data class SearchResponse(
     val status: Int,
 
     @field:SerializedName("data")
-    val data: SearchResponse? = null,
+    val data: SearchResult? = null,
 )

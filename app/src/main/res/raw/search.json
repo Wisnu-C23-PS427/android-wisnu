@@ -1,0 +1,46 @@
+{
+  "status": 200,
+  "message": "OK",
+  "data": {
+    "cities": [
+      {
+        "id": 1,
+        "name": "City Name",
+        "location": "City Location",
+        "image": "www.path/to/event_image.jpg"
+      },
+      {
+        "id": 2,
+        "name": "City Name",
+        "location": "City Location",
+        "image": "www.path/to/event_image.jpg"
+      },
+      {
+        "id": 3,
+        "name": "City Name",
+        "location": "City Location",
+        "image": "www.path/to/event_image.jpg"
+      }
+    ],
+    "poi": [
+      {
+        "id": 1,
+        "name": "POI Name",
+        "location": "POI Location",
+        "image": "www.path/to/poi_image.jpg"
+      },
+      {
+        "id": 2,
+        "name": "POI Name",
+        "location": "POI Location",
+        "image": "www.path/to/poi_image.jpg"
+      },
+      {
+        "id": 3,
+        "name": "POI Name",
+        "location": "POI Location",
+        "image": "www.path/to/poi_image.jpg"
+      }
+    ]
+  }
+}

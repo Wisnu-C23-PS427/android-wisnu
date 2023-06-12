@@ -7,6 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
+import space.mrandika.wisnu.model.account.AccountResponse
 import space.mrandika.wisnu.model.auth.LoginRequest
 import space.mrandika.wisnu.model.auth.LoginResponse
 import space.mrandika.wisnu.model.auth.RegisterRequest
@@ -24,6 +25,7 @@ import space.mrandika.wisnu.model.ticket.TicketResponse
 import space.mrandika.wisnu.model.ticket.TicketsResponse
 import space.mrandika.wisnu.model.transaction.OrderRequest
 import space.mrandika.wisnu.model.transaction.OrderResponse
+import space.mrandika.wisnu.model.transaction.TransactionResponse
 import space.mrandika.wisnu.model.transaction.TransactionsResponse
 
 interface WisnuAPIService {
@@ -37,6 +39,9 @@ interface WisnuAPIService {
     suspend fun login(
         @Body request: LoginRequest
     ): LoginResponse
+
+    @GET("account")
+    suspend fun account(): AccountResponse
 
     @GET("city")
     suspend fun getCities(
@@ -61,6 +66,9 @@ interface WisnuAPIService {
         @Field("keyword") keyword: String,
         @Field("filter") filter: String,
     ): SearchResponse
+
+    @GET("discover")
+    suspend fun discover(): SearchResponse
 
     @GET("events")
     suspend fun getEvents(
@@ -109,13 +117,18 @@ interface WisnuAPIService {
         @Path("id") id: String,
     ): TicketResponse
 
-    @POST("orders/new")
+    @POST("transaction/new")
     suspend fun createOrder(
         @Body request: OrderRequest
     ): OrderResponse
 
-    @GET("orders")
-    suspend fun getTransaction(
+    @GET("transactions")
+    suspend fun getTransactions(
         @Field("filter") filter: String,
     ): TransactionsResponse
+
+    @GET("transaction")
+    suspend fun getTransaction(
+        @Path("id") id: Int,
+    ): TransactionResponse
 }

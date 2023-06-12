@@ -3,5 +3,6 @@
     <style name="Base.Theme.Wisnu" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="chipCornerRadius">24dp</item>
     </style>
 </resources>

@@ -38,6 +38,28 @@ class CityRepository @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
+    suspend fun getTopCities(
+        preview: Boolean = true,
+        page: Int = 1,
+        size: Int = 5
+    ): Flow<Result<CitiesResponse>> = flow {
+        try {
+            val response: CitiesResponse = if (BuildConfig.IS_SERVICE_UP) {
+                service.getCities(preview, page, size)
+            } else {
+                val gson = Gson()
+                val stringJson = assetManager.getStringJson(R.raw.city)
+
+                gson.fromJson(stringJson, CitiesResponse::class.java)
+            }
+
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }.flowOn(Dispatchers.IO)
+
     suspend fun getCity(
         id: Int
     ): Flow<Result<CityResponse>> = flow {
