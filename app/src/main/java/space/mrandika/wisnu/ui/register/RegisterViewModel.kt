@@ -37,19 +37,21 @@ class RegisterViewModel @Inject constructor(
         }
     }
 
-    suspend fun getCategories() {
-        isLoading(true)
-        isError(false)
+    fun getCategories() {
+        viewModelScope.launch {
+            isLoading(true)
+            isError(false)
 
-        poiRepo.getCategories().collect{ result ->
-            isLoading(false)
+            poiRepo.getCategories().collect{ result ->
+                isLoading(false)
 
-            result.onSuccess {
-                setInterestData(it.data)
-            }
+                result.onSuccess {
+                    setInterestData(it.data)
+                }
 
-            result.onFailure {
-                isError(true)
+                result.onFailure {
+                    isError(true)
+                }
             }
         }
     }

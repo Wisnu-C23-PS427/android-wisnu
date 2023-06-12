@@ -1,16 +1,13 @@
 package space.mrandika.wisnu.ui.home
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.ItemCategoryBinding
 import space.mrandika.wisnu.model.category.Category
-import space.mrandika.wisnu.model.event.Event
 
 class CategoriesAdapter(private val categories: List<Category>) : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
 

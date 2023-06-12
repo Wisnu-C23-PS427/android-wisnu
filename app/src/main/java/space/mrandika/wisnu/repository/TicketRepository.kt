@@ -5,15 +5,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.runBlocking
 import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.model.ticket.TicketResponse
 import space.mrandika.wisnu.model.ticket.TicketsResponse
+import space.mrandika.wisnu.prefs.TokenPreferences
 import space.mrandika.wisnu.service.WisnuAPIService
 import javax.inject.Inject
 
 class TicketRepository @Inject constructor(
     private val service: WisnuAPIService,
+    private val tokenPreferences: TokenPreferences,
     private val assetManager: AssetManager
 ) {
     suspend fun getTickets(
@@ -21,7 +24,17 @@ class TicketRepository @Inject constructor(
     ): Flow<Result<TicketsResponse>> = flow {
         try {
             val response: TicketsResponse = if (BuildConfig.IS_SERVICE_UP) {
-                service.getTickets(filter)
+                var token = ""
+
+                runBlocking {
+                    tokenPreferences.getAccessToken().collect {
+                        token = it
+
+                        return@collect
+                    }
+                }
+
+                service.getTickets(token, filter)
             } else {
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.list_ticket)
@@ -41,7 +54,17 @@ class TicketRepository @Inject constructor(
     ): Flow<Result<TicketResponse>> = flow {
         try {
             val response: TicketResponse = if (BuildConfig.IS_SERVICE_UP) {
-                service.getTicket(id)
+                var token = ""
+
+                runBlocking {
+                    tokenPreferences.getAccessToken().collect {
+                        token = it
+
+                        return@collect
+                    }
+                }
+
+                service.getTicket(token, id)
             } else {
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.ticket_detail)

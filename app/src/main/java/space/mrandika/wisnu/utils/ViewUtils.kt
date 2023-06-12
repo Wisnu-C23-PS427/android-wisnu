@@ -1,4 +1,4 @@
-package space.mrandika.wisnu
+package space.mrandika.wisnu.utils
 
 import android.view.View
 

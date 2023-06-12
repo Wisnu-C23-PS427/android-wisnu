@@ -46,9 +46,9 @@ class OrderDetailActivity : AppCompatActivity() {
 
         id = intent.getIntExtra("id", 0)
 
-        lifecycleScope.launch {
-            id?.let { id -> viewModel.getOrder(id) }
+        id?.let { id -> viewModel.getOrder(id) }
 
+        lifecycleScope.launch {
             viewModel.state.collect { state ->
                 loadingStateIsToggled(state.isLoading)
                 errorStateIsToggled(state.isError)

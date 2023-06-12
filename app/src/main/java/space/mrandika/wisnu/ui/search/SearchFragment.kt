@@ -1,28 +1,21 @@
 package space.mrandika.wisnu.ui.search
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipDrawable
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.FragmentSearchBinding
-import space.mrandika.wisnu.databinding.FragmentSearchResultBinding
 import space.mrandika.wisnu.extension.afterTextChanged
 import space.mrandika.wisnu.model.category.Category
 
@@ -59,8 +52,10 @@ class SearchFragment : Fragment() {
             }
         }
 
-        if (fragmentManager != null) {
-            changeFragmentDiscovery(fragmentManager)
+        Log.d("SearchFragment", "fragmentManager is ${fragmentManager.toString()}")
+
+        fragmentManager?.let {
+            changeFragmentDiscovery(it)
         }
 
         binding?.searchContent?.apply {

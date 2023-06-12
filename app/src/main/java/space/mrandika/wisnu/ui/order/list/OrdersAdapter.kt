@@ -6,8 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.ItemOrderBinding
-import space.mrandika.wisnu.model.ticket.Ticket
-import space.mrandika.wisnu.model.transaction.OrderData
 import space.mrandika.wisnu.model.transaction.Transaction
 
 class OrdersAdapter(private val orders: List<Transaction>, private val context: Context) : RecyclerView.Adapter<OrdersAdapter.ViewHolder>() {

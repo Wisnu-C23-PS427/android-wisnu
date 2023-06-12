@@ -3,7 +3,6 @@ package space.mrandika.wisnu.ui.search
 import space.mrandika.wisnu.model.category.Category
 import space.mrandika.wisnu.model.city.City
 import space.mrandika.wisnu.model.poi.POI
-import space.mrandika.wisnu.model.search.SearchResult
 
 data class SearchUiState(
     val isLoading: Boolean = false,

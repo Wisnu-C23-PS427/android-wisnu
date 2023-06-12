@@ -9,7 +9,6 @@ import space.mrandika.wisnu.entity.Itinerary
 import space.mrandika.wisnu.entity.ItineraryWithPOIs
 import space.mrandika.wisnu.entity.POI
 import space.mrandika.wisnu.entity.Trip
-import space.mrandika.wisnu.entity.TripWithItineraries
 
 @Dao
 interface TripDao {

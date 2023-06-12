@@ -3,19 +3,19 @@ package space.mrandika.wisnu.ui.register
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import space.mrandika.wisnu.R
-import space.mrandika.wisnu.ViewUtils
 import space.mrandika.wisnu.databinding.FragmentRegisterEmailBinding
+import space.mrandika.wisnu.utils.ViewUtils
 
 @AndroidEntryPoint
 class RegisterEmailFragment : Fragment() {

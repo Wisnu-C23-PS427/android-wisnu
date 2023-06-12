@@ -1,7 +1,6 @@
 package space.mrandika.wisnu.model.category
 
 import com.google.gson.annotations.SerializedName
-import space.mrandika.wisnu.model.transaction.Transaction
 
 data class CategoriesResponse(
     @field:SerializedName("message")

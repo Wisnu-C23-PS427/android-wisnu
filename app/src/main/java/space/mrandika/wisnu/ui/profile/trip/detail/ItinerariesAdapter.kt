@@ -7,10 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.ItemItineraryBinding
-import space.mrandika.wisnu.databinding.ItemTripBinding
-import space.mrandika.wisnu.entity.Itinerary
 import space.mrandika.wisnu.entity.ItineraryWithPOIs
-import space.mrandika.wisnu.entity.Trip
 
 class ItinerariesAdapter(private val itineraries: List<ItineraryWithPOIs>, private val context: Context) : RecyclerView.Adapter<ItinerariesAdapter.ViewHolder>() {
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {

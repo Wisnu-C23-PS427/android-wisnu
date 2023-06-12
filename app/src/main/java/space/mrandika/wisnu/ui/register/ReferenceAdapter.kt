@@ -1,11 +1,9 @@
 package space.mrandika.wisnu.ui.register
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
-import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.ItemChipBinding
 import space.mrandika.wisnu.model.category.Category
 

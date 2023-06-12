@@ -1,10 +1,12 @@
 package space.mrandika.wisnu.ui.home
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import space.mrandika.wisnu.model.category.Category
 import space.mrandika.wisnu.model.event.Event
 import space.mrandika.wisnu.model.poi.POI
@@ -20,45 +22,51 @@ class HomeViewModel @Inject constructor(
     private var _state = MutableStateFlow(HomeUiState())
     val state : StateFlow<HomeUiState> = _state
 
-    suspend fun getCategories(){
-        isLoading(true)
-        isError(false)
+    fun getCategories(){
+        viewModelScope.launch {
+            isLoading(true)
+            isError(false)
 
-        poiRepo.getCategories().collect{ result ->
-            isLoading(false)
-            result.onSuccess {
-                setCategories(it.data)
-            }
-            result.onFailure {
-                isError(true)
+            poiRepo.getCategories().collect{ result ->
+                isLoading(false)
+                result.onSuccess {
+                    setCategories(it.data)
+                }
+                result.onFailure {
+                    isError(true)
+                }
             }
         }
     }
 
-    suspend fun getRecommendation(){
-        isLoading(true)
-        isError(false)
-        poiRepo.getRecommendedPOIs().collect{ result ->
-            isLoading(false)
-            result.onSuccess {
-                setRecommendations(it.data)
-            }
-            result.onFailure {
-                isError(true)
+    fun getRecommendation(){
+        viewModelScope.launch {
+            isLoading(true)
+            isError(false)
+            poiRepo.getRecommendedPOIs().collect{ result ->
+                isLoading(false)
+                result.onSuccess {
+                    setRecommendations(it.data)
+                }
+                result.onFailure {
+                    isError(true)
+                }
             }
         }
     }
-    suspend fun getEvent(){
-        isLoading(true)
-        isError(false)
-        eventRepo.getEvents().collect{ result ->
-            isLoading(false)
+    fun getEvent(){
+        viewModelScope.launch {
+            isLoading(true)
+            isError(false)
+            eventRepo.getEvents().collect{ result ->
+                isLoading(false)
 
-            result.onSuccess {
-                setEvents(it.data)
-            }
-            result.onFailure {
-                isError(true)
+                result.onSuccess {
+                    setEvents(it.data)
+                }
+                result.onFailure {
+                    isError(true)
+                }
             }
         }
     }

@@ -8,9 +8,7 @@ import com.bumptech.glide.Glide
 import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.ItemAttractionFullBinding
-import space.mrandika.wisnu.databinding.ItemTripBinding
 import space.mrandika.wisnu.entity.POI
-import space.mrandika.wisnu.entity.Trip
 
 class POIsAdapter(private val pois: List<POI>, private val context: Context) : RecyclerView.Adapter<POIsAdapter.ViewHolder>() {
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {

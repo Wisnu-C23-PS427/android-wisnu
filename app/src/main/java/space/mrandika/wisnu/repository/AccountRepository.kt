@@ -5,21 +5,31 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.runBlocking
 import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.model.account.AccountResponse
-import space.mrandika.wisnu.model.city.CitiesResponse
+import space.mrandika.wisnu.prefs.TokenPreferences
 import space.mrandika.wisnu.service.WisnuAPIService
 import javax.inject.Inject
 
 class AccountRepository @Inject constructor(
     private val service: WisnuAPIService,
+    private val tokenPreferences: TokenPreferences,
     private val assetManager: AssetManager
 ) {
     suspend fun getAccount(): Flow<Result<AccountResponse>> = flow {
         try {
             val response: AccountResponse = if (BuildConfig.IS_SERVICE_UP) {
-                service.account()
+                var token = ""
+
+                runBlocking {
+                    tokenPreferences.getAccessToken().collect {
+                        token = it
+                    }
+                }
+
+                service.account(token)
             } else {
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.profile)

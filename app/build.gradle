@@ -25,7 +25,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         // Config
-        buildConfigField "String", "BASE_API_URL", "\"https://wisnu.com/api/v1/\""
+        buildConfigField "String", "BASE_API_URL", "\"https://wisatanusantara.et.r.appspot.com/api/\""
         buildConfigField "boolean", "IS_SERVICE_UP", "false"
     }
 
@@ -66,9 +66,9 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
 
     // Navigation
-    implementation 'androidx.navigation:navigation-fragment:2.5.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-fragment:2.6.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
 
     // Data-store
     implementation "androidx.datastore:datastore-preferences:1.0.0"

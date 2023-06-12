@@ -1,6 +1,5 @@
 package space.mrandika.wisnu.ui.login
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,7 +10,6 @@ import kotlinx.coroutines.launch
 import space.mrandika.wisnu.model.auth.LoginResponse
 import space.mrandika.wisnu.repository.AuthRepository
 import javax.inject.Inject
-import kotlin.math.log
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(private val repo:AuthRepository):ViewModel() {

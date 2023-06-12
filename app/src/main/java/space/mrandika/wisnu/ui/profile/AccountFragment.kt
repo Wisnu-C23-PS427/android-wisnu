@@ -3,11 +3,11 @@ package space.mrandika.wisnu.ui.profile
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -39,9 +39,9 @@ class AccountFragment : Fragment() {
         val textTab: TextView? = activity?.findViewById(R.id.text_current_tab)
         textTab?.text = resources.getString(R.string.tab_account)
 
-        lifecycleScope.launch {
-            viewModel.getAccount()
+        viewModel.getAccount()
 
+        lifecycleScope.launch {
             viewModel.state.collect { state ->
                 loadingStateIsToggled(state.isLoading)
                 errorStateIsToggled(state.isError)

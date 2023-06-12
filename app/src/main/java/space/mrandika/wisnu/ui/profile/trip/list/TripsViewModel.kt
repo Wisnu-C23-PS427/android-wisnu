@@ -2,12 +2,13 @@ package space.mrandika.wisnu.ui.profile.trip.list
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import space.mrandika.wisnu.entity.Trip
-import space.mrandika.wisnu.entity.TripWithItineraries
 import space.mrandika.wisnu.repository.TripRepository
 import javax.inject.Inject
 
@@ -18,18 +19,20 @@ class TripsViewModel @Inject constructor(
     private val _state = MutableStateFlow(TripListUiState())
     val state: StateFlow<TripListUiState> = _state
 
-    suspend fun getTrips() {
-        Log.d("TripsViewModel", "Starting to get saved trips...")
+    fun getTrips() {
+        viewModelScope.launch {
+            Log.d("TripsViewModel", "Starting to get saved trips...")
 
-        repo.getTrips().collect { result ->
-            result.onSuccess { response ->
-                setData(response)
+            repo.getTrips().collect { result ->
+                result.onSuccess { response ->
+                    setData(response)
 
-                Log.d("TripsViewModel", response.toString())
-            }
+                    Log.d("TripsViewModel", response.toString())
+                }
 
-            result.onFailure {
-                setError(true)
+                result.onFailure {
+                    setError(true)
+                }
             }
         }
     }

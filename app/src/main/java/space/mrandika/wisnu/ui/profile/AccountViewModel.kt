@@ -2,10 +2,12 @@ package space.mrandika.wisnu.ui.profile
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import space.mrandika.wisnu.model.account.Account
 import space.mrandika.wisnu.repository.AccountRepository
 import javax.inject.Inject
@@ -17,24 +19,26 @@ class AccountViewModel @Inject constructor(
     private val _state = MutableStateFlow(AccountUiState())
     val state: StateFlow<AccountUiState> = _state
 
-    suspend fun getAccount() {
-        Log.d("AccountViewModel", "Starting to get account...")
-        setError(false)
-        setLoading(true)
+    fun getAccount() {
+        viewModelScope.launch {
+            Log.d("AccountViewModel", "Starting to get account...")
+            setError(false)
+            setLoading(true)
 
-        repo.getAccount().collect { result ->
-            setLoading(false)
+            repo.getAccount().collect { result ->
+                setLoading(false)
 
-            result.onSuccess { response ->
-                response.data?.account?.let { account ->
-                    setData(account)
+                result.onSuccess { response ->
+                    response.data?.account?.let { account ->
+                        setData(account)
+                    }
+
+                    Log.d("AccountViewModel", response.toString())
                 }
 
-                Log.d("AccountViewModel", response.toString())
-            }
-
-            result.onFailure {
-                setError(true)
+                result.onFailure {
+                    setError(true)
+                }
             }
         }
     }

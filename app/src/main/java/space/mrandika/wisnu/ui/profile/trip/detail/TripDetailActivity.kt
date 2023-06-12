@@ -1,22 +1,17 @@
 package space.mrandika.wisnu.ui.profile.trip.detail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.ActivityTripDetailBinding
-import space.mrandika.wisnu.databinding.ActivityTripListBinding
 import space.mrandika.wisnu.entity.ItineraryWithPOIs
-import space.mrandika.wisnu.entity.Trip
-import space.mrandika.wisnu.ui.profile.trip.list.TripsAdapter
-import space.mrandika.wisnu.ui.profile.trip.list.TripsViewModel
 
 @AndroidEntryPoint
 class TripDetailActivity : AppCompatActivity() {
@@ -49,11 +44,11 @@ class TripDetailActivity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        lifecycleScope.launch {
-            tripId?.let { id ->
-                viewModel.getItineraries(id)
-            }
+        tripId?.let { id ->
+            viewModel.getItineraries(id)
+        }
 
+        lifecycleScope.launch {
             viewModel.state.collect { state ->
                 errorStateIsToggled(state.isError)
                 setData(state.itineraries)

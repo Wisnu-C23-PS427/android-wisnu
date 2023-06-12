@@ -1,19 +1,14 @@
 package space.mrandika.wisnu.repository
 
-import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import space.mrandika.wisnu.BuildConfig
-import space.mrandika.wisnu.R
 import space.mrandika.wisnu.database.TripDao
 import space.mrandika.wisnu.entity.Itinerary
 import space.mrandika.wisnu.entity.ItineraryWithPOIs
 import space.mrandika.wisnu.entity.POI
 import space.mrandika.wisnu.entity.Trip
-import space.mrandika.wisnu.entity.TripWithItineraries
-import space.mrandika.wisnu.model.transaction.TransactionsResponse
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import javax.inject.Inject

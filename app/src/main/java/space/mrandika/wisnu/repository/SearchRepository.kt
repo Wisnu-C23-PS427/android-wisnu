@@ -5,15 +5,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.runBlocking
 import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
-import space.mrandika.wisnu.model.poi.POIsResponse
 import space.mrandika.wisnu.model.search.SearchResponse
+import space.mrandika.wisnu.prefs.TokenPreferences
 import space.mrandika.wisnu.service.WisnuAPIService
 import javax.inject.Inject
 
 class SearchRepository @Inject constructor(
     private val service: WisnuAPIService,
+    private val tokenPreferences: TokenPreferences,
     private val assetManager: AssetManager
 ) {
     suspend fun getSearchResult(
@@ -22,7 +24,17 @@ class SearchRepository @Inject constructor(
     ): Flow<Result<SearchResponse>> = flow {
         try {
             val response: SearchResponse = if (BuildConfig.IS_SERVICE_UP) {
-                service.search(keyword, filter)
+                var token = ""
+
+                runBlocking {
+                    tokenPreferences.getAccessToken().collect {
+                        token = it
+
+                        return@collect
+                    }
+                }
+
+                service.search(token, keyword, filter)
             } else {
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.search)
@@ -40,7 +52,17 @@ class SearchRepository @Inject constructor(
     suspend fun getDiscoveryResult(): Flow<Result<SearchResponse>> = flow {
         try {
             val response: SearchResponse = if (BuildConfig.IS_SERVICE_UP) {
-                service.discover()
+                var token = ""
+
+                runBlocking {
+                    tokenPreferences.getAccessToken().collect {
+                        token = it
+
+                        return@collect
+                    }
+                }
+
+                service.discover(token)
             } else {
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.search)

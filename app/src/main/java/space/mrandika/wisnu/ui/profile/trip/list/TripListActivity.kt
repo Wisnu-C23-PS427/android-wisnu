@@ -1,22 +1,19 @@
 package space.mrandika.wisnu.ui.profile.trip.list
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import space.mrandika.wisnu.databinding.ActivityTripListBinding
 import space.mrandika.wisnu.entity.Trip
-import space.mrandika.wisnu.entity.TripWithItineraries
 import space.mrandika.wisnu.ui.profile.trip.detail.TripDetailActivity
-import java.io.Serializable
 
 @AndroidEntryPoint
 class TripListActivity : AppCompatActivity() {
@@ -37,9 +34,9 @@ class TripListActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        lifecycleScope.launch {
-            viewModel.getTrips()
+        viewModel.getTrips()
 
+        lifecycleScope.launch {
             viewModel.state.collect { state ->
                 errorStateIsToggled(state.isError)
                 emptyStateIsToggled(state.isEmpty)

@@ -2,17 +2,13 @@ package space.mrandika.wisnu.ui.search
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 import space.mrandika.wisnu.model.category.Category
 import space.mrandika.wisnu.model.city.City
 import space.mrandika.wisnu.model.poi.POI
-import space.mrandika.wisnu.model.search.SearchResult
-import space.mrandika.wisnu.repository.CityRepository
 import space.mrandika.wisnu.repository.POIRepository
 import space.mrandika.wisnu.repository.SearchRepository
 import javax.inject.Inject

@@ -5,15 +5,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.runBlocking
 import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.model.event.EventResponse
 import space.mrandika.wisnu.model.event.EventsResponse
+import space.mrandika.wisnu.prefs.TokenPreferences
 import space.mrandika.wisnu.service.WisnuAPIService
 import javax.inject.Inject
 
 class EventRepository @Inject constructor(
     private val service: WisnuAPIService,
+    private val tokenPreferences: TokenPreferences,
     private val assetManager: AssetManager
 ) {
     suspend fun getEvents(
@@ -23,7 +26,17 @@ class EventRepository @Inject constructor(
     ): Flow<Result<EventsResponse>> = flow {
         try {
             val response: EventsResponse = if (BuildConfig.IS_SERVICE_UP) {
-                service.getEvents(preview, page, size)
+                var token = ""
+
+                runBlocking {
+                    tokenPreferences.getAccessToken().collect {
+                        token = it
+
+                        return@collect
+                    }
+                }
+
+                service.getEvents(token, preview, page, size)
             } else {
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.event_home)
@@ -43,7 +56,17 @@ class EventRepository @Inject constructor(
     ): Flow<Result<EventResponse>> = flow {
         try {
             val response: EventResponse = if (BuildConfig.IS_SERVICE_UP) {
-                service.getEvent(id)
+                var token = ""
+
+                runBlocking {
+                    tokenPreferences.getAccessToken().collect {
+                        token = it
+
+                        return@collect
+                    }
+                }
+
+                service.getEvent(token, id)
             } else {
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.event_detail)

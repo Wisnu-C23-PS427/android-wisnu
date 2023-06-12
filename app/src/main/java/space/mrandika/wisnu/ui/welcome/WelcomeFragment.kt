@@ -11,8 +11,8 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import space.mrandika.wisnu.R
-import space.mrandika.wisnu.ViewUtils
 import space.mrandika.wisnu.databinding.FragmentWelcomeBinding
+import space.mrandika.wisnu.utils.ViewUtils
 
 class WelcomeFragment : Fragment() {
     private var _binding: FragmentWelcomeBinding? = null

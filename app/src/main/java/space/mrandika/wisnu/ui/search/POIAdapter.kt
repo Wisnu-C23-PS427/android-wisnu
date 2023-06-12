@@ -6,9 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
-import space.mrandika.wisnu.databinding.ItemAttractionBinding
 import space.mrandika.wisnu.databinding.ItemAttractionFullBinding
-import space.mrandika.wisnu.model.city.City
 import space.mrandika.wisnu.model.poi.POI
 
 class POIAdapter(private val pois: List<POI>): RecyclerView.Adapter<POIAdapter.ViewHolder>() {

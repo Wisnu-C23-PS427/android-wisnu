@@ -1,13 +1,13 @@
 package space.mrandika.wisnu.ui.register
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -16,9 +16,9 @@ import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import space.mrandika.wisnu.R
-import space.mrandika.wisnu.ViewUtils
 import space.mrandika.wisnu.databinding.FragmentPreferenceBinding
 import space.mrandika.wisnu.model.category.Category
+import space.mrandika.wisnu.utils.ViewUtils
 
 @AndroidEntryPoint
 class PreferenceFragment : Fragment() {
@@ -41,9 +41,9 @@ class PreferenceFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        lifecycleScope.launch {
-            viewModel.getCategories()
+        viewModel.getCategories()
 
+        lifecycleScope.launch {
             viewModel.state.collect { state ->
                 setData(state.interestData)
                 viewModel.updateInteresting(state.interest)

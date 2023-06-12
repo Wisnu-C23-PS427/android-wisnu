@@ -5,16 +5,19 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.runBlocking
 import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.model.category.CategoriesResponse
 import space.mrandika.wisnu.model.poi.POIResponse
 import space.mrandika.wisnu.model.poi.POIsResponse
+import space.mrandika.wisnu.prefs.TokenPreferences
 import space.mrandika.wisnu.service.WisnuAPIService
 import javax.inject.Inject
 
 class POIRepository @Inject constructor(
     private val service: WisnuAPIService,
+    private val tokenPreferences: TokenPreferences,
     private val assetManager: AssetManager
 ) {
     suspend fun getRecommendedPOIs(
@@ -24,7 +27,17 @@ class POIRepository @Inject constructor(
     ): Flow<Result<POIsResponse>> = flow {
         try {
             val response: POIsResponse = if (BuildConfig.IS_SERVICE_UP) {
-                service.getPOIsRecommendation(preview, page, size)
+                var token = ""
+
+                runBlocking {
+                    tokenPreferences.getAccessToken().collect {
+                        token = it
+
+                        return@collect
+                    }
+                }
+
+                service.getPOIsRecommendation(token, preview, page, size)
             } else {
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.recom_home)
@@ -62,7 +75,17 @@ class POIRepository @Inject constructor(
     ): Flow<Result<POIsResponse>> = flow {
         try {
             val response: POIsResponse = if (BuildConfig.IS_SERVICE_UP) {
-                service.getPOIbyCategory(category)
+                var token = ""
+
+                runBlocking {
+                    tokenPreferences.getAccessToken().collect {
+                        token = it
+
+                        return@collect
+                    }
+                }
+
+                service.getPOIbyCategory(token, category)
             } else {
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.poi_cat)
@@ -82,7 +105,17 @@ class POIRepository @Inject constructor(
     ): Flow<Result<POIsResponse>> = flow {
         try {
             val response: POIsResponse = if (BuildConfig.IS_SERVICE_UP) {
-                service.getCityItinerary(cityId)
+                var token = ""
+
+                runBlocking {
+                    tokenPreferences.getAccessToken().collect {
+                        token = it
+
+                        return@collect
+                    }
+                }
+
+                service.getCityItinerary(token, cityId)
             } else {
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.poi_itinerary)
@@ -102,7 +135,17 @@ class POIRepository @Inject constructor(
     ): Flow<Result<POIResponse>> = flow {
         try {
             val response: POIResponse = if (BuildConfig.IS_SERVICE_UP) {
-                service.getPOIdetail(id)
+                var token = ""
+
+                runBlocking {
+                    tokenPreferences.getAccessToken().collect {
+                        token = it
+
+                        return@collect
+                    }
+                }
+
+                service.getPOIdetail(token, id)
             } else {
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.poi_detail)
