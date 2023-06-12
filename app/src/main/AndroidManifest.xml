@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".WisnuApp"
         android:allowBackup="true"
@@ -30,6 +32,19 @@
         <activity
             android:name=".ui.AuthActivity"
             android:windowSoftInputMode="adjustPan"
+            android:name=".ui.poi.categories.POICategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.poi.gallery.VRImageViewerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.poi.gallery.POIGalleryActivity"
+            android:exported="false" /> 
+        <activity
+            android:name=".ui.poi.detail.POIDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.AuthActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

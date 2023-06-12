@@ -26,10 +26,10 @@ data class Guide(
     val timeDurationInMin: Int? = null,
 
     @field:SerializedName("avg_star")
-    val avgStar: Any? = null,
+    val avgStar: Double? = null,
 
     @field:SerializedName("reviews")
-    val reviews: List<Review?>? = null,
+    val reviews: List<Review> = emptyList(),
 
     @field:SerializedName("price")
     val price: Int? = null,
