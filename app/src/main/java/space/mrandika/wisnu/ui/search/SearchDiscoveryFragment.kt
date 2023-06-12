@@ -1,5 +1,6 @@
 package space.mrandika.wisnu.ui.search
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import kotlinx.coroutines.launch
 import space.mrandika.wisnu.databinding.FragmentSearchDiscoveryBinding
 import space.mrandika.wisnu.model.city.City
 import space.mrandika.wisnu.model.poi.POI
+import space.mrandika.wisnu.ui.poi.detail.POIDetailActivity
 
 @AndroidEntryPoint
 class SearchDiscoveryFragment : Fragment() {
@@ -74,5 +76,15 @@ class SearchDiscoveryFragment : Fragment() {
         binding?.apply {
             discoveryContent.rvTopPoi.adapter = poiAdapter
         }
+
+        poiAdapter.setOnItemClickCallback(object : POIAdapter.OnItemClickCallback {
+            override fun onItemClicked(id: Int) {
+                val intent = Intent(requireActivity(), POIDetailActivity::class.java).apply {
+                    putExtra("id", id)
+                }
+
+                startActivity(intent)
+            }
+        })
     }
 }
