@@ -128,6 +128,12 @@ class DetailTransactionFragment : Fragment() {
         btnMain?.apply {
             text = context.getString(R.string.simpan)
             icon = null
+
+            setOnClickListener {
+                viewModel.saveTrip {
+                    activity?.onBackPressedDispatcher?.onBackPressed()
+                }
+            }
         }
     }
     private fun sumCost() {
