@@ -15,6 +15,7 @@ import space.mrandika.wisnu.model.auth.RegisterRequest
 import space.mrandika.wisnu.model.auth.RegisterResponse
 import space.mrandika.wisnu.model.category.CategoriesResponse
 import space.mrandika.wisnu.model.city.CitiesResponse
+import space.mrandika.wisnu.model.city.CityItinerariesResponse
 import space.mrandika.wisnu.model.city.CityResponse
 import space.mrandika.wisnu.model.event.EventResponse
 import space.mrandika.wisnu.model.event.EventsResponse
@@ -64,7 +65,7 @@ interface WisnuAPIService {
     suspend fun getCityItinerary(
         @Header("Authorization") token: String,
         @Path("id") id: Int
-    ): POIsResponse
+    ): CityItinerariesResponse
 
     @FormUrlEncoded
     @POST("search")

@@ -25,7 +25,7 @@ class TransactionRepository @Inject constructor(
 ) {
     suspend fun createTransaction(
         tickets: List<POITicketOrder>,
-        guide: POIGuideOrder
+        guide: POIGuideOrder?
     ): Flow<Result<OrderResponse>> = flow {
         try {
             val request = OrderRequest(tickets, guide)

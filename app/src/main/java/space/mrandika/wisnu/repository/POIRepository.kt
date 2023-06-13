@@ -9,6 +9,7 @@ import kotlinx.coroutines.runBlocking
 import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.model.category.CategoriesResponse
+import space.mrandika.wisnu.model.city.CityItinerariesResponse
 import space.mrandika.wisnu.model.poi.POIResponse
 import space.mrandika.wisnu.model.poi.POIsResponse
 import space.mrandika.wisnu.prefs.TokenPreferences
@@ -102,9 +103,9 @@ class POIRepository @Inject constructor(
 
     suspend fun getPOIsByCity(
         cityId: Int
-    ): Flow<Result<POIsResponse>> = flow {
+    ): Flow<Result<CityItinerariesResponse>> = flow {
         try {
-            val response: POIsResponse = if (BuildConfig.IS_SERVICE_UP) {
+            val response: CityItinerariesResponse = if (BuildConfig.IS_SERVICE_UP) {
                 var token = ""
 
                 runBlocking {
@@ -120,7 +121,7 @@ class POIRepository @Inject constructor(
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.poi_itinerary)
 
-                gson.fromJson(stringJson, POIsResponse::class.java)
+                gson.fromJson(stringJson, CityItinerariesResponse::class.java)
             }
 
             emit(Result.success(response))

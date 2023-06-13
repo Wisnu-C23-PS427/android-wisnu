@@ -43,6 +43,13 @@
             android:exported="false" />
         <activity
             android:name=".ui.AuthActivity"
+            android:name=".ui.itinerary.city.CityDetailActivity"
+            android:exported="false" />
+         <activity
+             android:name=".ui.itinerary.ItineraryActivity"
+             android:exported="false" />
+        <activity
+            android:name=".ui.AuthActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
