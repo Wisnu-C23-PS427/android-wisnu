@@ -1,36 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-    <ImageView
-        android:id="@+id/icon_day"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/sun"
-        />
-    <TextView
-        android:id="@+id/tv_day"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/icon_day"
-        app:layout_constraintStart_toStartOf="parent"
-        android:fontFamily="@font/poppins_semibold"
-        android:textSize="12sp"
-        tools:text="Hari ke-1"
-        />
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/rv_itineraries"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_day"
-        tools:itemCount="3"
-        tools:listitem="@layout/card_itinerary_items" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="2"
+        tools:listitem="@layout/item_itinerary" />
 </androidx.constraintlayout.widget.ConstraintLayout>

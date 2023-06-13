@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp"
-    tools:context=".ui.itinerary.itineraryperson.ItineraryPersonFragment"
+    tools:context=".ui.itinerary.person.ItineraryPersonFragment"
     android:orientation="vertical">
 
     <include
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/card_adult"
-        layout="@layout/person_card"
+        layout="@layout/item_person"
         />
 
     <include
@@ -19,5 +19,5 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:id="@+id/card_child"
-        layout="@layout/person_card" />
+        layout="@layout/item_person" />
 </LinearLayout>

@@ -24,8 +24,12 @@
     <string name="aku_pergi_sendiri">Aku Pergi Sendiri</string>
     <string name="buat_transaksi">Buat\nTransaksi</string>
     <string name="tiket_kamu_diatur_wisnu">Tiket kamu diatur Wisnu.</string>
-    <string name="kamu_akan_ditemani_kang_martin">Kamu akan ditemani Kang Martin</string>
+    <string name="guide_selection_transaction">Kamu akan ditemani %1$s</string>
     <string name="simpan_perjalanan">Simpan\nperjalanan</string>
     <string name="kamu_dapat_melihat_perjalanan_yang_disimpan_pada_menu_akun">Kamu dapat melihat perjalanan yang\ndisimpan pada menu akun.</string>
     <string name="simpan">SIMPAN</string>
+    <string name="title_destination">Asik,\nke %1$s!</string>
+    <string name="day_num">Hari ke-%1$s</string>
+    <string name="payment_method">Metode Pembayaran</string>
+    <string name="new_plan">RENCANAKAN</string>
 </resources>

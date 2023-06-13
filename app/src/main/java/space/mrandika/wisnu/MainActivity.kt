@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
      * ViewBinding
      */
     private lateinit var binding: ActivityMainBinding
-    private val viewModel: ItineraryViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
+import space.mrandika.wisnu.model.city.CityItinerariesResponse
 import space.mrandika.wisnu.model.poi.POIResponse
 import space.mrandika.wisnu.model.poi.POIsResponse
 import space.mrandika.wisnu.service.WisnuAPIService
@@ -60,15 +61,15 @@ class POIRepository @Inject constructor(
 
     suspend fun getPOIsByCity(
         cityId: Int
-    ): Flow<Result<POIsResponse>> = flow {
+    ): Flow<Result<CityItinerariesResponse>> = flow {
         try {
-            val response: POIsResponse = if (BuildConfig.IS_SERVICE_UP) {
+            val response: CityItinerariesResponse = if (BuildConfig.IS_SERVICE_UP) {
                 service.getCityItinerary(cityId)
             } else {
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.poi_itinerary)
 
-                gson.fromJson(stringJson, POIsResponse::class.java)
+                gson.fromJson(stringJson, CityItinerariesResponse::class.java)
             }
 
             emit(Result.success(response))
