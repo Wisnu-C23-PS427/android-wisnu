@@ -10,6 +10,12 @@ import space.mrandika.wisnu.databinding.ItemAttractionFullBinding
 import space.mrandika.wisnu.model.city.City
 
 class CitiesResultAdapter(private val cities: List<City>): RecyclerView.Adapter<CitiesResultAdapter.ViewHolder>() {
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemAttractionFullBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ViewHolder(binding)
@@ -36,7 +42,15 @@ class CitiesResultAdapter(private val cities: List<City>): RecyclerView.Adapter<
 
                 tvTitle.text = item.name
                 tvSubtitle.text = item.location
+
+                itemView.setOnClickListener {
+                    onItemClickCallback.onItemClicked(item.id ?: 0)
+                }
             }
         }
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(id: Int)
     }
 }

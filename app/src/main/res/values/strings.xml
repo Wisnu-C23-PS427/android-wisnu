@@ -103,7 +103,6 @@
     <string name="kamu_dapat_melihat_perjalanan_yang_disimpan_pada_menu_akun">Kamu dapat melihat perjalanan yang\ndisimpan pada menu akun.</string>
     <string name="simpan">SIMPAN</string>
     <string name="title_destination">Asik,\nke %1$s!</string>
-    <string name="day_num">Hari ke-%1$s</string>
     <string name="payment_method">Metode Pembayaran</string>
     <string name="new_plan">RENCANAKAN</string>
 </resources>

@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 import space.mrandika.wisnu.databinding.FragmentSearchDiscoveryBinding
 import space.mrandika.wisnu.model.city.City
 import space.mrandika.wisnu.model.poi.POI
+import space.mrandika.wisnu.ui.itinerary.city.CityDetailActivity
 import space.mrandika.wisnu.ui.poi.detail.POIDetailActivity
 
 @AndroidEntryPoint
@@ -68,6 +69,16 @@ class SearchDiscoveryFragment : Fragment() {
         binding?.apply {
             discoveryContent.rvTopCity.adapter = citiesAdapter
         }
+
+        citiesAdapter.setOnItemClickCallback(object : CitiesAdapter.OnItemClickCallback{
+            override fun onItemClicked(id: Int) {
+                val intent = Intent(requireActivity(), CityDetailActivity::class.java).apply {
+                    putExtra("id", id)
+                }
+
+                startActivity(intent)
+            }
+        })
     }
 
     private fun setTopPoiData(value: List<POI>) {

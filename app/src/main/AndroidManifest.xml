@@ -42,7 +42,6 @@
             android:name=".ui.poi.detail.POIDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.AuthActivity"
             android:name=".ui.itinerary.city.CityDetailActivity"
             android:exported="false" />
          <activity

@@ -16,6 +16,7 @@ import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.FragmentSearchResultBinding
 import space.mrandika.wisnu.model.city.City
 import space.mrandika.wisnu.model.poi.POI
+import space.mrandika.wisnu.ui.itinerary.city.CityDetailActivity
 import space.mrandika.wisnu.ui.poi.detail.POIDetailActivity
 
 @AndroidEntryPoint
@@ -71,6 +72,16 @@ class SearchResultFragment : Fragment() {
         binding?.apply {
             resultContent.rvCityResult.adapter = citiesAdapter
         }
+
+        citiesAdapter.setOnItemClickCallback(object : CitiesResultAdapter.OnItemClickCallback{
+            override fun onItemClicked(id: Int) {
+                val intent = Intent(requireActivity(), CityDetailActivity::class.java).apply {
+                    putExtra("id", id)
+                }
+
+                startActivity(intent)
+            }
+        })
     }
 
     private fun setTopPoiData(value: List<POI>) {
