@@ -116,4 +116,6 @@
     <string name="action_plan">RENCANAKAN</string>
     <string name="action_finish">SELESAI</string>
     <string name="action_save">SIMPAN</string>
+    <string name="title_transaction_finish">Selesaikan\nPembayaran</string>
+    <string name="title_transaction_finish_description">Batas waktu pembayaran 1 jam dari transaksi dibuat.</string>
 </resources>

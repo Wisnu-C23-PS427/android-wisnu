@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -28,10 +29,15 @@ class PaymentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val toolbar: Toolbar? = activity?.findViewById(R.id.toolbar)
+        val tvDescription : TextView? = activity?.findViewById(R.id.tv_description)
+        val tvTitle : TextView? = activity?.findViewById(R.id.tv_title)
 
         toolbar?.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
+
+        tvDescription?.text = getString(R.string.title_transaction_finish_description)
+        tvTitle?.text = getString(R.string.title_transaction_finish)
 
         binding?.btnFinish?.setOnClickListener {
             activity?.finish()
