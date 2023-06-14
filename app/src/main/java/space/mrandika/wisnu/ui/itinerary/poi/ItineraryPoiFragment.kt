@@ -46,7 +46,9 @@ class ItineraryPoiFragment : Fragment() {
 
         lifecycleScope.launch {
             viewModel.getRecommendation(viewModel.state.value.cityId)
+        }
 
+        lifecycleScope.launch {
             viewModel.state.collect { state ->
                 loadingStateIsToggled(state.isLoading)
                 errorStateIsToggled(state.isError)
@@ -54,6 +56,8 @@ class ItineraryPoiFragment : Fragment() {
                 setData(state.itineraries)
             }
         }
+
+        setView()
     }
     private fun setData(itineraries: List<ItineraryItem>){
         binding.contentPoi.rvItineraries.apply {
@@ -74,7 +78,6 @@ class ItineraryPoiFragment : Fragment() {
             stateError.root.visibility = if (value) View.VISIBLE else View.GONE
             contentPoi.root.visibility = if (!value) View.VISIBLE else View.GONE
         }
-        setView()
     }
     private fun setView() {
         val tvTitle : TextView? = activity?.findViewById(R.id.tv_title)

@@ -15,6 +15,6 @@ data class RegisterRequest(
     @field:SerializedName("password")
     val password: String,
 
-    @field:SerializedName("interest")
-    val interest: List<String>,
+    @field:SerializedName("interests")
+    val interests: List<String>,
 )

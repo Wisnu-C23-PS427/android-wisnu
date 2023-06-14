@@ -1,8 +1,11 @@
 package space.mrandika.wisnu.repository
 
+import android.util.Log
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.runBlocking
@@ -28,14 +31,10 @@ class POIRepository @Inject constructor(
     ): Flow<Result<POIsResponse>> = flow {
         try {
             val response: POIsResponse = if (BuildConfig.IS_SERVICE_UP) {
-                var token = ""
+                var token = "Bearer "
 
                 runBlocking {
-                    tokenPreferences.getAccessToken().collect {
-                        token = it
-
-                        return@collect
-                    }
+                    token += tokenPreferences.getAccessToken().first()
                 }
 
                 service.getPOIsRecommendation(token, preview, page, size)
@@ -43,6 +42,7 @@ class POIRepository @Inject constructor(
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.recom_home)
 
+                delay(2500L)
                 gson.fromJson(stringJson, POIsResponse::class.java)
             }
 
@@ -61,6 +61,7 @@ class POIRepository @Inject constructor(
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.category)
 
+                delay(2500L)
                 gson.fromJson(stringJson, CategoriesResponse::class.java)
             }
 
@@ -76,14 +77,10 @@ class POIRepository @Inject constructor(
     ): Flow<Result<POIsResponse>> = flow {
         try {
             val response: POIsResponse = if (BuildConfig.IS_SERVICE_UP) {
-                var token = ""
+                var token = "Bearer "
 
                 runBlocking {
-                    tokenPreferences.getAccessToken().collect {
-                        token = it
-
-                        return@collect
-                    }
+                    token += tokenPreferences.getAccessToken().first()
                 }
 
                 service.getPOIbyCategory(token, category)
@@ -91,6 +88,7 @@ class POIRepository @Inject constructor(
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.poi_cat)
 
+                delay(2500L)
                 gson.fromJson(stringJson, POIsResponse::class.java)
             }
 
@@ -102,25 +100,23 @@ class POIRepository @Inject constructor(
     }.flowOn(Dispatchers.IO)
 
     suspend fun getPOIsByCity(
-        cityId: Int
+        cityId: Int,
+        numDays: Int
     ): Flow<Result<CityItinerariesResponse>> = flow {
         try {
             val response: CityItinerariesResponse = if (BuildConfig.IS_SERVICE_UP) {
-                var token = ""
+                var token = "Bearer "
 
                 runBlocking {
-                    tokenPreferences.getAccessToken().collect {
-                        token = it
-
-                        return@collect
-                    }
+                    token += tokenPreferences.getAccessToken().first()
                 }
 
-                service.getCityItinerary(token, cityId)
+                service.getCityItinerary(token, cityId, numDays)
             } else {
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.poi_itinerary)
 
+                delay(2500L)
                 gson.fromJson(stringJson, CityItinerariesResponse::class.java)
             }
 
@@ -136,14 +132,10 @@ class POIRepository @Inject constructor(
     ): Flow<Result<POIResponse>> = flow {
         try {
             val response: POIResponse = if (BuildConfig.IS_SERVICE_UP) {
-                var token = ""
+                var token = "Bearer "
 
                 runBlocking {
-                    tokenPreferences.getAccessToken().collect {
-                        token = it
-
-                        return@collect
-                    }
+                    token += tokenPreferences.getAccessToken().first()
                 }
 
                 service.getPOIdetail(token, id)
@@ -151,6 +143,7 @@ class POIRepository @Inject constructor(
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.poi_detail)
 
+                delay(2500L)
                 gson.fromJson(stringJson, POIResponse::class.java)
             }
 

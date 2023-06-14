@@ -1,7 +1,6 @@
 package space.mrandika.wisnu.service
 
 import retrofit2.http.Body
-import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -11,6 +10,7 @@ import retrofit2.http.Query
 import space.mrandika.wisnu.model.account.AccountResponse
 import space.mrandika.wisnu.model.auth.LoginRequest
 import space.mrandika.wisnu.model.auth.LoginResponse
+import space.mrandika.wisnu.model.auth.LogoutResponse
 import space.mrandika.wisnu.model.auth.RegisterRequest
 import space.mrandika.wisnu.model.auth.RegisterResponse
 import space.mrandika.wisnu.model.category.CategoriesResponse
@@ -31,23 +31,27 @@ import space.mrandika.wisnu.model.transaction.TransactionResponse
 import space.mrandika.wisnu.model.transaction.TransactionsResponse
 
 interface WisnuAPIService {
-    @POST("register")
+    @POST("auth/register")
     suspend fun register(
         @Body request: RegisterRequest
     ): RegisterResponse
 
-    @FormUrlEncoded
-    @POST("login")
+    @POST("auth/login")
     suspend fun login(
         @Body request: LoginRequest
     ): LoginResponse
+
+    @POST("auth/logout")
+    suspend fun logout(
+        @Header("Authorization") token: String
+    ): LogoutResponse
 
     @GET("account")
     suspend fun account(
         @Header("Authorization") token: String
     ): AccountResponse
 
-    @GET("city")
+    @GET("cities")
     suspend fun getCities(
         @Header("Authorization") token: String,
         @Query("preview") preview: Boolean,
@@ -64,15 +68,15 @@ interface WisnuAPIService {
     @GET("city/{id}/itinerary")
     suspend fun getCityItinerary(
         @Header("Authorization") token: String,
-        @Path("id") id: Int
+        @Path("id") id: Int,
+        @Query("days") numDays: Int,
     ): CityItinerariesResponse
 
-    @FormUrlEncoded
     @POST("search")
     suspend fun search(
         @Header("Authorization") token: String,
-        @Field("keyword") keyword: String,
-        @Field("filter") filter: String,
+        @Query("keyword") keyword: String,
+        @Query("filter") filter: String,
     ): SearchResponse
 
     @GET("discover")
@@ -88,7 +92,7 @@ interface WisnuAPIService {
         @Query("size") size: Int,
     ): EventsResponse
 
-    @GET("events")
+    @GET("event/{id}")
     suspend fun getEvent(
         @Header("Authorization") token: String,
         @Path("id") id: Int
@@ -103,7 +107,7 @@ interface WisnuAPIService {
     @GET("pois/categories")
     suspend fun getCategories(): CategoriesResponse
 
-    @GET("pois/recommendation")
+    @GET("pois")
     suspend fun getPOIsRecommendation(
         @Header("Authorization") token: String,
         @Query("preview") preview: Boolean,
@@ -126,7 +130,7 @@ interface WisnuAPIService {
     @GET("tickets")
     suspend fun getTickets(
         @Header("Authorization") token: String,
-        @Field("filter") filter: String,
+        @Query("filter") filter: String,
     ): TicketsResponse
 
     @GET("ticket/{id}")
@@ -144,10 +148,10 @@ interface WisnuAPIService {
     @GET("transactions")
     suspend fun getTransactions(
         @Header("Authorization") token: String,
-        @Field("filter") filter: String,
+        @Query("filter") filter: String,
     ): TransactionsResponse
 
-    @GET("transaction")
+    @GET("transaction/{id}")
     suspend fun getTransaction(
         @Header("Authorization") token: String,
         @Path("id") id: Int,

@@ -45,6 +45,7 @@ class DayCountFragment : Fragment() {
             btnAddDay.setOnClickListener {
                 dayCount++
                 tvDayCount.text = dayCount.toString()
+                activityViewModel.setDays(dayCount)
             }
 
             btnMinusDay.setOnClickListener {
@@ -53,18 +54,14 @@ class DayCountFragment : Fragment() {
                 }
 
                 tvDayCount.text = dayCount.toString()
+                activityViewModel.setDays(dayCount)
             }
         }
 
 
         setView()
-        setDataViewModel()
     }
-    private fun setDataViewModel(){
-        activityViewModel.state.value.apply {
-            day = dayCount
-        }
-    }
+
     private fun setView() {
         val tvTitle : TextView? = activity?.findViewById(R.id.tv_title)
         val tvDescription : TextView? = activity?.findViewById(R.id.tv_description)

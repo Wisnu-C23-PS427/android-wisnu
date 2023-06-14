@@ -11,7 +11,7 @@ data class ItineraryUiState (
 
     val cityId: Int = 0,
     val city : String = "",
-    var day : Int = 0,
+    var day : Int = 1,
 
     val adult : Int = 1,
     val child : Int = 0,

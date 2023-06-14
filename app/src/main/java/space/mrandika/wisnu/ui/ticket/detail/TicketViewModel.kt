@@ -2,10 +2,12 @@ package space.mrandika.wisnu.ui.ticket.detail
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import space.mrandika.wisnu.model.ticket.Ticket
 import space.mrandika.wisnu.repository.TicketRepository
 import javax.inject.Inject
@@ -17,21 +19,23 @@ class TicketViewModel @Inject constructor(
     private val _state = MutableStateFlow(TicketUiState())
     val state: StateFlow<TicketUiState> = _state
 
-    suspend fun getTicket(id: String) {
-        Log.d("TicketViewModel", "Starting to get ticket for $id...")
-        setError(false)
-        setLoading(true)
+    fun getTicket(id: String) {
+        viewModelScope.launch {
+            Log.d("TicketViewModel", "Starting to get ticket for $id...")
+            setError(false)
+            setLoading(true)
 
-        repo.getTicket(id).collect { result ->
-            setLoading(false)
+            repo.getTicket(id).collect { result ->
+                setLoading(false)
 
-            result.onSuccess { response ->
-                response.data?.let { ticket -> setData(ticket) }
-                Log.d("TicketViewModel", response.toString())
-            }
+                result.onSuccess { response ->
+                    response.data?.let { ticket -> setData(ticket) }
+                    Log.d("TicketViewModel", response.toString())
+                }
 
-            result.onFailure {
-                setError(true)
+                result.onFailure {
+                    setError(true)
+                }
             }
         }
     }

@@ -42,8 +42,11 @@ class OrderListFragment : Fragment() {
         textTab?.text = resources.getString(R.string.tab_order)
 
         lifecycleScope.launch {
+            Log.d("OrderListFragment", "onViewCreated called!")
             viewModel.getTickets("all")
+        }
 
+        lifecycleScope.launch {
             viewModel.state.collect { state ->
                 loadingStateIsToggled(state.isLoading)
                 errorStateIsToggled(state.isError)
@@ -83,7 +86,7 @@ class OrderListFragment : Fragment() {
         Log.d("OrderListFragment-isLoading", value.toString())
         binding?.apply {
             stateLoading.root.visibility = if (value) View.VISIBLE else View.GONE
-            ordersContent.root.visibility = if (!value) View.VISIBLE else View.GONE
+            ordersContent.rvOrders.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 
@@ -91,7 +94,7 @@ class OrderListFragment : Fragment() {
         Log.d("OrderListFragment-isError", value.toString())
         binding?.apply {
             stateError.root.visibility = if (value) View.VISIBLE else View.GONE
-            ordersContent.root.visibility = if (!value) View.VISIBLE else View.GONE
+            ordersContent.rvOrders.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 
@@ -99,7 +102,7 @@ class OrderListFragment : Fragment() {
         Log.d("OrderListFragment-isEmpty", value.toString())
         binding?.apply {
             stateEmpty.root.visibility = if (value) View.VISIBLE else View.GONE
-            ordersContent.root.visibility = if (!value) View.VISIBLE else View.GONE
+            ordersContent.rvOrders.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 

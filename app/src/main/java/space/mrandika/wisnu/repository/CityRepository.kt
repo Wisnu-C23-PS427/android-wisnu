@@ -2,7 +2,9 @@ package space.mrandika.wisnu.repository
 
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.runBlocking
@@ -26,16 +28,13 @@ class CityRepository @Inject constructor(
     ): Flow<Result<CitiesResponse>> = flow {
         try {
             val response: CitiesResponse = if (BuildConfig.IS_SERVICE_UP) {
-                var token = ""
+                var token = "Bearer "
 
                 runBlocking {
-                    tokenPreferences.getAccessToken().collect {
-                        token = it
-
-                        return@collect
-                    }
+                    token += tokenPreferences.getAccessToken().first()
                 }
 
+                delay(2500L)
                 service.getCities(token, preview, page, size)
             } else {
                 val gson = Gson()
@@ -58,16 +57,13 @@ class CityRepository @Inject constructor(
     ): Flow<Result<CitiesResponse>> = flow {
         try {
             val response: CitiesResponse = if (BuildConfig.IS_SERVICE_UP) {
-                var token = ""
+                var token = "Bearer "
 
                 runBlocking {
-                    tokenPreferences.getAccessToken().collect {
-                        token = it
-
-                        return@collect
-                    }
+                    token += tokenPreferences.getAccessToken().first()
                 }
 
+                delay(2500L)
                 service.getCities(token, preview, page, size)
             } else {
                 val gson = Gson()
@@ -88,14 +84,10 @@ class CityRepository @Inject constructor(
     ): Flow<Result<CityResponse>> = flow {
         try {
             val response: CityResponse = if (BuildConfig.IS_SERVICE_UP) {
-                var token = ""
+                var token = "Bearer "
 
                 runBlocking {
-                    tokenPreferences.getAccessToken().collect {
-                        token = it
-
-                        return@collect
-                    }
+                    token += tokenPreferences.getAccessToken().first()
                 }
 
                 service.getCity(token, id)
@@ -103,6 +95,7 @@ class CityRepository @Inject constructor(
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.city_detail)
 
+                delay(2500L)
                 gson.fromJson(stringJson, CityResponse::class.java)
             }
 

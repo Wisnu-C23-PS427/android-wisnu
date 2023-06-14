@@ -30,7 +30,7 @@ class ItineraryViewModel @Inject constructor(
         isLoading(true)
         isError(false)
 
-        repo.getPOIsByCity(cityId).collect {
+        repo.getPOIsByCity(cityId, _state.value.day).collect {
             isLoading(false)
 
             it.onFailure {
@@ -103,6 +103,12 @@ class ItineraryViewModel @Inject constructor(
     fun setCityId(id: Int) {
         _state.update {
             it.copy(cityId = id)
+        }
+    }
+
+    fun setDays(num: Int) {
+        _state.update {
+            it.copy(day = num)
         }
     }
 

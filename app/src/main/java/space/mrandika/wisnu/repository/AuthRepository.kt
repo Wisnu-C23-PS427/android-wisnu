@@ -1,14 +1,19 @@
 package space.mrandika.wisnu.repository
 
 import com.google.gson.Gson
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.runBlocking
 import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.model.auth.LoginRequest
 import space.mrandika.wisnu.model.auth.LoginResponse
+import space.mrandika.wisnu.model.auth.LogoutResponse
 import space.mrandika.wisnu.model.auth.RegisterRequest
 import space.mrandika.wisnu.model.auth.RegisterResponse
 import space.mrandika.wisnu.prefs.TokenPreferences
@@ -31,6 +36,7 @@ class AuthRepository @Inject constructor(
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.login)
 
+                delay(2500L)
                 gson.fromJson(stringJson, LoginResponse::class.java)
             }
 
@@ -57,7 +63,33 @@ class AuthRepository @Inject constructor(
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.register)
 
+                delay(2500L)
                 gson.fromJson(stringJson, RegisterResponse::class.java)
+            }
+
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun logout(): Flow<Result<LogoutResponse>> = flow {
+        try {
+            val response: LogoutResponse = if (BuildConfig.IS_SERVICE_UP) {
+                var token = "Bearer "
+
+                runBlocking {
+                    token += pref.getAccessToken().first()
+                }
+
+                service.logout(token)
+            } else {
+                val gson = Gson()
+                val stringJson = assetManager.getStringJson(R.raw.login)
+
+                delay(2500L)
+                gson.fromJson(stringJson, LogoutResponse::class.java)
             }
 
             emit(Result.success(response))

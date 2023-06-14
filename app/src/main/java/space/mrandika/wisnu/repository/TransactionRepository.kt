@@ -2,7 +2,9 @@ package space.mrandika.wisnu.repository
 
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.runBlocking
@@ -31,14 +33,10 @@ class TransactionRepository @Inject constructor(
             val request = OrderRequest(tickets, guide)
 
             val response: OrderResponse = if (BuildConfig.IS_SERVICE_UP) {
-                var token = ""
+                var token = "Bearer "
 
                 runBlocking {
-                    tokenPreferences.getAccessToken().collect {
-                        token = it
-
-                        return@collect
-                    }
+                    token += tokenPreferences.getAccessToken().first()
                 }
 
                 service.createOrder(token, request)
@@ -46,6 +44,7 @@ class TransactionRepository @Inject constructor(
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.ticket_trx)
 
+                delay(2500L)
                 gson.fromJson(stringJson, OrderResponse::class.java)
             }
 
@@ -61,14 +60,10 @@ class TransactionRepository @Inject constructor(
     ): Flow<Result<TransactionsResponse>> = flow {
         try {
             val response: TransactionsResponse = if (BuildConfig.IS_SERVICE_UP) {
-                var token = ""
+                var token = "Bearer "
 
                 runBlocking {
-                    tokenPreferences.getAccessToken().collect {
-                        token = it
-
-                        return@collect
-                    }
+                    token += tokenPreferences.getAccessToken().first()
                 }
 
                 service.getTransactions(token, filter)
@@ -76,6 +71,7 @@ class TransactionRepository @Inject constructor(
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.list_transaction)
 
+                delay(2500L)
                 gson.fromJson(stringJson, TransactionsResponse::class.java)
             }
 
@@ -91,14 +87,10 @@ class TransactionRepository @Inject constructor(
     ): Flow<Result<TransactionResponse>> = flow {
         try {
             val response: TransactionResponse = if (BuildConfig.IS_SERVICE_UP) {
-                var token = ""
+                var token = "Bearer "
 
                 runBlocking {
-                    tokenPreferences.getAccessToken().collect {
-                        token = it
-
-                        return@collect
-                    }
+                    token += tokenPreferences.getAccessToken().first()
                 }
 
                 service.getTransaction(token, id)
@@ -106,6 +98,7 @@ class TransactionRepository @Inject constructor(
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.order_package)
 
+                delay(2500L)
                 gson.fromJson(stringJson, TransactionResponse::class.java)
             }
 

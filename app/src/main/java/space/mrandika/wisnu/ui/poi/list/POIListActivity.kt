@@ -54,7 +54,7 @@ class POIListActivity : AppCompatActivity() {
         lifecycleScope.launch {
             viewModel.state.collect { state ->
                 loadingStateIsToggled(state.isLoading)
-                errorStateIsToggled(state.isLoading)
+                errorStateIsToggled(state.isError)
                 emptyStateIsToggled(state.isEmpty)
 
                 setData(state.pois)

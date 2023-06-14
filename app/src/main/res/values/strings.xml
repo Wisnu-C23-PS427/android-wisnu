@@ -118,4 +118,6 @@
     <string name="action_save">SIMPAN</string>
     <string name="title_transaction_finish">Selesaikan\nPembayaran</string>
     <string name="title_transaction_finish_description">Batas waktu pembayaran 1 jam dari transaksi dibuat.</string>
+    <string name="login_fail_check">Login gagal. Periksa kembali email dan password kamu.</string>
+    <string name="register_fail_check">Pendaftaran gagal. Periksa kembali data pendaftaran kamu.</string>
 </resources>

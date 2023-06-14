@@ -20,13 +20,13 @@ android {
         minSdk 24
         targetSdk 33
         versionCode 1
-        versionName "0.3.3"
+        versionName "0.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         // Config
-        buildConfigField "String", "BASE_API_URL", "\"https://wisatanusantara.et.r.appspot.com/api/\""
-        buildConfigField "boolean", "IS_SERVICE_UP", "false"
+        buildConfigField "String", "BASE_API_URL", "\"https://wisatanusantara.et.r.appspot.com/\""
+        buildConfigField "boolean", "IS_SERVICE_UP", "true"
     }
 
     buildTypes {

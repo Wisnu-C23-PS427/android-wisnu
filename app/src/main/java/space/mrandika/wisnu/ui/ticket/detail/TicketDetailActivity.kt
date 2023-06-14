@@ -49,9 +49,9 @@ class TicketDetailActivity : AppCompatActivity() {
 
         id = intent.getStringExtra("id")
 
-        lifecycleScope.launch {
-            id?.let { id -> viewModel.getTicket(id) }
+        id?.let { id -> viewModel.getTicket(id) }
 
+        lifecycleScope.launch {
             viewModel.state.collect { state ->
                 loadingStateIsToggled(state.isLoading)
                 errorStateIsToggled(state.isError)

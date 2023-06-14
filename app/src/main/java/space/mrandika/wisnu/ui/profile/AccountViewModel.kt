@@ -10,11 +10,13 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import space.mrandika.wisnu.model.account.Account
 import space.mrandika.wisnu.repository.AccountRepository
+import space.mrandika.wisnu.repository.AuthRepository
 import javax.inject.Inject
 
 @HiltViewModel
 class AccountViewModel @Inject constructor(
-    private val repo: AccountRepository
+    private val repo: AccountRepository,
+    private val authRepository: AuthRepository,
 ): ViewModel() {
     private val _state = MutableStateFlow(AccountUiState())
     val state: StateFlow<AccountUiState> = _state
@@ -34,6 +36,26 @@ class AccountViewModel @Inject constructor(
                     }
 
                     Log.d("AccountViewModel", response.toString())
+                }
+
+                result.onFailure {
+                    setError(true)
+                }
+            }
+        }
+    }
+
+    fun logout() {
+        viewModelScope.launch {
+            Log.d("AccountViewModel", "Logging out..")
+            setError(false)
+            setLoading(true)
+
+            authRepository.logout().collect { result ->
+                setLoading(false)
+
+                result.onSuccess {
+                    authRepository.removeAccessToken()
                 }
 
                 result.onFailure {

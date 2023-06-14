@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -83,21 +85,17 @@ class CheckFragment : Fragment() {
     }
 
     private fun loadingStateIsToggled(value: Boolean) {
-        val loadingState : View? = activity?.findViewById(R.id.state_loading)
-        val authContent : View? = activity?.findViewById(R.id.auth_content)
+        binding?.apply {
+            val loadingState : ProgressBar? = activity?.findViewById(R.id.auth_loading)
+            val btnMain : Button? = activity?.findViewById(R.id.btn_main)
 
-        binding.apply {
-            Log.d("LoadingState", loadingState.toString())
             loadingState?.visibility = if (value) View.VISIBLE else View.GONE
-            authContent?.visibility = if (!value) View.VISIBLE else View.GONE
+            btnMain?.visibility = if (value) View.GONE else View.VISIBLE
         }
     }
     private fun errorStateIsToggled(value: Boolean) {
-        binding.apply {
-            val errorState : View? = activity?.findViewById(R.id.state_error)
-            val authContent : View? = activity?.findViewById(R.id.auth_content)
-            errorState?.visibility = if (value) View.VISIBLE else View.GONE
-            authContent?.visibility = if (!value) View.VISIBLE else View.GONE
+        if (value) {
+            Toast.makeText(requireActivity(), getString(R.string.register_fail_check), Toast.LENGTH_LONG).show()
         }
     }
     private fun setData() {

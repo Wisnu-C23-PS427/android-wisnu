@@ -165,10 +165,18 @@ class DetailTransactionFragment : Fragment() {
     private fun setViewActivity() {
         val tvTitle : TextView? = activity?.findViewById(R.id.tv_title)
 
-        binding?.btnNext?.setOnClickListener {
-            lifecycleScope.launch {
-                viewModel.createTransaction {
-                    findNavController().navigate(R.id.action_detailFragment_to_paymentFragment)
+        binding?.apply {
+            btnNext.setOnClickListener {
+                btnNext.visibility = View.INVISIBLE
+                pbTransaction.visibility = View.VISIBLE
+
+                lifecycleScope.launch {
+                    viewModel.createTransaction {
+                        btnNext.visibility = View.VISIBLE
+                        pbTransaction.visibility = View.GONE
+
+                        findNavController().navigate(R.id.action_detailFragment_to_paymentFragment)
+                    }
                 }
             }
         }

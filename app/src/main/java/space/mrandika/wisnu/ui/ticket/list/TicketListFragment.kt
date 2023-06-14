@@ -43,7 +43,9 @@ class TicketListFragment : Fragment() {
 
         lifecycleScope.launch {
             viewModel.getTickets("active")
+        }
 
+        lifecycleScope.launch {
             viewModel.state.collect { state ->
                 loadingStateIsToggled(state.isLoading)
                 errorStateIsToggled(state.isError)
@@ -81,7 +83,7 @@ class TicketListFragment : Fragment() {
         Log.d("TicketListFragment-isLoading", value.toString())
         binding?.apply {
             stateLoading.root.visibility = if (value) View.VISIBLE else View.GONE
-            ticketsContent.root.visibility = if (!value) View.VISIBLE else View.GONE
+            ticketsContent.rvTickets.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 
@@ -89,7 +91,7 @@ class TicketListFragment : Fragment() {
         Log.d("TicketListFragment-isError", value.toString())
         binding?.apply {
             stateError.root.visibility = if (value) View.VISIBLE else View.GONE
-            ticketsContent.root.visibility = if (!value) View.VISIBLE else View.GONE
+            ticketsContent.rvTickets.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 
@@ -97,7 +99,7 @@ class TicketListFragment : Fragment() {
         Log.d("TicketListFragment-isEmpty", value.toString())
         binding?.apply {
             stateEmpty.root.visibility = if (value) View.VISIBLE else View.GONE
-            ticketsContent.root.visibility = if (!value) View.VISIBLE else View.GONE
+            ticketsContent.rvTickets.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 

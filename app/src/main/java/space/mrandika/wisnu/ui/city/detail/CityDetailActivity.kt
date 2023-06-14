@@ -2,6 +2,8 @@ package space.mrandika.wisnu.ui.city.detail
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -43,14 +45,17 @@ class CityDetailActivity : AppCompatActivity() {
 
         cityId = intent.getIntExtra("id", 0)
 
+        viewModel.getCity(cityId ?: 0)
+
         lifecycleScope.launch {
-            viewModel.getCity(cityId ?: 0)
+            viewModel.state.collect { state ->
+                loadingStateIsToggled(state.isLoading)
+                errorStateIsToggled(state.isError)
 
-            viewModel.state.value.apply {
-                CityResult?.let { setViewData(it) }
-                CityResult?.poi?.let { setAdapterCity(it) }
+                state.CityResult?.let { setViewData(it) }
+                state.CityResult?.poi?.let { setAdapterCity(it) }
 
-                toolbar.title = this.CityResult?.name
+                toolbar.title = state.CityResult?.name
             }
         }
 
@@ -65,6 +70,22 @@ class CityDetailActivity : AppCompatActivity() {
             }
 
             startActivity(intent)
+        }
+    }
+
+    private fun loadingStateIsToggled(value: Boolean) {
+        Log.d("OrderListFragment-isLoading", value.toString())
+        binding.apply {
+            stateLoading.root.visibility = if (value) View.VISIBLE else View.GONE
+            detailContent.root.visibility = if (!value) View.VISIBLE else View.GONE
+        }
+    }
+
+    private fun errorStateIsToggled(value: Boolean) {
+        Log.d("OrderListFragment-isError", value.toString())
+        binding.apply {
+            stateError.root.visibility = if (value) View.VISIBLE else View.GONE
+            detailContent.root.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 

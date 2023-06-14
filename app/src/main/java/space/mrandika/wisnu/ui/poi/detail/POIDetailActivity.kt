@@ -2,6 +2,7 @@ package space.mrandika.wisnu.ui.poi.detail
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -47,24 +48,24 @@ class POIDetailActivity : AppCompatActivity() {
 
         poiId = intent.getIntExtra("id", 0)
 
+        poiId?.let { id ->
+            viewModel.getDetailPoi(id)
+        }
+
         lifecycleScope.launch{
-            poiId?.let { id ->
-                viewModel.getDetailPoi(id)
-            }
+            viewModel.state.collect{ state ->
+                Log.d("POIDetailActivity", state.toString())
+                loadingStateIsToggled(state.isLoading)
+                errorStateIsToggled(state.isError)
 
-            viewModel.state.collect{
-                isLoading(it.isLoading)
-                isError(it.isError)
-                isEmpty(it.isEmpty)
-
-                it.DetailResult?.data?.let { PoiData ->
+                state.DetailResult?.data?.let { PoiData ->
                     toolbar.title = PoiData.name
                     setData(PoiData)
                     PoiData.guides?.let { guides -> setDataAdapter(guides) }
                 }
-
             }
         }
+
         binding.detailContent.apply {
             btnGallery.setOnClickListener {
                 val intent = Intent(this@POIDetailActivity, POIGalleryActivity::class.java).apply {
@@ -107,24 +108,22 @@ class POIDetailActivity : AppCompatActivity() {
 
     }
 
-    private fun isLoading(value:Boolean){
+    private fun loadingStateIsToggled(value: Boolean) {
+        Log.d("OrderDetailActivity-isLoading", value.toString())
         binding.apply {
             stateLoading.root.visibility = if (value) View.VISIBLE else View.GONE
             detailContent.root.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
-    private fun isError(value:Boolean){
+
+    private fun errorStateIsToggled(value: Boolean) {
+        Log.d("OrderDetailActivity-isError", value.toString())
         binding.apply {
             stateError.root.visibility = if (value) View.VISIBLE else View.GONE
             detailContent.root.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
-    private fun isEmpty(value:Boolean){
-        binding.apply {
-            stateEmpty.root.visibility = if (value) View.VISIBLE else View.GONE
-            detailContent.root.visibility = if (!value) View.VISIBLE else View.GONE
-        }
-    }
+
     private fun showGuide(guide: Guide) {
         val bottomSheetDialog = BottomSheetDialog(this)
         val bottomSheetBinding: SheetGuideDetailBinding = SheetGuideDetailBinding.inflate(layoutInflater,null, false)

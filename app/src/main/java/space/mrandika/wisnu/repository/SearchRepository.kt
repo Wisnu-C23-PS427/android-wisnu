@@ -2,7 +2,9 @@ package space.mrandika.wisnu.repository
 
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.runBlocking
@@ -24,14 +26,10 @@ class SearchRepository @Inject constructor(
     ): Flow<Result<SearchResponse>> = flow {
         try {
             val response: SearchResponse = if (BuildConfig.IS_SERVICE_UP) {
-                var token = ""
+                var token = "Bearer "
 
                 runBlocking {
-                    tokenPreferences.getAccessToken().collect {
-                        token = it
-
-                        return@collect
-                    }
+                    token += tokenPreferences.getAccessToken().first()
                 }
 
                 service.search(token, keyword, filter)
@@ -39,6 +37,7 @@ class SearchRepository @Inject constructor(
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.search)
 
+                delay(2500L)
                 gson.fromJson(stringJson, SearchResponse::class.java)
             }
 
@@ -52,14 +51,10 @@ class SearchRepository @Inject constructor(
     suspend fun getDiscoveryResult(): Flow<Result<SearchResponse>> = flow {
         try {
             val response: SearchResponse = if (BuildConfig.IS_SERVICE_UP) {
-                var token = ""
+                var token = "Bearer "
 
                 runBlocking {
-                    tokenPreferences.getAccessToken().collect {
-                        token = it
-
-                        return@collect
-                    }
+                    token += tokenPreferences.getAccessToken().first()
                 }
 
                 service.discover(token)
@@ -67,6 +62,7 @@ class SearchRepository @Inject constructor(
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.search)
 
+                delay(2500L)
                 gson.fromJson(stringJson, SearchResponse::class.java)
             }
 

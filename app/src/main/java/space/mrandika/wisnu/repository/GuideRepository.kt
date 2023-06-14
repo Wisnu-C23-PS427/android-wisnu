@@ -2,7 +2,9 @@ package space.mrandika.wisnu.repository
 
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.runBlocking
@@ -23,14 +25,10 @@ class GuideRepository @Inject constructor(
     ): Flow<Result<GuideResponse>> = flow {
         try {
             val response: GuideResponse = if (BuildConfig.IS_SERVICE_UP) {
-                var token = ""
+                var token = "Bearer "
 
                 runBlocking {
-                    tokenPreferences.getAccessToken().collect {
-                        token = it
-
-                        return@collect
-                    }
+                    token += tokenPreferences.getAccessToken().first()
                 }
 
                 service.getGuide(token, id)
@@ -38,6 +36,7 @@ class GuideRepository @Inject constructor(
                 val gson = Gson()
                 val stringJson = assetManager.getStringJson(R.raw.guide_detail)
 
+                delay(2500L)
                 gson.fromJson(stringJson, GuideResponse::class.java)
             }
 

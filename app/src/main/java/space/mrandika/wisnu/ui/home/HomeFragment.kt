@@ -45,8 +45,9 @@ class HomeFragment : Fragment() {
         textTab?.text = resources.getString(R.string.tab_home)
 
         viewModel.getCategories()
-        viewModel.getEvent()
+
         viewModel.getRecommendation()
+        viewModel.getEvent()
 
         lifecycleScope.launch {
             viewModel.state.collect { state ->

@@ -1,5 +1,6 @@
 package space.mrandika.wisnu.ui.home
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -40,10 +41,11 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getRecommendation(){
+        Log.d("HomeViewModel", "getting recommendation...")
         viewModelScope.launch {
             isLoading(true)
             isError(false)
-            poiRepo.getRecommendedPOIs().collect{ result ->
+            poiRepo.getRecommendedPOIs(preview = true).collect{ result ->
                 isLoading(false)
                 result.onSuccess {
                     setRecommendations(it.data)
@@ -58,7 +60,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             isLoading(true)
             isError(false)
-            eventRepo.getEvents().collect{ result ->
+            eventRepo.getEvents(preview = true).collect{ result ->
                 isLoading(false)
 
                 result.onSuccess {

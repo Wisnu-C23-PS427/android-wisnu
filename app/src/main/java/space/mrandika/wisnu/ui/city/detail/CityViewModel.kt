@@ -1,10 +1,12 @@
 package space.mrandika.wisnu.ui.city.detail
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import space.mrandika.wisnu.model.city.City
 import space.mrandika.wisnu.repository.CityRepository
 import javax.inject.Inject
@@ -13,21 +15,19 @@ class CityViewModel @Inject constructor(private val repo : CityRepository): View
     private var _state = MutableStateFlow(CityUiState())
     val state: StateFlow<CityUiState> = _state
 
-    suspend fun getCity(idCity : Int){
-        isLoading(true)
-        isError(false)
-        isEmpty(false)
-        repo.getCity(idCity).collect{ result ->
-            isLoading(false)
+    fun getCity(idCity : Int){
+        viewModelScope.launch {
+            isError(false)
+            isLoading(true)
 
-            result.onFailure {
-                isError(true)
-            }
+            repo.getCity(idCity).collect{ result ->
+                isLoading(false)
 
-            result.onSuccess {response->
-                if (response.data == null){
-                    isEmpty(true)
-                }else{
+                result.onFailure {
+                    isError(true)
+                }
+
+                result.onSuccess {response->
                     success(response.data)
                 }
             }
@@ -39,16 +39,13 @@ class CityViewModel @Inject constructor(private val repo : CityRepository): View
             it.copy(isLoading = value)
         }
     }
-    private fun isEmpty (value: Boolean){
-        _state.update {
-            it.copy(isEmpty = value)
-        }
-    }
+
     private fun isError (value: Boolean){
         _state.update {
             it.copy(isError = value)
         }
     }
+
     private fun success (value: City?){
         _state.update {
             it.copy(CityResult = value)

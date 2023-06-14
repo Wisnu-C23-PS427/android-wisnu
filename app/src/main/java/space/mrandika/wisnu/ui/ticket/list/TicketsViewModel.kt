@@ -55,10 +55,8 @@ class TicketsViewModel @Inject constructor(
     }
 
     private fun setData(value: List<Ticket>) {
-        if (value.isEmpty()) {
-            _state.update { currentState ->
-                currentState.copy(isEmpty = true)
-            }
+        _state.update { currentState ->
+            currentState.copy(isEmpty = value.isEmpty())
         }
 
         _state.update { currentState ->
