@@ -1,4 +1,4 @@
-package space.mrandika.wisnu.ui.itinerary.city
+package space.mrandika.wisnu.ui.city.detail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -16,12 +16,12 @@ class CityPOIAdapter (private val POI : List<POI>) : RecyclerView.Adapter<CityPO
         this.onItemClickCallback = onItemClickCallback
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityPOIAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemCityPoiBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: CityPOIAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = POI[position]
         holder.bind(data)
     }

@@ -17,7 +17,16 @@
         android:theme="@style/Theme.Wisnu"
         tools:targetApi="31">
         <activity
-            android:name=".ui.event.EventDetailActivity"
+            android:name=".ui.poi.list.POIListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.city.list.CityListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.event.list.EventListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.event.detail.EventDetailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.profile.trip.detail.TripDetailActivity"
@@ -44,7 +53,7 @@
             android:name=".ui.poi.detail.POIDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.itinerary.city.CityDetailActivity"
+            android:name=".ui.city.detail.CityDetailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.itinerary.ItineraryActivity"
@@ -61,7 +70,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

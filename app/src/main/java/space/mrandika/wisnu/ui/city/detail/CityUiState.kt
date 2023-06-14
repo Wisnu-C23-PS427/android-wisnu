@@ -1,4 +1,4 @@
-package space.mrandika.wisnu.ui.itinerary.city
+package space.mrandika.wisnu.ui.city.detail
 
 import space.mrandika.wisnu.model.city.City
 

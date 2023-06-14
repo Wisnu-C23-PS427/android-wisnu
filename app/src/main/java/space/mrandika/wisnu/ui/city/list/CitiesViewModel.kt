@@ -1,4 +1,4 @@
-package space.mrandika.wisnu.ui.event
+package space.mrandika.wisnu.ui.city.list
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -8,29 +8,31 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import space.mrandika.wisnu.model.city.City
 import space.mrandika.wisnu.model.event.Event
+import space.mrandika.wisnu.repository.CityRepository
 import space.mrandika.wisnu.repository.EventRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class EventViewModel @Inject constructor(
-    private val repo: EventRepository
+class CitiesViewModel @Inject constructor(
+    private val repo: CityRepository
 ): ViewModel() {
-    private val _state = MutableStateFlow(EventUiState())
-    val state: StateFlow<EventUiState> = _state
+    private val _state = MutableStateFlow(CitiesUiState())
+    val state: StateFlow<CitiesUiState> = _state
 
-    fun getEvent(id: Int) {
+    fun getCities() {
         viewModelScope.launch {
-            Log.d("EventViewModel", "Starting to get event for $id...")
+            Log.d("CitiesViewModel", "Starting to get cities")
             setError(false)
             setLoading(true)
 
-            repo.getEvent(id).collect { result ->
+            repo.getCities(false, 1, 10).collect { result ->
                 setLoading(false)
 
                 result.onSuccess { response ->
-                    response.data?.let { event -> setData(event) }
-                    Log.d("EventViewModel", response.toString())
+                    setData(response.data)
+                    Log.d("CitiesViewModel", response.toString())
                 }
 
                 result.onFailure {
@@ -52,9 +54,21 @@ class EventViewModel @Inject constructor(
         }
     }
 
-    private fun setData(value: Event) {
+    private fun setEmpty(value: Boolean) {
         _state.update { currentState ->
-            currentState.copy(event = value)
+            currentState.copy(isEmpty = value)
+        }
+    }
+
+    private fun setData(value: List<City>) {
+        if (value.isEmpty()) {
+            setEmpty(true)
+        } else {
+            setEmpty(false)
+        }
+
+        _state.update { currentState ->
+            currentState.copy(cities = value)
         }
     }
 }

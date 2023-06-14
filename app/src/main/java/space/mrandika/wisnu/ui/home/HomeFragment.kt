@@ -18,9 +18,12 @@ import space.mrandika.wisnu.databinding.FragmentHomeBinding
 import space.mrandika.wisnu.model.category.Category
 import space.mrandika.wisnu.model.event.Event
 import space.mrandika.wisnu.model.poi.POI
-import space.mrandika.wisnu.ui.event.EventDetailActivity
+import space.mrandika.wisnu.ui.city.list.CityListActivity
+import space.mrandika.wisnu.ui.event.detail.EventDetailActivity
+import space.mrandika.wisnu.ui.event.list.EventListActivity
 import space.mrandika.wisnu.ui.poi.categories.POICategoryActivity
 import space.mrandika.wisnu.ui.poi.detail.POIDetailActivity
+import space.mrandika.wisnu.ui.poi.list.POIListActivity
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -55,8 +58,19 @@ class HomeFragment : Fragment() {
 
         binding?.apply {
             rvIcon.layoutManager = GridLayoutManager(requireContext(),4)
+
+            btnPoiAll.setOnClickListener {
+                val intent = Intent(requireActivity(), POIListActivity::class.java)
+                startActivity(intent)
+            }
+
+            btnEventAll.setOnClickListener {
+                val intent = Intent(requireActivity(), EventListActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
+
     private fun setCategories(data: List<Category>) {
         val adapter = CategoriesAdapter(data)
 
@@ -74,6 +88,7 @@ class HomeFragment : Fragment() {
             }
         })
     }
+
     private fun setRecommendation(recommendation : List<POI>){
         val adapter = RecommendationAdapter(recommendation)
 
@@ -92,6 +107,7 @@ class HomeFragment : Fragment() {
             }
         })
     }
+
     private fun setEvent(event: List<Event>){
         val adapter = EventsAdapter(event)
 

@@ -15,8 +15,10 @@ import kotlinx.coroutines.launch
 import space.mrandika.wisnu.databinding.FragmentSearchDiscoveryBinding
 import space.mrandika.wisnu.model.city.City
 import space.mrandika.wisnu.model.poi.POI
-import space.mrandika.wisnu.ui.itinerary.city.CityDetailActivity
+import space.mrandika.wisnu.ui.city.detail.CityDetailActivity
+import space.mrandika.wisnu.ui.city.list.CityListActivity
 import space.mrandika.wisnu.ui.poi.detail.POIDetailActivity
+import space.mrandika.wisnu.ui.poi.list.POIListActivity
 
 @AndroidEntryPoint
 class SearchDiscoveryFragment : Fragment() {
@@ -55,6 +57,19 @@ class SearchDiscoveryFragment : Fragment() {
             rvTopCity.layoutManager = cityLayoutManager
             rvTopPoi.layoutManager = poiLayoutManager
             rvTopPoi.isNestedScrollingEnabled = false
+
+            btnCityAll.setOnClickListener {
+                val intent = Intent(requireActivity(), CityListActivity::class.java)
+                startActivity(intent)
+            }
+
+            btnPoiAll.setOnClickListener {
+                val intent = Intent(requireActivity(), POIListActivity::class.java).apply {
+                    putExtra("top_destination", true)
+                }
+
+                startActivity(intent)
+            }
         }
     }
 

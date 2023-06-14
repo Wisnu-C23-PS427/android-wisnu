@@ -16,7 +16,7 @@ import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.FragmentSearchResultBinding
 import space.mrandika.wisnu.model.city.City
 import space.mrandika.wisnu.model.poi.POI
-import space.mrandika.wisnu.ui.itinerary.city.CityDetailActivity
+import space.mrandika.wisnu.ui.city.detail.CityDetailActivity
 import space.mrandika.wisnu.ui.poi.detail.POIDetailActivity
 
 @AndroidEntryPoint

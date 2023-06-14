@@ -107,4 +107,7 @@
     <string name="new_plan">RENCANAKAN</string>
     <string name="title_the_story">Ceritanya</string>
     <string name="title_event_date">Tanggal Event</string>
+    <string name="events">Events</string>
+    <string name="cities">Kota</string>
+    <string name="destination">Destinasi</string>
 </resources>

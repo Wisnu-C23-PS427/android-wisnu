@@ -1,4 +1,4 @@
-package space.mrandika.wisnu.ui.itinerary.city
+package space.mrandika.wisnu.ui.city.detail
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

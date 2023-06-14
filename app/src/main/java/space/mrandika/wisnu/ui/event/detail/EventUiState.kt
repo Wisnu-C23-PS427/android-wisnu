@@ -1,4 +1,4 @@
-package space.mrandika.wisnu.ui.event
+package space.mrandika.wisnu.ui.event.detail
 
 import space.mrandika.wisnu.model.event.Event
 

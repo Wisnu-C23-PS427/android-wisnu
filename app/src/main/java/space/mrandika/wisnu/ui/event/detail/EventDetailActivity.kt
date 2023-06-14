@@ -1,4 +1,4 @@
-package space.mrandika.wisnu.ui.event
+package space.mrandika.wisnu.ui.event.detail
 
 import android.os.Bundle
 import android.util.Log
