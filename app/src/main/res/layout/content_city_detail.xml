@@ -43,6 +43,7 @@
                 android:layout_height="300dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/backgrounds/scenic" />
@@ -70,6 +71,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/black"
                         android:textSize="20sp"
                         tools:text="Bandung" />
 
@@ -92,6 +94,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Ceritanya"
+                android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/card_city" />
@@ -102,6 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/playfair_display_medium"
+                android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title_story"
@@ -115,6 +119,7 @@
                 android:layout_marginTop="11dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Ada apa disini?"
+                android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_story" />

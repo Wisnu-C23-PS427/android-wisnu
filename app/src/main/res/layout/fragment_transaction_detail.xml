@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
             android:text="@string/rincian_transaksi"
+            android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -158,6 +159,7 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="@string/payment_method"
+            android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/icon_card"
             app:layout_constraintStart_toEndOf="@+id/icon_card"
