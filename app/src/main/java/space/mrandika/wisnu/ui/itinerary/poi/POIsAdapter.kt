@@ -11,9 +11,9 @@ import space.mrandika.wisnu.databinding.ItemAttractionFullBinding
 import space.mrandika.wisnu.model.poi.POI
 
 class POIsAdapter(private val pois: List<POI>, private val context: Context) : RecyclerView.Adapter<POIsAdapter.ViewHolder>() {
-    private lateinit var onItemClickCallback: POIsAdapter.OnItemClickCallback
+    private lateinit var onItemClickCallback: OnItemClickCallback
 
-    fun setOnItemClickCallback(onItemClickCallback: POIsAdapter.OnItemClickCallback) {
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
     }
 

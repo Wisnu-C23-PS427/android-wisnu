@@ -3,12 +3,7 @@ package space.mrandika.wisnu.ui.poi.detail
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import space.mrandika.wisnu.BuildConfig
-import space.mrandika.wisnu.R
-import space.mrandika.wisnu.databinding.ItemGuideBinding
 import space.mrandika.wisnu.databinding.ItemReviewBinding
-import space.mrandika.wisnu.model.guide.Guide
 import space.mrandika.wisnu.model.review.Review
 
 class GuideReviewAdapter(private val reviews: List<Review>): RecyclerView.Adapter<GuideReviewAdapter.ViewHolder>() {

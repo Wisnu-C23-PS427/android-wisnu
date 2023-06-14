@@ -1,14 +1,12 @@
 package space.mrandika.wisnu
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import space.mrandika.wisnu.databinding.ActivityMainBinding
-import space.mrandika.wisnu.ui.itinerary.ItineraryViewModel
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

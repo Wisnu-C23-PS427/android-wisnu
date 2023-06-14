@@ -2,22 +2,17 @@ package space.mrandika.wisnu.ui.poi.categories
 
 import POIAdapter
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.ActivityPoiCategoryBinding
-import space.mrandika.wisnu.databinding.ActivityPoiDetailBinding
 import space.mrandika.wisnu.model.poi.POI
-import space.mrandika.wisnu.ui.home.RecommendationAdapter
 import space.mrandika.wisnu.ui.poi.detail.POIDetailActivity
 
 @AndroidEntryPoint

@@ -11,9 +11,9 @@ import space.mrandika.wisnu.model.poi.POI
 
 
 class RecommendationAdapter(private val pois: List<POI>): RecyclerView.Adapter<RecommendationAdapter.ViewHolder>() {
-    private lateinit var onItemClickCallback: RecommendationAdapter.OnItemClickCallback
+    private lateinit var onItemClickCallback: OnItemClickCallback
 
-    fun setOnItemClickCallback(onItemClickCallback: RecommendationAdapter.OnItemClickCallback) {
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
     }
 

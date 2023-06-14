@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -16,7 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Wisnu"
-        tools:targetApi="31" >
+        tools:targetApi="31">
+        <activity
+            android:name=".ui.event.EventDetailActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.profile.trip.detail.TripDetailActivity"
             android:exported="false" />
@@ -37,16 +39,16 @@
             android:exported="false" />
         <activity
             android:name=".ui.poi.gallery.POIGalleryActivity"
-            android:exported="false" /> 
+            android:exported="false" />
         <activity
             android:name=".ui.poi.detail.POIDetailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.itinerary.city.CityDetailActivity"
             android:exported="false" />
-         <activity
-             android:name=".ui.itinerary.ItineraryActivity"
-             android:exported="false" />
+        <activity
+            android:name=".ui.itinerary.ItineraryActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.AuthActivity"
             android:exported="true">
@@ -58,10 +60,8 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"></activity>
     </application>
 
 </manifest>

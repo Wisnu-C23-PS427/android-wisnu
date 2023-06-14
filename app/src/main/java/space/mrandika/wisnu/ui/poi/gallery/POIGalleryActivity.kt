@@ -1,17 +1,14 @@
 package space.mrandika.wisnu.ui.poi.gallery
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import space.mrandika.wisnu.databinding.ActivityPoiGalleryBinding
 import space.mrandika.wisnu.model.gallery.Gallery
-import space.mrandika.wisnu.model.guide.Guide
-import space.mrandika.wisnu.ui.poi.detail.GuideAdapter
 
 @AndroidEntryPoint
 class POIGalleryActivity : AppCompatActivity() {

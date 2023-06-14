@@ -1,12 +1,10 @@
 package space.mrandika.wisnu.ui.itinerary.city
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -16,11 +14,11 @@ import kotlinx.coroutines.launch
 import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.ActivityCityDetailBinding
-import space.mrandika.wisnu.databinding.ActivityItineraryBinding
 import space.mrandika.wisnu.model.city.City
 import space.mrandika.wisnu.model.poi.POI
 import space.mrandika.wisnu.ui.itinerary.ItineraryActivity
 import space.mrandika.wisnu.ui.itinerary.ItineraryViewModel
+import space.mrandika.wisnu.ui.poi.detail.POIDetailActivity
 
 @AndroidEntryPoint
 class CityDetailActivity : AppCompatActivity() {
@@ -89,11 +87,22 @@ class CityDetailActivity : AppCompatActivity() {
     }
 
     private fun setAdapterCity(listPOi : List<POI>){
-        val adapter = CityAdapter(listPOi)
+        val adapter = CityPOIAdapter(listPOi)
 
         binding.detailContent.rvPoi.apply {
             this.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
             this.adapter = adapter
         }
+
+        adapter.setOnItemClickCallback(object : CityPOIAdapter.OnItemClickCallback {
+            override fun onItemClicked(id: Int) {
+                val intent = Intent(this@CityDetailActivity, POIDetailActivity::class.java).apply {
+                    putExtra("id", id)
+                }
+
+                startActivity(intent)
+            }
+
+        })
     }
 }

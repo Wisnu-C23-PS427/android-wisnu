@@ -1,7 +1,6 @@
 package space.mrandika.wisnu.ui.itinerary.poi
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.ItemItineraryBinding
 import space.mrandika.wisnu.model.city.ItineraryItem
-import space.mrandika.wisnu.model.poi.POI
 
 class ItineraryAdapter(private val itineraries: List<ItineraryItem>, private val context: Context): RecyclerView.Adapter<ItineraryAdapter.ViewHolder>() {
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {

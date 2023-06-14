@@ -1,13 +1,11 @@
 package space.mrandika.wisnu.ui.itinerary
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import dagger.hilt.android.AndroidEntryPoint
-import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.ActivityItineraryBinding
-import space.mrandika.wisnu.databinding.ActivityMainBinding
 
 @AndroidEntryPoint
 class ItineraryActivity : AppCompatActivity() {

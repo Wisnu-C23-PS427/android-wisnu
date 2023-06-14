@@ -105,4 +105,6 @@
     <string name="title_destination">Asik,\nke %1$s!</string>
     <string name="payment_method">Metode Pembayaran</string>
     <string name="new_plan">RENCANAKAN</string>
+    <string name="title_the_story">Ceritanya</string>
+    <string name="title_event_date">Tanggal Event</string>
 </resources>

@@ -1,10 +1,8 @@
 package space.mrandika.wisnu.ui.poi.gallery
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import space.mrandika.wisnu.R
-import space.mrandika.wisnu.databinding.ActivityPoiGalleryBinding
 import space.mrandika.wisnu.databinding.ActivityVrImageViewerBinding
 
 class VRImageViewerActivity : AppCompatActivity() {

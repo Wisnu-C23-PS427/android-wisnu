@@ -6,16 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
-import space.mrandika.wisnu.databinding.ItemGalleryBinding
 import space.mrandika.wisnu.databinding.ItemGalleryVrBinding
 import space.mrandika.wisnu.model.gallery.Gallery
-import space.mrandika.wisnu.model.guide.Guide
-import space.mrandika.wisnu.ui.poi.detail.GuideAdapter
 
 class VRGalleryAdapter(private val galleries: List<Gallery>): RecyclerView.Adapter<VRGalleryAdapter.ViewHolder>() {
-    private lateinit var onItemClickCallback: VRGalleryAdapter.OnItemClickCallback
+    private lateinit var onItemClickCallback: OnItemClickCallback
 
-    fun setOnItemClickCallback(onItemClickCallback: VRGalleryAdapter.OnItemClickCallback) {
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
     }
 

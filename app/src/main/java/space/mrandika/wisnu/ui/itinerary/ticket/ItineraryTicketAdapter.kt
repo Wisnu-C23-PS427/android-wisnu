@@ -1,13 +1,10 @@
 package space.mrandika.wisnu.ui.itinerary.ticket
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import space.mrandika.wisnu.databinding.ItemTicketBinding
 import space.mrandika.wisnu.databinding.ItemTicketTransactionBinding
 import space.mrandika.wisnu.model.poi.POI
-import space.mrandika.wisnu.ui.itinerary.ItineraryViewModel
 
 class ItineraryTicketAdapter(private val itinerary: List<POI>): RecyclerView.Adapter<ItineraryTicketAdapter.ViewHolder>() {
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {

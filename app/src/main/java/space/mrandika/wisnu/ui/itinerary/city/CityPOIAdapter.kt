@@ -9,13 +9,19 @@ import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.ItemCityPoiBinding
 import space.mrandika.wisnu.model.poi.POI
 
-class CityAdapter (private val POI : List<POI>) : RecyclerView.Adapter<CityAdapter.ViewHolder>(){
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityAdapter.ViewHolder {
+class CityPOIAdapter (private val POI : List<POI>) : RecyclerView.Adapter<CityPOIAdapter.ViewHolder>() {
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CityPOIAdapter.ViewHolder {
         val binding = ItemCityPoiBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: CityAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CityPOIAdapter.ViewHolder, position: Int) {
         val data = POI[position]
         holder.bind(data)
     }
@@ -33,6 +39,14 @@ class CityAdapter (private val POI : List<POI>) : RecyclerView.Adapter<CityAdapt
                    ivPoi.setImageResource(R.drawable.mock_attraction_item)
                 }
             }
+
+            itemView.setOnClickListener {
+                onItemClickCallback.onItemClicked(item.id ?: 0)
+            }
         }
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(id: Int)
     }
 }

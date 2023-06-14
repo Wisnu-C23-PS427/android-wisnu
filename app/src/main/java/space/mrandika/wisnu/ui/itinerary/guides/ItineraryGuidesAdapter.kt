@@ -1,7 +1,6 @@
 package space.mrandika.wisnu.ui.itinerary.guides
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -9,8 +8,6 @@ import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.ItemTransactionGuideBinding
 import space.mrandika.wisnu.model.guide.Guide
-import space.mrandika.wisnu.ui.itinerary.ItineraryViewModel
-import space.mrandika.wisnu.ui.itinerary.poi.POIsAdapter
 
 class ItineraryGuidesAdapter(private val guide: List<Guide>) : RecyclerView.Adapter<ItineraryGuidesAdapter.ViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback

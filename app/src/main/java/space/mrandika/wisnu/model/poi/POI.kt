@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName
 import space.mrandika.wisnu.model.gallery.Gallery
 import space.mrandika.wisnu.model.guide.Guide
 import space.mrandika.wisnu.model.ticket.TicketPrice
-import java.io.Serializable
 
 data class POI(
     @field:SerializedName("image")

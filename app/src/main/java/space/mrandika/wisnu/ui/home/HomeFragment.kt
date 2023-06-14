@@ -18,6 +18,7 @@ import space.mrandika.wisnu.databinding.FragmentHomeBinding
 import space.mrandika.wisnu.model.category.Category
 import space.mrandika.wisnu.model.event.Event
 import space.mrandika.wisnu.model.poi.POI
+import space.mrandika.wisnu.ui.event.EventDetailActivity
 import space.mrandika.wisnu.ui.poi.categories.POICategoryActivity
 import space.mrandika.wisnu.ui.poi.detail.POIDetailActivity
 
@@ -98,5 +99,16 @@ class HomeFragment : Fragment() {
             rvEvent.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
             rvEvent.adapter = adapter
         }
+
+        adapter.setOnItemClickCallback(object : EventsAdapter.OnItemClickCallback {
+            override fun onItemClicked(id: Int) {
+                val intent = Intent(requireActivity(), EventDetailActivity::class.java).apply {
+                    putExtra("id", id)
+                }
+
+                startActivity(intent)
+            }
+
+        })
     }
 }

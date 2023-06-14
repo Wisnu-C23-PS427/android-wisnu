@@ -1,10 +1,6 @@
 package space.mrandika.wisnu.ui.itinerary
 
 import space.mrandika.wisnu.model.city.ItineraryItem
-import space.mrandika.wisnu.model.guide.Guide
-import space.mrandika.wisnu.model.poi.POI
-import space.mrandika.wisnu.model.ticket.Ticket
-import space.mrandika.wisnu.model.ticket.TicketPrice
 import space.mrandika.wisnu.model.transaction.POIGuideOrder
 import space.mrandika.wisnu.model.transaction.POITicketOrder
 
