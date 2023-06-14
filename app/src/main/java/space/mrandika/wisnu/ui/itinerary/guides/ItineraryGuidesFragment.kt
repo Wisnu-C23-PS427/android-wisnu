@@ -5,10 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.button.MaterialButton
+import kotlinx.coroutines.launch
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.FragmentItineraryGuidesBinding
 import space.mrandika.wisnu.model.guide.Guide
@@ -30,15 +34,26 @@ class ItineraryGuidesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val toolbar: Toolbar? = activity?.findViewById(R.id.toolbar)
+
+        toolbar?.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
         setViewActivity()
 
         val guides: MutableList<Guide> = mutableListOf()
 
-        viewModel.state.value.itineraries.forEach { itinerary ->
-            itinerary.poi.forEach { poi ->
-                poi.guides?.let {
-                    guides.clear()
-                    guides.addAll(it)
+        lifecycleScope.launch {
+            viewModel.state.collect { state ->
+                state.itineraries.forEach { itinerary ->
+                    itinerary.poi.forEach { poi ->
+                        poi.guides?.let {
+                            guides.clear()
+                            guides.addAll(it)
+                        }
+                    }
                 }
             }
         }
@@ -61,33 +76,21 @@ class ItineraryGuidesFragment : Fragment() {
 
         })
     }
+
     private fun setViewActivity() {
         val tvTitle : TextView? = activity?.findViewById(R.id.tv_title)
         val tvDescription : TextView? = activity?.findViewById(R.id.tv_description)
-        val btnMain : MaterialButton? = activity?.findViewById(R.id.btn_main)
-        val tvButton : TextView? = activity?.findViewById(R.id.tv_text_button)
-        tvButton?.apply {
-            visibility = View.VISIBLE
-            text = "Lewati"
 
-            setOnClickListener {
-                viewModel.setGuide(null)
+        binding.btnSkip.setOnClickListener {
+            viewModel.setGuide(null)
 
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainer, DetailTransactionFragment())
-                    .commit()
-            }
+            findNavController().navigate(R.id.action_guideFragment_to_detailFragment)
         }
-        btnMain?.apply {
-            text = "Lanjut"
-            setIconResource(R.drawable.baseline_arrow_forward_24)
 
-            setOnClickListener {
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainer, DetailTransactionFragment())
-                    .commit()
-            }
+        binding.btnNext.setOnClickListener {
+            findNavController().navigate(R.id.action_guideFragment_to_detailFragment)
         }
+
         tvDescription?.apply {
             visibility = View.VISIBLE
             text = "Rekomendasi TemanWisnu"

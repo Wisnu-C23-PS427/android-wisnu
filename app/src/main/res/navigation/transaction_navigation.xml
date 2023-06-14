@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/transaction_navigation"
+    app:startDestination="@id/dayCountFragment">
+
+    <fragment
+        android:id="@+id/dayCountFragment"
+        android:name="space.mrandika.wisnu.ui.itinerary.daycount.DayCountFragment"
+        android:label="Day Count Fragment"
+        tools:layout="@layout/fragment_day_count">
+        <action
+            android:id="@+id/action_dayCountFragment_to_poiFragment"
+            app:destination="@id/poiFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/poiFragment"
+        android:name="space.mrandika.wisnu.ui.itinerary.poi.ItineraryPoiFragment"
+        android:label="POI Fragment"
+        tools:layout="@layout/fragment_itinerary_poi">
+        <action
+            android:id="@+id/action_poiFragment_to_personFragment"
+            app:destination="@id/itineraryPersonFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/itineraryPersonFragment"
+        android:name="space.mrandika.wisnu.ui.itinerary.person.ItineraryPersonFragment"
+        android:label="Itinerary Person Fragment"
+        tools:layout="@layout/fragment_itinerary_person">
+        <action
+            android:id="@+id/action_personFragment_to_ticketFragment"
+            app:destination="@id/itineraryTicketFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/itineraryTicketFragment"
+        android:name="space.mrandika.wisnu.ui.itinerary.ticket.ItineraryTicketFragment"
+        android:label="Itinerary Ticket Fragment"
+        tools:layout="@layout/fragment_itinerary_ticket">
+        <action
+            android:id="@+id/action_ticketFragment_to_guideFragment"
+            app:destination="@id/itineraryGuidesFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/itineraryGuidesFragment"
+        android:name="space.mrandika.wisnu.ui.itinerary.guides.ItineraryGuidesFragment"
+        android:label="Itinerary Person Fragment"
+        tools:layout="@layout/fragment_itinerary_guides">
+        <action
+            android:id="@+id/action_guideFragment_to_detailFragment"
+            app:destination="@id/detailTransactionFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailTransactionFragment"
+        android:name="space.mrandika.wisnu.ui.itinerary.transaction.detailpayment.DetailTransactionFragment"
+        android:label="Detail Transaction Fragment"
+        tools:layout="@layout/fragment_itinerary_guides">
+        <action
+            android:id="@+id/action_detailFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="space.mrandika.wisnu.ui.itinerary.transaction.payment.PaymentFragment"
+        android:label="Payment Fragment"
+        tools:layout="@layout/fragment_payment"/>
+</navigation>

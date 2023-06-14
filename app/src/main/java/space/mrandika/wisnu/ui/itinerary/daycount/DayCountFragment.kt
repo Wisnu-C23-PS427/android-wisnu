@@ -5,8 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.FragmentDayCountBinding
@@ -30,6 +33,12 @@ class DayCountFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val toolbar: Toolbar? = activity?.findViewById(R.id.toolbar)
+
+        toolbar?.setNavigationOnClickListener {
+            activity?.onBackPressedDispatcher?.onBackPressed()
+        }
 
         binding?.apply {
             tvDayCount.text = dayCount.toString()
@@ -59,16 +68,11 @@ class DayCountFragment : Fragment() {
     private fun setView() {
         val tvTitle : TextView? = activity?.findViewById(R.id.tv_title)
         val tvDescription : TextView? = activity?.findViewById(R.id.tv_description)
-        val btnMain : MaterialButton? = activity?.findViewById(R.id.btn_main)
-        btnMain?.apply {
-            text = "Lanjut"
-            setIconResource(R.drawable.baseline_arrow_forward_24)
-            setOnClickListener {
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainer, ItineraryPoiFragment())
-                    .commit()
-            }
+
+        binding?.btnNext?.setOnClickListener {
+            findNavController().navigate(R.id.action_dayCountFragment_to_poiFragment)
         }
+
 
         tvDescription?.apply {
             visibility = View.VISIBLE

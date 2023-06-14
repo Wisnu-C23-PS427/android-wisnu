@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.launch
@@ -20,31 +22,37 @@ import space.mrandika.wisnu.ui.itinerary.guides.ItineraryGuidesFragment
 
 class ItineraryTicketFragment : Fragment() {
     private var _binding : FragmentItineraryTicketBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
     private val viewModel : ItineraryViewModel by activityViewModels()
+
+    val pois: MutableList<POI> = mutableListOf()
+    val tickets: MutableList<POITicketOrder> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentItineraryTicketBinding.inflate(inflater,container,false)
-        return binding.root
+        return binding?.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        lifecycleScope.launch {
-            val pois: MutableList<POI> = mutableListOf()
-            val tickets: MutableList<POITicketOrder> = mutableListOf()
+        val toolbar: Toolbar? = activity?.findViewById(R.id.toolbar)
 
+        toolbar?.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        lifecycleScope.launch {
             val numAdult = viewModel.state.value.adult
             val numChild = viewModel.state.value.child
 
-            viewModel.state.value.apply{
+            viewModel.state.collect {state ->
                 pois.clear()
                 tickets.clear()
 
-                itineraries.forEach { itinerary ->
+                state.itineraries.forEach { itinerary ->
                     itinerary.poi.filter { poi ->
                         poi.tickets?.isTicketingEnabled == true
                     }.forEach { poi ->
@@ -62,7 +70,7 @@ class ItineraryTicketFragment : Fragment() {
     }
 
     private fun setTicket(data: List<POI>){
-        binding.rvTicket.apply {
+        binding?.rvTicket?.apply {
             adapter = ItineraryTicketAdapter(data)
 
             layoutManager = LinearLayoutManager(requireContext())
@@ -71,32 +79,21 @@ class ItineraryTicketFragment : Fragment() {
     private fun setViewActivity() {
         val tvTitle : TextView? = activity?.findViewById(R.id.tv_title)
         val tvDescription : TextView? = activity?.findViewById(R.id.tv_description)
-        val btnMain : MaterialButton? = activity?.findViewById(R.id.btn_main)
-        val tvButton : TextView? = activity?.findViewById(R.id.tv_text_button)
 
-        tvButton?.apply {
-            visibility = View.VISIBLE
-            text = context.getString(R.string.lewati)
-            setOnClickListener {
+        binding?.apply {
+            btnSkip.setOnClickListener {
                 // Set to empty
                 viewModel.setTicket(mutableListOf())
 
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainer, ItineraryGuidesFragment())
-                    .commit()
+                findNavController().navigate(R.id.action_ticketFragment_to_guideFragment)
+            }
+
+            btnNext.setOnClickListener {
+                viewModel.setTicket(tickets)
+                findNavController().navigate(R.id.action_ticketFragment_to_guideFragment)
             }
         }
 
-        btnMain?.apply {
-            text = context.getString(R.string.lanjut)
-            setIconResource(R.drawable.baseline_arrow_forward_24)
-            setOnClickListener {
-
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainer, ItineraryGuidesFragment())
-                    .commit()
-            }
-        }
         tvDescription?.apply {
             visibility = View.VISIBLE
             text = "Mau sekalian beli di Wisnu?"

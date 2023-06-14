@@ -6,9 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,6 +37,12 @@ class ItineraryPoiFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val toolbar: Toolbar? = activity?.findViewById(R.id.toolbar)
+
+        toolbar?.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
 
         lifecycleScope.launch {
             viewModel.getRecommendation(viewModel.state.value.cityId)
@@ -70,16 +79,11 @@ class ItineraryPoiFragment : Fragment() {
     private fun setView() {
         val tvTitle : TextView? = activity?.findViewById(R.id.tv_title)
         val tvDescription : TextView? = activity?.findViewById(R.id.tv_description)
-        val btnMain : MaterialButton? = activity?.findViewById(R.id.btn_main)
-        btnMain?.apply {
-            text = "Lanjut"
-            setIconResource(R.drawable.baseline_arrow_forward_24)
-            setOnClickListener {
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainer, ItineraryPersonFragment())
-                    .commit()
-            }
+
+        binding.btnNext.setOnClickListener {
+            findNavController().navigate(R.id.action_poiFragment_to_personFragment)
         }
+
         tvDescription?.apply {
             visibility = View.VISIBLE
             text = "Wisnu rekomendasiin ini"

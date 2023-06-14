@@ -34,9 +34,5 @@ class ItineraryActivity : AppCompatActivity() {
 
         viewModel.setCityId(cityId ?: 0)
         viewModel.setCity(city ?: "")
-
-        toolbar.setNavigationOnClickListener {
-            onBackPressedDispatcher.onBackPressed()
-        }
     }
 }

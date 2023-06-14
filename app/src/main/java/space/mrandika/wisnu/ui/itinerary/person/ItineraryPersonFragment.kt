@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import space.mrandika.wisnu.R
@@ -30,6 +32,13 @@ class ItineraryPersonFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val toolbar: Toolbar? = activity?.findViewById(R.id.toolbar)
+
+        toolbar?.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
         setViewActivity()
         setView()
     }
@@ -52,6 +61,7 @@ class ItineraryPersonFragment : Fragment() {
                 tvCount.text = adult.toString()
             }
         }
+
         binding.cardChild.apply {
             tvTypePerson.text = "Adik dan anak-anak"
             tvAge.text = "Untuk umur dibawah 15 tahun."
@@ -74,29 +84,19 @@ class ItineraryPersonFragment : Fragment() {
     private fun setViewActivity() {
         val tvTitle : TextView? = activity?.findViewById(R.id.tv_title)
         val tvDescription : TextView? = activity?.findViewById(R.id.tv_description)
-        val btnMain : MaterialButton? = activity?.findViewById(R.id.btn_main)
-        val tvButton : TextView? = activity?.findViewById(R.id.tv_text_button)
-        tvButton?.apply {
-            visibility = View.VISIBLE
-            text = context.getString(R.string.aku_pergi_sendiri)
-            setOnClickListener {
-                activityViewModel.setAdult(1)
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainer, ItineraryTicketFragment())
-                    .commit()
-            }
+
+        binding.btnSkip.setOnClickListener {
+            activityViewModel.setAdult(1)
+            findNavController().navigate(R.id.action_personFragment_to_ticketFragment)
         }
-        btnMain?.apply {
-            getText(R.string.lanjut)
-            setIconResource(R.drawable.baseline_arrow_forward_24)
-            setOnClickListener {
-                activityViewModel.setAdult(adult)
-                activityViewModel.setChild(child)
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainer, ItineraryTicketFragment())
-                    .commit()
-            }
+
+        binding.btnNext.setOnClickListener {
+            activityViewModel.setAdult(adult)
+            activityViewModel.setChild(child)
+
+            findNavController().navigate(R.id.action_personFragment_to_ticketFragment)
         }
+
         tvDescription?.apply {
             visibility = View.VISIBLE
             text = "Agar perjalananmu lebih sat set sat set"

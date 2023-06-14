@@ -26,5 +26,7 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         navView.setupWithNavController(navController)
+
+        window.navigationBarColor = getColor(R.color.primary_10)
     }
 }

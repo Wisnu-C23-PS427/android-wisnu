@@ -110,4 +110,10 @@
     <string name="events">Events</string>
     <string name="cities">Kota</string>
     <string name="destination">Destinasi</string>
+    <string name="action_skip">Lewati</string>
+    <string name="action_next">Lanjut</string>
+    <string name="action_travel_alone">Aku Pergi Sendiri</string>
+    <string name="action_plan">RENCANAKAN</string>
+    <string name="action_finish">SELESAI</string>
+    <string name="action_save">SIMPAN</string>
 </resources>

@@ -1,13 +1,16 @@
 package space.mrandika.wisnu.ui.itinerary.transaction.detailpayment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.launch
 import space.mrandika.wisnu.R
@@ -35,14 +38,27 @@ class DetailTransactionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val toolbar: Toolbar? = activity?.findViewById(R.id.toolbar)
+
+        toolbar?.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
         setViewActivity()
+
+        Log.d("DetailTransactionFragment-tickets", viewModel.state.value.tickets.toString())
+        Log.d("DetailTransactionFragment-guide", viewModel.state.value.guide.toString())
 
         if (viewModel.state.value.tickets.isEmpty() && viewModel.state.value.guide == null) {
             noTransaction()
         } else if (viewModel.state.value.tickets.isEmpty() && viewModel.state.value.guide != null) {
             viewModel.state.value.guide?.guide?.let { withGuide(it) }
+        } else if (viewModel.state.value.tickets.isNotEmpty() && viewModel.state.value.guide == null) {
+            withTicket()
         } else {
-            onlyTicket()
+            viewModel.state.value.guide?.guide?.let { withGuide(it) }
+            withTicket()
         }
 
         sumCost()
@@ -51,13 +67,15 @@ class DetailTransactionFragment : Fragment() {
     private fun withGuide(guide: Guide) {
         val tvDescription : TextView? = activity?.findViewById(R.id.tv_description)
 
+        totalGuide = viewModel.state.value.guide?.guide?.price ?: 0
+
         binding?.apply {
             guideDuration.tvTypePerson.text = getString(R.string.durasi_perjalanan)
             guideDuration.tvAge.text = getString(R.string.card_description_duration)
             guideDuration.tvAge.fontFeatureSettings = R.font.poppins_medium.toString()
             guideDuration.iconCardPeople.visibility = View.GONE
             guideDuration.tvCount.text = count.toString()
-            tvGuidePrice.text = viewModel.state.value.guide?.guide?.price.toString()
+            tvGuidePrice.text = totalGuide.toString()
             tvTicketPrice.text = totalTicket.toString()
 
             tvDescription?.apply {
@@ -86,15 +104,18 @@ class DetailTransactionFragment : Fragment() {
         }
     }
 
-    private fun onlyTicket() {
+    private fun withTicket() {
         viewModel.state.value.tickets.forEach { ticket ->
             totalTicket += ticket.poi.tickets?.adultPrice ?: 0
             totalTicket += ticket.poi.tickets?.childPrice ?: 0
         }
 
         binding?.apply {
-            guideDuration.root.visibility = View.GONE
-            tvGuidePrice.text = "0"
+            if (viewModel.state.value.guide == null) {
+                guideDuration.root.visibility = View.GONE
+            }
+
+            tvGuidePrice.text = totalGuide.toString()
             tvTicketPrice.text = totalTicket.toString()
         }
 
@@ -122,16 +143,11 @@ class DetailTransactionFragment : Fragment() {
             detailTransaction.visibility = View.GONE
             guideDuration.root.visibility = View.GONE
             paymentMethod.visibility = View.GONE
-        }
 
-        val btnMain : MaterialButton? = activity?.findViewById(R.id.btn_main)
-        btnMain?.apply {
-            text = context.getString(R.string.simpan)
-            icon = null
-
-            setOnClickListener {
+            btnNext.setText(R.string.action_save)
+            btnNext.setOnClickListener {
                 viewModel.saveTrip {
-                    activity?.onBackPressedDispatcher?.onBackPressed()
+                    activity?.finish()
                 }
             }
         }
@@ -148,24 +164,15 @@ class DetailTransactionFragment : Fragment() {
 
     private fun setViewActivity() {
         val tvTitle : TextView? = activity?.findViewById(R.id.tv_title)
-        val btnMain : MaterialButton? = activity?.findViewById(R.id.btn_main)
-        val tvButton : TextView? = activity?.findViewById(R.id.tv_text_button)
-        tvButton?.apply {
-            visibility = View.GONE
-        }
-        btnMain?.apply {
-            getText(R.string.lanjut)
-            setIconResource(R.drawable.baseline_arrow_forward_24)
-            setOnClickListener {
-                lifecycleScope.launch {
-                    viewModel.createTransaction {
-                        requireActivity().supportFragmentManager.beginTransaction()
-                            .replace(R.id.fragmentContainer, PaymentFragment())
-                            .commit()
-                    }
+
+        binding?.btnNext?.setOnClickListener {
+            lifecycleScope.launch {
+                viewModel.createTransaction {
+                    findNavController().navigate(R.id.action_detailFragment_to_paymentFragment)
                 }
             }
         }
+
         tvTitle?.apply {
             tvTitle.visibility = View.VISIBLE
             tvTitle.text = context.getString(R.string.buat_transaksi)
