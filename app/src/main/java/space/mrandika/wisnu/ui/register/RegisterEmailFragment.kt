@@ -91,7 +91,7 @@ class RegisterEmailFragment : Fragment() {
                 val phoneNumber = p0.toString().trim()
                 binding?.phoneTextInputLayout?.error = when {
                     phoneNumber.isEmpty() -> "Field ini tidak boleh kosong"
-                    phoneNumber.length > 10 -> "Minimal 10 "
+                    phoneNumber.length < 10 -> "Minimal 10 "
                     else -> {
                         enableButton()
                         null
