@@ -50,8 +50,14 @@ class EventDetailActivity : AppCompatActivity() {
             }
         }
 
-        binding.toolbar.setNavigationOnClickListener {
-            onBackPressedDispatcher.onBackPressed()
+        binding.apply {
+            toolbar.setNavigationOnClickListener {
+                onBackPressedDispatcher.onBackPressed()
+            }
+
+            stateError.button.setOnClickListener {
+                viewModel.getEvent(id ?: 0)
+            }
         }
     }
 

@@ -61,6 +61,10 @@ class OrderDetailActivity : AppCompatActivity() {
 
         val layoutManager = object : LinearLayoutManager(this) { override fun canScrollVertically() = false }
 
+        binding.stateError.button.setOnClickListener {
+            id?.let { id -> viewModel.getOrder(id) }
+        }
+
         binding.orderContent.apply {
             rvPoi.layoutManager = layoutManager
         }

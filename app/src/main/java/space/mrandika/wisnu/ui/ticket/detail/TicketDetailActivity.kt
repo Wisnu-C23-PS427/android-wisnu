@@ -49,8 +49,6 @@ class TicketDetailActivity : AppCompatActivity() {
 
         id = intent.getStringExtra("id")
 
-        id?.let { id -> viewModel.getTicket(id) }
-
         lifecycleScope.launch {
             viewModel.state.collect { state ->
                 loadingStateIsToggled(state.isLoading)
@@ -64,6 +62,10 @@ class TicketDetailActivity : AppCompatActivity() {
 
         val adultLayoutManager = object : LinearLayoutManager(this) { override fun canScrollVertically() = false }
         val childLayoutManager = object : LinearLayoutManager(this) { override fun canScrollVertically() = false }
+
+        binding.stateError.button.setOnClickListener {
+            id?.let { id -> viewModel.getTicket(id) }
+        }
 
         binding.ticketContent.apply {
             btnShowTicket.setOnClickListener {

@@ -48,9 +48,7 @@ class POIDetailActivity : AppCompatActivity() {
 
         poiId = intent.getIntExtra("id", 0)
 
-        poiId?.let { id ->
-            viewModel.getDetailPoi(id)
-        }
+        getData()
 
         lifecycleScope.launch{
             viewModel.state.collect{ state ->
@@ -68,6 +66,10 @@ class POIDetailActivity : AppCompatActivity() {
             }
         }
 
+        binding.stateError.button.setOnClickListener {
+            getData()
+        }
+
         binding.detailContent.apply {
             btnGallery.setOnClickListener {
                 val intent = Intent(this@POIDetailActivity, POIGalleryActivity::class.java).apply {
@@ -75,6 +77,12 @@ class POIDetailActivity : AppCompatActivity() {
                 }
                 startActivity(intent)
             }
+        }
+    }
+
+    private fun getData() {
+        poiId?.let { id ->
+            viewModel.getDetailPoi(id)
         }
     }
 

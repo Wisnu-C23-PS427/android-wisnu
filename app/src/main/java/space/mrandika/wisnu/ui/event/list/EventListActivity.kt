@@ -58,6 +58,10 @@ class EventListActivity : AppCompatActivity() {
                 onBackPressedDispatcher.onBackPressed()
             }
 
+            stateError.button.setOnClickListener {
+                viewModel.getEvents()
+            }
+
             detailContent.rvEvents.layoutManager = GridLayoutManager(this@EventListActivity, 2)
         }
     }

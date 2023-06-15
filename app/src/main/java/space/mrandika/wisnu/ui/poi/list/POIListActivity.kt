@@ -66,6 +66,10 @@ class POIListActivity : AppCompatActivity() {
                 onBackPressedDispatcher.onBackPressed()
             }
 
+            stateError.button.setOnClickListener {
+                viewModel.getPois()
+            }
+
             detailContent.rvPois.layoutManager = GridLayoutManager(this@POIListActivity, 2)
         }
     }

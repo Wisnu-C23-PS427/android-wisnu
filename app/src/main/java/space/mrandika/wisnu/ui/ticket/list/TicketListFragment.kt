@@ -41,9 +41,7 @@ class TicketListFragment : Fragment() {
         val textTab: TextView? = activity?.findViewById(R.id.text_current_tab)
         textTab?.text = resources.getString(R.string.tab_ticket)
 
-        lifecycleScope.launch {
-            viewModel.getTickets("active")
-        }
+        getData()
 
         lifecycleScope.launch {
             viewModel.state.collect { state ->
@@ -52,11 +50,18 @@ class TicketListFragment : Fragment() {
                 emptyStateIsToggled(state.isEmpty)
                 filterIsChanged(state.filter)
 
+                binding?.ticketsContent?.root?.visibility = if (!state.isLoading && !state.isError && state.isEmpty) View.VISIBLE else View.GONE
+
                 setData(state.tickets)
             }
         }
 
         val layoutManager = LinearLayoutManager(activity)
+
+        binding?.stateError?.button?.setOnClickListener {
+            getData()
+        }
+
         binding?.ticketsContent?.apply {
             // Set default state
             chipTicketFilter.check(R.id.chip_active)
@@ -79,11 +84,16 @@ class TicketListFragment : Fragment() {
         _binding = null
     }
 
+    private fun getData() {
+        lifecycleScope.launch {
+            viewModel.getTickets("active")
+        }
+    }
+
     private fun loadingStateIsToggled(value: Boolean) {
         Log.d("TicketListFragment-isLoading", value.toString())
         binding?.apply {
             stateLoading.root.visibility = if (value) View.VISIBLE else View.GONE
-            ticketsContent.rvTickets.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 

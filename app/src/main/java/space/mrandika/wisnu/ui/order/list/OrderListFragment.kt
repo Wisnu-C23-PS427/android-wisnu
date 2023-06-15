@@ -41,10 +41,7 @@ class OrderListFragment : Fragment() {
         val textTab: TextView? = activity?.findViewById(R.id.text_current_tab)
         textTab?.text = resources.getString(R.string.tab_order)
 
-        lifecycleScope.launch {
-            Log.d("OrderListFragment", "onViewCreated called!")
-            viewModel.getTickets("all")
-        }
+        getData()
 
         lifecycleScope.launch {
             viewModel.state.collect { state ->
@@ -53,11 +50,18 @@ class OrderListFragment : Fragment() {
                 emptyStateIsToggled(state.isEmpty)
                 filterIsChanged(state.filter)
 
+                binding?.ordersContent?.root?.visibility = if (!state.isLoading && !state.isError && !state.isEmpty) View.VISIBLE else View.GONE
+
                 setData(state.tickets)
             }
         }
 
         val layoutManager = LinearLayoutManager(activity)
+
+        binding?.stateError?.button?.setOnClickListener {
+            getData()
+        }
+
         binding?.ordersContent?.apply {
             // Set default state
             chipOrderFilter.check(R.id.chip_all)
@@ -82,11 +86,17 @@ class OrderListFragment : Fragment() {
         _binding = null
     }
 
+    private fun getData() {
+        lifecycleScope.launch {
+            Log.d("OrderListFragment", "onViewCreated called!")
+            viewModel.getTickets("all")
+        }
+    }
+
     private fun loadingStateIsToggled(value: Boolean) {
         Log.d("OrderListFragment-isLoading", value.toString())
         binding?.apply {
             stateLoading.root.visibility = if (value) View.VISIBLE else View.GONE
-            ordersContent.rvOrders.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 

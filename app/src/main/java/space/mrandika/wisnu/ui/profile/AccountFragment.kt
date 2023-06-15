@@ -52,6 +52,10 @@ class AccountFragment : Fragment() {
             }
         }
 
+        binding?.stateError?.button?.setOnClickListener {
+            viewModel.getAccount()
+        }
+
         binding?.accountContent?.apply {
             menuMytrip.setOnClickListener {
                 navigateToSavedTripList()

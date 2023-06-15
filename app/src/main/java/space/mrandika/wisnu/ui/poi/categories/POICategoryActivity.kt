@@ -42,11 +42,9 @@ class POICategoryActivity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        lifecycleScope.launch {
-            category?.let {
-                viewModel.getPoiCategory(it.lowercase())
-            }
+        getData()
 
+        lifecycleScope.launch {
             viewModel.state.collect { state ->
                 isLoading(state.isLoading)
                 isError(state.isError)
@@ -54,6 +52,18 @@ class POICategoryActivity : AppCompatActivity() {
                 setData(state.categories)
 
                 binding.categoryContent.root.visibility = if (!state.isLoading && !state.isError) View.VISIBLE else View.GONE
+            }
+        }
+
+        binding.stateError.button.setOnClickListener {
+            getData()
+        }
+    }
+
+    private fun getData() {
+        lifecycleScope.launch {
+            category?.let {
+                viewModel.getPoiCategory(it.lowercase())
             }
         }
     }

@@ -55,6 +55,10 @@ class CityListActivity : AppCompatActivity() {
                 onBackPressedDispatcher.onBackPressed()
             }
 
+            stateError.button.setOnClickListener {
+                viewModel.getCities()
+            }
+
             detailContent.rvCities.layoutManager = GridLayoutManager(this@CityListActivity, 2)
         }
     }

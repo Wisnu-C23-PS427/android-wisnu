@@ -65,13 +65,19 @@ class CityDetailActivity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        binding.detailContent.buttonPlan.setOnClickListener {
-            val intent = Intent(this, ItineraryActivity::class.java).apply {
-                putExtra("id", cityId)
-                putExtra("name", viewModel.state.value.CityResult?.name ?: "")
+        binding.apply {
+            stateError.button.setOnClickListener {
+                viewModel.getCity(cityId ?: 0)
             }
 
-            startActivity(intent)
+            detailContent.buttonPlan.setOnClickListener {
+                val intent = Intent(this@CityDetailActivity, ItineraryActivity::class.java).apply {
+                    putExtra("id", cityId)
+                    putExtra("name", viewModel.state.value.CityResult?.name ?: "")
+                }
+
+                startActivity(intent)
+            }
         }
     }
 

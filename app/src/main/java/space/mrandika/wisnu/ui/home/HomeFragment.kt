@@ -46,7 +46,6 @@ class HomeFragment : Fragment() {
         textTab?.text = resources.getString(R.string.tab_home)
 
         viewModel.getCategories()
-
         viewModel.getRecommendation()
         viewModel.getEvent()
 
@@ -62,6 +61,12 @@ class HomeFragment : Fragment() {
                 setRecommendation(state.recommendations)
                 setEvent(state.events)
             }
+        }
+
+        binding?.stateError?.button?.setOnClickListener {
+            viewModel.getCategories()
+            viewModel.getRecommendation()
+            viewModel.getEvent()
         }
 
         binding?.detailContent?.apply {
