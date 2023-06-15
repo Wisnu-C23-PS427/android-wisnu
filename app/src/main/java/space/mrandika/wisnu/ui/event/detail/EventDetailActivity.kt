@@ -31,7 +31,7 @@ class EventDetailActivity : AppCompatActivity() {
         binding = ActivityEventDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val toolbar: Toolbar = binding.detailContent.toolbar
+        val toolbar: Toolbar = binding.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -44,11 +44,13 @@ class EventDetailActivity : AppCompatActivity() {
                 loadingStateIsToggled(state.isLoading)
                 errorStateIsToggled(state.isError)
 
+                binding.detailContent.root.visibility = if (!state.isLoading && !state.isError) View.VISIBLE else View.GONE
+
                 state.event?.let { setData(it) }
             }
         }
 
-        binding.detailContent.toolbar.setNavigationOnClickListener {
+        binding.toolbar.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
     }
@@ -57,7 +59,6 @@ class EventDetailActivity : AppCompatActivity() {
         Log.d("OrderDetailActivity-isLoading", value.toString())
         binding.apply {
             stateLoading.root.visibility = if (value) View.VISIBLE else View.GONE
-            detailContent.root.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 
@@ -65,7 +66,6 @@ class EventDetailActivity : AppCompatActivity() {
         Log.d("OrderDetailActivity-isError", value.toString())
         binding.apply {
             stateError.root.visibility = if (value) View.VISIBLE else View.GONE
-            detailContent.root.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 

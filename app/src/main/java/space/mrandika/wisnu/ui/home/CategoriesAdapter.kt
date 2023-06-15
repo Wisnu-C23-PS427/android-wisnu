@@ -40,6 +40,8 @@ class CategoriesAdapter(private val categories: List<Category>) : RecyclerView.A
                     btnIcons.setImageResource(R.drawable.mock_category_mountain)
                 }
 
+                textCategory.text = item.name
+
                 itemView.setOnClickListener {
                     item.name?.let { name -> onItemClickCallback.onItemClicked(name) }
                 }

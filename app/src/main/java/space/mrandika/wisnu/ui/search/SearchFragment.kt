@@ -49,6 +49,11 @@ class SearchFragment : Fragment() {
 
             viewModel.state.collect { state ->
                 Log.d("SearchFragment-state", state.toString())
+
+                loadingStateIsToggled(state.isLoading)
+                errorStateIsToggled(state.isError)
+
+                binding?.searchContent?.containerSearch?.visibility = if (!state.isLoading && !state.isError) View.VISIBLE else View.GONE
             }
         }
 
@@ -94,6 +99,20 @@ class SearchFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    private fun loadingStateIsToggled(value: Boolean) {
+        Log.d("AccountFragment-isLoading", value.toString())
+        binding?.apply {
+            stateLoading.root.visibility = if (value) View.VISIBLE else View.GONE
+        }
+    }
+
+    private fun errorStateIsToggled(value: Boolean) {
+        Log.d("AccountFragment-isError", value.toString())
+        binding?.apply {
+            stateError.root.visibility = if (value) View.VISIBLE else View.GONE
+        }
     }
 
     private fun setCategories(value: List<Category>) {

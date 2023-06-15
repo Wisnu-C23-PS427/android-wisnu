@@ -39,7 +39,7 @@ class CityDetailActivity : AppCompatActivity() {
         binding = ActivityCityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val toolbar: Toolbar = binding.detailContent.toolbar
+        val toolbar: Toolbar = binding.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -51,6 +51,8 @@ class CityDetailActivity : AppCompatActivity() {
             viewModel.state.collect { state ->
                 loadingStateIsToggled(state.isLoading)
                 errorStateIsToggled(state.isError)
+
+                binding.detailContent.root.visibility = if (!state.isLoading && !state.isError) View.VISIBLE else View.GONE
 
                 state.CityResult?.let { setViewData(it) }
                 state.CityResult?.poi?.let { setAdapterCity(it) }
@@ -77,7 +79,6 @@ class CityDetailActivity : AppCompatActivity() {
         Log.d("OrderListFragment-isLoading", value.toString())
         binding.apply {
             stateLoading.root.visibility = if (value) View.VISIBLE else View.GONE
-            detailContent.root.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 
@@ -85,7 +86,6 @@ class CityDetailActivity : AppCompatActivity() {
         Log.d("OrderListFragment-isError", value.toString())
         binding.apply {
             stateError.root.visibility = if (value) View.VISIBLE else View.GONE
-            detailContent.root.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 

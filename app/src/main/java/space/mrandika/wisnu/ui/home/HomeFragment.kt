@@ -2,6 +2,7 @@ package space.mrandika.wisnu.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,14 +52,20 @@ class HomeFragment : Fragment() {
 
         lifecycleScope.launch {
             viewModel.state.collect { state ->
+                val stateData = state.categories.isEmpty() && state.recommendations.isEmpty() && state.events.isEmpty()
+                loadingStateIsToggled(stateData)
+                errorStateIsToggled(state.isError)
+
+                binding?.detailContent?.root?.visibility = if ((!stateData || state.isLoading) && !state.isError) View.VISIBLE else View.GONE
+
                 setCategories(state.categories)
                 setRecommendation(state.recommendations)
                 setEvent(state.events)
             }
         }
 
-        binding?.apply {
-            rvIcon.layoutManager = GridLayoutManager(requireContext(),4)
+        binding?.detailContent?.apply {
+            rvIcon.layoutManager = GridLayoutManager(requireContext(),3)
 
             btnPoiAll.setOnClickListener {
                 val intent = Intent(requireActivity(), POIListActivity::class.java)
@@ -72,10 +79,24 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun loadingStateIsToggled(value: Boolean) {
+        Log.d("TicketListFragment-isLoading", value.toString())
+        binding?.apply {
+            stateLoading.root.visibility = if (value) View.VISIBLE else View.GONE
+        }
+    }
+
+    private fun errorStateIsToggled(value: Boolean) {
+        Log.d("TicketListFragment-isError", value.toString())
+        binding?.apply {
+            stateError.root.visibility = if (value) View.VISIBLE else View.GONE
+        }
+    }
+
     private fun setCategories(data: List<Category>) {
         val adapter = CategoriesAdapter(data)
 
-        binding?.apply {
+        binding?.detailContent?.apply {
             rvIcon.adapter = adapter
         }
 
@@ -93,7 +114,7 @@ class HomeFragment : Fragment() {
     private fun setRecommendation(recommendation : List<POI>){
         val adapter = RecommendationAdapter(recommendation)
 
-        binding?.apply {
+        binding?.detailContent?.apply {
             rvRecomendation.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
             rvRecomendation.adapter = adapter
         }
@@ -112,7 +133,7 @@ class HomeFragment : Fragment() {
     private fun setEvent(event: List<Event>){
         val adapter = EventsAdapter(event)
 
-        binding?.apply {
+        binding?.detailContent?.apply {
             rvEvent.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
             rvEvent.adapter = adapter
         }

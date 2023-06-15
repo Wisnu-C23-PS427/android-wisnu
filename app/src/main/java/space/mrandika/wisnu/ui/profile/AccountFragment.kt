@@ -45,6 +45,9 @@ class AccountFragment : Fragment() {
             viewModel.state.collect { state ->
                 loadingStateIsToggled(state.isLoading)
                 errorStateIsToggled(state.isError)
+
+                binding?.accountContent?.root?.visibility = if (!state.isLoading && !state.isError) View.VISIBLE else View.GONE
+
                 state.account?.let { account -> setData(account) }
             }
         }
@@ -65,7 +68,6 @@ class AccountFragment : Fragment() {
         Log.d("AccountFragment-isLoading", value.toString())
         binding?.apply {
             stateLoading.root.visibility = if (value) View.VISIBLE else View.GONE
-            accountContent.root.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 
@@ -73,7 +75,6 @@ class AccountFragment : Fragment() {
         Log.d("AccountFragment-isError", value.toString())
         binding?.apply {
             stateError.root.visibility = if (value) View.VISIBLE else View.GONE
-            accountContent.root.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 

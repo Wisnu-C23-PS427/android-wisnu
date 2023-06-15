@@ -38,7 +38,7 @@ class POIDetailActivity : AppCompatActivity() {
         binding = ActivityPoiDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val toolbar: Toolbar = binding.detailContent.toolbar
+        val toolbar: Toolbar = binding.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -57,6 +57,8 @@ class POIDetailActivity : AppCompatActivity() {
                 Log.d("POIDetailActivity", state.toString())
                 loadingStateIsToggled(state.isLoading)
                 errorStateIsToggled(state.isError)
+
+                binding.detailContent.root.visibility = if (!state.isLoading && !state.isError) View.VISIBLE else View.GONE
 
                 state.DetailResult?.data?.let { PoiData ->
                     toolbar.title = PoiData.name
@@ -112,7 +114,6 @@ class POIDetailActivity : AppCompatActivity() {
         Log.d("OrderDetailActivity-isLoading", value.toString())
         binding.apply {
             stateLoading.root.visibility = if (value) View.VISIBLE else View.GONE
-            detailContent.root.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 
@@ -120,7 +121,6 @@ class POIDetailActivity : AppCompatActivity() {
         Log.d("OrderDetailActivity-isError", value.toString())
         binding.apply {
             stateError.root.visibility = if (value) View.VISIBLE else View.GONE
-            detailContent.root.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 

@@ -11,6 +11,10 @@ data class SearchUiState(
     val categories: List<Category> = emptyList(),
     val keyword: String = "",
     val filter: String = "all",
+
+    val citiesDiscover: List<City> = emptyList(),
+    val poisDiscover: List<POI> = emptyList(),
+
     val cities: List<City> = emptyList(),
     val pois: List<POI> = emptyList(),
 )

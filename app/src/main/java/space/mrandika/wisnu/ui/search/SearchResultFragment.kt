@@ -43,7 +43,11 @@ class SearchResultFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.state.collect { state ->
                 viewModel.getSearchResult(state.keyword, state.filter)
+            }
+        }
 
+        lifecycleScope.launch {
+            viewModel.state.collect { state ->
                 binding?.resultContent?.textResultQuery?.text = String.format(resources.getString(R.string.search_result_query, state.keyword))
                 setTopCityData(state.cities)
                 setTopPoiData(state.pois)

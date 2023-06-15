@@ -56,6 +56,8 @@ class TicketDetailActivity : AppCompatActivity() {
                 loadingStateIsToggled(state.isLoading)
                 errorStateIsToggled(state.isError)
 
+                binding.ticketContent.root.visibility = if (!state.isLoading && !state.isError) View.VISIBLE else View.GONE
+
                 state.ticket?.let { ticket -> setData(ticket) }
             }
         }
@@ -77,7 +79,6 @@ class TicketDetailActivity : AppCompatActivity() {
         Log.d("TicketDetailActivity-isLoading", value.toString())
         binding.apply {
             stateLoading.root.visibility = if (value) View.VISIBLE else View.GONE
-            ticketContent.root.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 
@@ -85,7 +86,6 @@ class TicketDetailActivity : AppCompatActivity() {
         Log.d("TicketDetailActivity-isError", value.toString())
         binding.apply {
             stateError.root.visibility = if (value) View.VISIBLE else View.GONE
-            ticketContent.root.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 

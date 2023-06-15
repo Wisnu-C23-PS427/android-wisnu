@@ -38,6 +38,10 @@ class POICategoryViewModel @Inject constructor(private val repo : POIRepository)
     }
     private fun success(value: List<POI>){
         _state.update {
+            it.copy(isEmpty = value.isEmpty())
+        }
+
+        _state.update {
             it.copy(categories = value)
         }
     }

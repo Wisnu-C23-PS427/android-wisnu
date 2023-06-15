@@ -43,10 +43,12 @@ class SearchDiscoveryFragment : Fragment() {
 
         lifecycleScope.launch {
             viewModel.getDiscoveryResult()
+        }
 
+        lifecycleScope.launch {
             viewModel.state.collect { state ->
-                setTopCityData(state.cities)
-                setTopPoiData(state.pois)
+                setTopCityData(state.citiesDiscover)
+                setTopPoiData(state.poisDiscover)
             }
         }
 

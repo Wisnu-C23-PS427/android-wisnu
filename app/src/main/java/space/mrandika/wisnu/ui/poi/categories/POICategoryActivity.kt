@@ -50,7 +50,10 @@ class POICategoryActivity : AppCompatActivity() {
             viewModel.state.collect { state ->
                 isLoading(state.isLoading)
                 isError(state.isError)
+                isEmpty(state.isEmpty)
                 setData(state.categories)
+
+                binding.categoryContent.root.visibility = if (!state.isLoading && !state.isError) View.VISIBLE else View.GONE
             }
         }
     }
@@ -77,21 +80,18 @@ class POICategoryActivity : AppCompatActivity() {
     private fun isLoading(value:Boolean){
         binding.apply {
             stateLoading.root.visibility = if (value) View.VISIBLE else View.GONE
-            categoryContent.rvPois.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 
     private fun isError(value:Boolean){
         binding.apply {
             stateError.root.visibility = if (value) View.VISIBLE else View.GONE
-            categoryContent.rvPois.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 
     private fun isEmpty(value:Boolean){
         binding.apply {
             stateEmpty.root.visibility = if (value) View.VISIBLE else View.GONE
-            categoryContent.rvPois.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 }

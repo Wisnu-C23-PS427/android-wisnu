@@ -53,6 +53,8 @@ class OrderDetailActivity : AppCompatActivity() {
                 loadingStateIsToggled(state.isLoading)
                 errorStateIsToggled(state.isError)
 
+                binding.orderContent.root.visibility = if (!state.isLoading && !state.isError) View.VISIBLE else View.GONE
+
                 state.order?.let { order -> setData(order) }
             }
         }
@@ -68,7 +70,6 @@ class OrderDetailActivity : AppCompatActivity() {
         Log.d("OrderDetailActivity-isLoading", value.toString())
         binding.apply {
             stateLoading.root.visibility = if (value) View.VISIBLE else View.GONE
-            orderContent.root.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 
@@ -76,7 +77,6 @@ class OrderDetailActivity : AppCompatActivity() {
         Log.d("OrderDetailActivity-isError", value.toString())
         binding.apply {
             stateError.root.visibility = if (value) View.VISIBLE else View.GONE
-            orderContent.root.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 

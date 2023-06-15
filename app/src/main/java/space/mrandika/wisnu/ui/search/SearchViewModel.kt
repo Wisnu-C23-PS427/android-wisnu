@@ -2,10 +2,12 @@ package space.mrandika.wisnu.ui.search
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import space.mrandika.wisnu.model.category.Category
 import space.mrandika.wisnu.model.city.City
 import space.mrandika.wisnu.model.poi.POI
@@ -69,8 +71,8 @@ class SearchViewModel @Inject constructor(
 
             result.onSuccess { response ->
                 response.data?.let {
-                    setCities(it.cities)
-                    setPois(it.poi)
+                    setCities(it.cities, true)
+                    setPois(it.poi, true)
                 }
 
                 Log.d("SearchViewModel-getDiscoveryResult", response.toString())
@@ -112,15 +114,27 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    private fun setCities(value: List<City>) {
-        _state.update { currentState ->
-            currentState.copy(cities = value)
+    private fun setCities(value: List<City>, isDiscover: Boolean = false) {
+        if (isDiscover) {
+            _state.update { currentState ->
+                currentState.copy(citiesDiscover = value)
+            }
+        } else {
+            _state.update { currentState ->
+                currentState.copy(cities = value)
+            }
         }
     }
 
-    private fun setPois(value: List<POI>) {
-        _state.update { currentState ->
-            currentState.copy(pois = value)
+    private fun setPois(value: List<POI>, isDiscover: Boolean = false) {
+        if (isDiscover) {
+            _state.update { currentState ->
+                currentState.copy(poisDiscover = value)
+            }
+        } else {
+            _state.update { currentState ->
+                currentState.copy(pois = value)
+            }
         }
     }
 }
