@@ -9,7 +9,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,6 +43,7 @@ class RegisterNameFragment : Fragment() {
         val tvTitle : TextView? = activity?.findViewById(R.id.tv_title)
         val tvDescription : TextView? = activity?.findViewById(R.id.tv_description)
         val toolbar: Toolbar? = activity?.findViewById(R.id.toolbar)
+        val fragmentContainer: FragmentContainerView? = activity?.findViewById(R.id.nav_host_fragment)
 
         ViewUtils.hideViews(btnSecondary,tvForgotPassword)
         btnMain?.isEnabled = false
@@ -47,6 +51,13 @@ class RegisterNameFragment : Fragment() {
         tvDescription?.setText(R.string.description_register_name)
         btnMain?.setText(R.string.next)
         errorCheck()
+
+        fragmentContainer?.updateLayoutParams<ConstraintLayout.LayoutParams> {
+           tvDescription?.let {
+               topToBottom = it.id
+               topToTop = ConstraintLayout.LayoutParams.UNSET
+           }
+        }
 
         toolbar?.setNavigationOnClickListener {
             findNavController().popBackStack()

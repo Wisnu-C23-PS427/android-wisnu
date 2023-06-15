@@ -1,6 +1,7 @@
 package space.mrandika.wisnu.service
 
 import retrofit2.http.Body
+import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -72,11 +73,12 @@ interface WisnuAPIService {
         @Query("days") numDays: Int,
     ): CityItinerariesResponse
 
+    @FormUrlEncoded
     @POST("search")
     suspend fun search(
         @Header("Authorization") token: String,
-        @Query("keyword") keyword: String,
-        @Query("filter") filter: String,
+        @Field("keyword") keyword: String,
+        @Field("filter") filter: String,
     ): SearchResponse
 
     @GET("discover")

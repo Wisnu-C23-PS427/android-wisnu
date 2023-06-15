@@ -13,7 +13,10 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -57,6 +60,7 @@ class LoginFragment : Fragment() {
         val tvTitle : TextView? = activity?.findViewById(R.id.tv_title)
         val tvDescription : TextView? = activity?.findViewById(R.id.tv_description)
         val toolbar: Toolbar? = activity?.findViewById(R.id.toolbar)
+        val fragmentContainer: FragmentContainerView? = activity?.findViewById(R.id.nav_host_fragment)
 
         ViewUtils.hideViews(btnSecondary)
         ViewUtils.showViews(tvForgotPassword)
@@ -64,6 +68,13 @@ class LoginFragment : Fragment() {
         errorCheck()
         btnMain?.isEnabled = false
         tvTitle?.setText(R.string.title_login)
+
+        fragmentContainer?.updateLayoutParams<ConstraintLayout.LayoutParams> {
+            tvDescription?.let {
+                topToBottom = it.id
+                topToTop = ConstraintLayout.LayoutParams.UNSET
+            }
+        }
 
         // TODO: Enable forgot password
         tvForgotPassword?.visibility = View.GONE
