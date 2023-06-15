@@ -8,13 +8,10 @@ import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.button.MaterialButton
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.FragmentDayCountBinding
 import space.mrandika.wisnu.ui.itinerary.ItineraryViewModel
-import space.mrandika.wisnu.ui.itinerary.poi.ItineraryPoiFragment
 
 
 class DayCountFragment : Fragment() {

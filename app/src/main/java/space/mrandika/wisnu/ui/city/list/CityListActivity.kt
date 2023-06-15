@@ -1,22 +1,19 @@
 package space.mrandika.wisnu.ui.city.list
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import space.mrandika.wisnu.databinding.ActivityCityListBinding
-import space.mrandika.wisnu.databinding.ActivityEventListBinding
 import space.mrandika.wisnu.model.city.City
-import space.mrandika.wisnu.model.event.Event
 import space.mrandika.wisnu.ui.city.detail.CityDetailActivity
-import space.mrandika.wisnu.ui.event.detail.EventDetailActivity
 
 @AndroidEntryPoint
 class CityListActivity : AppCompatActivity() {

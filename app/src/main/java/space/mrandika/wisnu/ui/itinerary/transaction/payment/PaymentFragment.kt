@@ -7,12 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.button.MaterialButton
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.FragmentPaymentBinding
-import space.mrandika.wisnu.ui.itinerary.ItineraryViewModel
 
 class PaymentFragment : Fragment() {
     private var _binding : FragmentPaymentBinding? = null

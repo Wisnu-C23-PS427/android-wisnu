@@ -10,17 +10,14 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.FragmentItineraryPoiBinding
 import space.mrandika.wisnu.model.city.ItineraryItem
 import space.mrandika.wisnu.ui.itinerary.ItineraryViewModel
-import space.mrandika.wisnu.ui.itinerary.person.ItineraryPersonFragment
 
 @AndroidEntryPoint
 class ItineraryPoiFragment : Fragment() {

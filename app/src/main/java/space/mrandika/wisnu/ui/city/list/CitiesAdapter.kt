@@ -8,7 +8,6 @@ import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.ItemAttractionFullBinding
 import space.mrandika.wisnu.model.city.City
-import space.mrandika.wisnu.model.event.Event
 
 class CitiesAdapter(private val cities: List<City>) : RecyclerView.Adapter<CitiesAdapter.ViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback

@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import space.mrandika.wisnu.model.event.Event
 import space.mrandika.wisnu.repository.EventRepository
-import space.mrandika.wisnu.ui.event.detail.EventUiState
 import javax.inject.Inject
 
 @HiltViewModel

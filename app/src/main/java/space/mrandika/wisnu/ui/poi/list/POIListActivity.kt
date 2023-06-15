@@ -1,24 +1,19 @@
 package space.mrandika.wisnu.ui.poi.list
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import space.mrandika.wisnu.R
-import space.mrandika.wisnu.databinding.ActivityEventListBinding
 import space.mrandika.wisnu.databinding.ActivityPoiListBinding
-import space.mrandika.wisnu.model.event.Event
 import space.mrandika.wisnu.model.poi.POI
-import space.mrandika.wisnu.ui.event.detail.EventDetailActivity
-import space.mrandika.wisnu.ui.event.list.EventsAdapter
-import space.mrandika.wisnu.ui.event.list.EventsViewModel
 import space.mrandika.wisnu.ui.poi.detail.POIDetailActivity
 
 @AndroidEntryPoint

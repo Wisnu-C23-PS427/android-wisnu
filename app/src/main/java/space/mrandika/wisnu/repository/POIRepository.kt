@@ -1,6 +1,5 @@
 package space.mrandika.wisnu.repository
 
-import android.util.Log
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

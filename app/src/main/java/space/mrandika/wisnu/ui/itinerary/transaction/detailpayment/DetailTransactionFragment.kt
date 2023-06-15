@@ -11,13 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.launch
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.FragmentTransactionDetailBinding
 import space.mrandika.wisnu.model.guide.Guide
 import space.mrandika.wisnu.ui.itinerary.ItineraryViewModel
-import space.mrandika.wisnu.ui.itinerary.transaction.payment.PaymentFragment
 
 class DetailTransactionFragment : Fragment() {
     private var _binding : FragmentTransactionDetailBinding? = null

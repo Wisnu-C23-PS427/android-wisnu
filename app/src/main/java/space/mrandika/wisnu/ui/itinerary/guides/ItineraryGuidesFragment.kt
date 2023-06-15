@@ -11,14 +11,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.launch
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.FragmentItineraryGuidesBinding
 import space.mrandika.wisnu.model.guide.Guide
 import space.mrandika.wisnu.model.transaction.POIGuideOrder
 import space.mrandika.wisnu.ui.itinerary.ItineraryViewModel
-import space.mrandika.wisnu.ui.itinerary.transaction.detailpayment.DetailTransactionFragment
 
 class ItineraryGuidesFragment : Fragment() {
     private var _binding : FragmentItineraryGuidesBinding? = null

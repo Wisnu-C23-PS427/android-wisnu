@@ -1,17 +1,13 @@
 package space.mrandika.wisnu.ui.event.list
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
-import space.mrandika.wisnu.databinding.ItemAttractionBinding
 import space.mrandika.wisnu.databinding.ItemAttractionFullBinding
-import space.mrandika.wisnu.databinding.ItemOrderBinding
 import space.mrandika.wisnu.model.event.Event
-import space.mrandika.wisnu.model.transaction.Transaction
 
 class EventsAdapter(private val events: List<Event>) : RecyclerView.Adapter<EventsAdapter.ViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback

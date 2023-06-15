@@ -19,7 +19,6 @@ import space.mrandika.wisnu.databinding.FragmentHomeBinding
 import space.mrandika.wisnu.model.category.Category
 import space.mrandika.wisnu.model.event.Event
 import space.mrandika.wisnu.model.poi.POI
-import space.mrandika.wisnu.ui.city.list.CityListActivity
 import space.mrandika.wisnu.ui.event.detail.EventDetailActivity
 import space.mrandika.wisnu.ui.event.list.EventListActivity
 import space.mrandika.wisnu.ui.poi.categories.POICategoryActivity

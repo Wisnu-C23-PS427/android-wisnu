@@ -9,9 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import space.mrandika.wisnu.model.city.City
-import space.mrandika.wisnu.model.event.Event
 import space.mrandika.wisnu.repository.CityRepository
-import space.mrandika.wisnu.repository.EventRepository
 import javax.inject.Inject
 
 @HiltViewModel
