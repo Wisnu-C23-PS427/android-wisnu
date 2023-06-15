@@ -50,7 +50,7 @@ class OrderListFragment : Fragment() {
                 emptyStateIsToggled(state.isEmpty)
                 filterIsChanged(state.filter)
 
-                binding?.ordersContent?.root?.visibility = if (!state.isLoading && !state.isError && !state.isEmpty) View.VISIBLE else View.GONE
+                binding?.ordersContent?.rvOrders?.visibility = if (!state.isLoading && !state.isError && !state.isEmpty) View.VISIBLE else View.GONE
 
                 setData(state.tickets)
             }
@@ -104,7 +104,6 @@ class OrderListFragment : Fragment() {
         Log.d("OrderListFragment-isError", value.toString())
         binding?.apply {
             stateError.root.visibility = if (value) View.VISIBLE else View.GONE
-            ordersContent.rvOrders.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 
@@ -112,7 +111,6 @@ class OrderListFragment : Fragment() {
         Log.d("OrderListFragment-isEmpty", value.toString())
         binding?.apply {
             stateEmpty.root.visibility = if (value) View.VISIBLE else View.GONE
-            ordersContent.rvOrders.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 

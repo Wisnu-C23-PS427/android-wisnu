@@ -50,7 +50,7 @@ class TicketListFragment : Fragment() {
                 emptyStateIsToggled(state.isEmpty)
                 filterIsChanged(state.filter)
 
-                binding?.ticketsContent?.root?.visibility = if (!state.isLoading && !state.isError && state.isEmpty) View.VISIBLE else View.GONE
+                binding?.ticketsContent?.rvTickets?.visibility = if (!state.isLoading && !state.isError && !state.isEmpty) View.VISIBLE else View.GONE
 
                 setData(state.tickets)
             }
@@ -101,7 +101,6 @@ class TicketListFragment : Fragment() {
         Log.d("TicketListFragment-isError", value.toString())
         binding?.apply {
             stateError.root.visibility = if (value) View.VISIBLE else View.GONE
-            ticketsContent.rvTickets.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 
@@ -109,7 +108,6 @@ class TicketListFragment : Fragment() {
         Log.d("TicketListFragment-isEmpty", value.toString())
         binding?.apply {
             stateEmpty.root.visibility = if (value) View.VISIBLE else View.GONE
-            ticketsContent.rvTickets.visibility = if (!value) View.VISIBLE else View.GONE
         }
     }
 
