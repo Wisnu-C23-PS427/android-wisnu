@@ -38,4 +38,10 @@ class AuthActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        this.finishAffinity()
+    }
 }

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -16,7 +17,9 @@ import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.FragmentAccountBinding
 import space.mrandika.wisnu.model.account.Account
+import space.mrandika.wisnu.ui.AuthActivity
 import space.mrandika.wisnu.ui.profile.trip.list.TripListActivity
+
 
 class AccountFragment : Fragment() {
     private var _binding: FragmentAccountBinding? = null
@@ -52,13 +55,19 @@ class AccountFragment : Fragment() {
             }
         }
 
-        binding?.stateError?.button?.setOnClickListener {
-            viewModel.getAccount()
-        }
+        binding?.apply {
+            stateError.button.setOnClickListener {
+                viewModel.getAccount()
+            }
 
-        binding?.accountContent?.apply {
-            menuMytrip.setOnClickListener {
-                navigateToSavedTripList()
+            accountContent.apply {
+                menuMytrip.setOnClickListener {
+                    navigateToSavedTripList()
+                }
+
+                actionLogout.setOnClickListener {
+                    showDialog()
+                }
             }
         }
     }
@@ -102,5 +111,34 @@ class AccountFragment : Fragment() {
         val intent = Intent(activity, TripListActivity::class.java)
 
         startActivity(intent)
+    }
+
+    private fun showDialog() {
+        val alertDialogBuilder = AlertDialog.Builder(requireActivity())
+
+        alertDialogBuilder.setTitle(getString(R.string.title_logout_question))
+
+        alertDialogBuilder
+            .setMessage(getString(R.string.title_logout_explanation))
+            .setCancelable(false)
+            .setPositiveButton(
+                getString(R.string.action_logout_confirm)
+            ) { _, _ ->
+                viewModel.logout {
+                    activity?.finishAffinity()
+
+                    val intent = Intent(requireActivity(), AuthActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+            .setNegativeButton(
+                getString(R.string.action_no)
+            ) { dialog, _ ->
+                dialog.cancel()
+            }
+
+        val alertDialog: AlertDialog = alertDialogBuilder.create()
+
+        alertDialog.show()
     }
 }

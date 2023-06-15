@@ -49,23 +49,26 @@
 
                     <TextView
                         android:id="@+id/tv_place"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
                         android:fontFamily="@font/poppins_semibold"
                         android:textColor="@color/black"
                         android:textSize="20sp"
+                        app:layout_constraintEnd_toStartOf="@+id/btn_gallery"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="Pantai Depok" />
 
                     <TextView
                         android:id="@+id/tv_location"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="-5dp"
                         android:fontFamily="@font/poppins_medium"
                         android:textColor="@color/black_50"
                         android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_place"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_place"
                         tools:text="Depok, Yogyakarta" />
@@ -110,11 +113,10 @@
                 android:id="@+id/tv_backgroundStory"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/playfair_display_medium"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/cv_detail"
                 app:layout_constraintStart_toStartOf="@+id/tv_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title"
                 tools:text="Pantai Depok merupakan objek wisata pantai yang terletak di Kecamatan Kretek, Kabupaten Bantul, Daerah Istimewa Yogyakarta, sekitar tiga puluh kilometer di sebelah selatan Kota Yogyakarta. Pantai ini terkenal akan pasar ikannya yang ikannya merupakan hasil tangkapan nelayan Pantai Depok." />

@@ -45,7 +45,7 @@ class AccountViewModel @Inject constructor(
         }
     }
 
-    fun logout() {
+    fun logout(callback: () -> Unit) {
         viewModelScope.launch {
             Log.d("AccountViewModel", "Logging out..")
             setError(false)
@@ -56,6 +56,8 @@ class AccountViewModel @Inject constructor(
 
                 result.onSuccess {
                     authRepository.removeAccessToken()
+
+                    callback()
                 }
 
                 result.onFailure {
