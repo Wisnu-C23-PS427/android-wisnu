@@ -72,13 +72,11 @@ class ItineraryViewModel @Inject constructor(
         itineraries.forEach {
             val itinerary = Itinerary(ctm.toInt() + 100, ctm.toInt(), it.day ?: 1)
             tripRepository.saveItinerary(itinerary)
-
             it.poi.forEach { data ->
-                val poi = space.mrandika.wisnu.entity.POI(ctm.toInt() + 200, ctm.toInt() + 100, data.name ?: "", data.image ?: "", data.location ?: "")
+                val poi = space.mrandika.wisnu.entity.POI(data.id ?: 0, ctm.toInt() + 100, data.name ?: "", data.image ?: "", data.location ?: "")
                 tripRepository.savePoi(poi)
             }
         }
-
         callback()
     }
 
