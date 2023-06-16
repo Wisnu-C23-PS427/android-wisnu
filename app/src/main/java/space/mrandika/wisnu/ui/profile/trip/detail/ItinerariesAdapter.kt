@@ -30,7 +30,7 @@ class ItinerariesAdapter(private val itineraries: List<ItineraryWithPOIs>, priva
             binding.apply {
                 textDayNum.text = String.format(context.resources.getString(R.string.day_num, item.itinerary.day.toString()))
 
-                val poisAdapter = POIsAdapter(item.poi, context)
+                val poisAdapter = POIsAdapter(item.poiEntity, context)
 
                 rvPoi.layoutManager = LinearLayoutManager(context)
                 rvPoi.adapter = poisAdapter

@@ -8,9 +8,9 @@ import com.bumptech.glide.Glide
 import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.R
 import space.mrandika.wisnu.databinding.ItemAttractionFullBinding
-import space.mrandika.wisnu.entity.POI
+import space.mrandika.wisnu.entity.POIEntity
 
-class POIsAdapter(private val pois: List<POI>, private val context: Context) : RecyclerView.Adapter<POIsAdapter.ViewHolder>() {
+class POIsAdapter(private val pois: List<POIEntity>, private val context: Context) : RecyclerView.Adapter<POIsAdapter.ViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
@@ -32,7 +32,7 @@ class POIsAdapter(private val pois: List<POI>, private val context: Context) : R
 
     inner class ViewHolder(private val binding: ItemAttractionFullBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: POI) {
+        fun bind(item: POIEntity) {
             binding.apply {
                 if (BuildConfig.IS_SERVICE_UP) {
                     Glide.with(context)

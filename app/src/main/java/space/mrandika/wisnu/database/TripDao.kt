@@ -7,7 +7,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import space.mrandika.wisnu.entity.Itinerary
 import space.mrandika.wisnu.entity.ItineraryWithPOIs
-import space.mrandika.wisnu.entity.POI
+import space.mrandika.wisnu.entity.POIEntity
 import space.mrandika.wisnu.entity.Trip
 
 @Dao
@@ -27,5 +27,5 @@ interface TripDao {
     fun insertItinerary(itinerary: Itinerary)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertPoi(poi: POI)
+    fun insertPoi(poiEntity: POIEntity)
 }

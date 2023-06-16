@@ -1,6 +1,5 @@
 package space.mrandika.wisnu.repository
 
-import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -8,7 +7,7 @@ import kotlinx.coroutines.flow.flowOn
 import space.mrandika.wisnu.database.TripDao
 import space.mrandika.wisnu.entity.Itinerary
 import space.mrandika.wisnu.entity.ItineraryWithPOIs
-import space.mrandika.wisnu.entity.POI
+import space.mrandika.wisnu.entity.POIEntity
 import space.mrandika.wisnu.entity.Trip
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -49,7 +48,7 @@ class TripRepository @Inject constructor(
         executorService.execute { dao.insertItinerary(itinerary) }
     }
 
-    fun savePoi(poi: POI) {
-        executorService.execute { dao.insertPoi(poi) }
+    fun savePoi(poiEntity: POIEntity) {
+        executorService.execute { dao.insertPoi(poiEntity) }
     }
 }

@@ -9,11 +9,11 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import space.mrandika.wisnu.BuildConfig
 import space.mrandika.wisnu.entity.Itinerary
-import space.mrandika.wisnu.entity.POI
+import space.mrandika.wisnu.entity.POIEntity
 import space.mrandika.wisnu.entity.Trip
 import javax.inject.Provider
 
-@Database(entities = [Trip::class, Itinerary::class, POI::class], version = 1)
+@Database(entities = [Trip::class, Itinerary::class, POIEntity::class], version = 1)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun tripDao(): TripDao
 }
@@ -34,7 +34,7 @@ class TripRoomDatabaseCallback (
     }
 
     private fun populateDatabase() {
-        val poi1 = POI(
+        val poiEntity1 = POIEntity(
             image = "www.path/to/poi_image.jpg",
             name = "POI Name",
             location = "Bojongsoang",
@@ -58,6 +58,6 @@ class TripRoomDatabaseCallback (
 
         provider.get().insertItinerary(itinerary1)
 
-        provider.get().insertPoi(poi1)
+        provider.get().insertPoi(poiEntity1)
     }
 }

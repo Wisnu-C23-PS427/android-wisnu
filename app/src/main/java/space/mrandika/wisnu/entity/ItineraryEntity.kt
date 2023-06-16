@@ -25,5 +25,5 @@ data class ItineraryWithPOIs(
         parentColumn = "id",
         entityColumn = "itinerary_id"
     )
-    val poi: List<POI>
+    val poiEntity: List<POIEntity>
 )

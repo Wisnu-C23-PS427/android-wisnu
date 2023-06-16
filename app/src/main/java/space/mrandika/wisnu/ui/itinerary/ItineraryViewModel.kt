@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import space.mrandika.wisnu.entity.Itinerary
+import space.mrandika.wisnu.entity.POIEntity
 import space.mrandika.wisnu.entity.Trip
 import space.mrandika.wisnu.model.city.ItineraryItem
 import space.mrandika.wisnu.model.transaction.OrderResponse
@@ -56,25 +57,34 @@ class ItineraryViewModel @Inject constructor(
 
             it.onSuccess { result ->
                 Log.d("ItineraryViewModel", result.toString())
-                callback(result)
+
+                this.saveTrip(result.data?.id ?: 0) {
+                    callback(result)
+                }
             }
         }
     }
 
-    fun saveTrip(callback: () -> Unit) {
+    fun saveTrip(transactionId: Int = 0, callback: () -> Unit) {
         val itineraries = _state.value.itineraries
 
-        val ctm = System.currentTimeMillis()
+        var tripId: Int = System.currentTimeMillis().toInt()
 
-        val trip = Trip(id = ctm.toInt(), city_name = _state.value.city, createdAt = ctm.toString())
+        if (transactionId != 0) {
+            tripId = transactionId
+        }
+
+        val trip = Trip(id = tripId, city_name = _state.value.city, createdAt = tripId.toString())
         tripRepository.saveTrip(trip)
 
         itineraries.forEach {
-            val itinerary = Itinerary(ctm.toInt() + 100, ctm.toInt(), it.day ?: 1)
+            val ctmItinerary = System.currentTimeMillis()
+            val itinerary = Itinerary(ctmItinerary.toInt(), trip.id, it.day ?: 1)
             tripRepository.saveItinerary(itinerary)
+
             it.poi.forEach { data ->
-                val poi = space.mrandika.wisnu.entity.POI(data.id ?: 0, ctm.toInt() + 100, data.name ?: "", data.image ?: "", data.location ?: "")
-                tripRepository.savePoi(poi)
+                val poiEntity = POIEntity(data.id ?: 0, itinerary.id, data.name ?: "", data.image ?: "", data.location ?: "")
+                tripRepository.savePoi(poiEntity)
             }
         }
         callback()
