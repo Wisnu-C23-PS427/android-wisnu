@@ -1,0 +1,39 @@
+{
+    "status": 200,
+    "message": "OK",
+    "preview": true,
+    "size": 5,
+    "page": 1,
+    "data": [
+        {
+            "id": 1,
+            "name": "Event Name",
+            "location": "Event Location",
+            "image": "www.path/to/event_image.jpg"
+        },
+        {
+            "id": 2,
+            "name": "Event Name",
+            "location": "Event Location",
+            "image": "www.path/to/event_image.jpg"
+        },
+        {
+            "id": 3,
+            "name": "Event Name",
+            "location": "Event Location",
+            "image": "www.path/to/event_image.jpg"
+        },
+        {
+            "id": 4,
+            "name": "Event Name",
+            "location": "Event Location",
+            "image": "www.path/to/event_image.jpg"
+        },
+        {
+            "id": 5,
+            "name": "Event Name",
+            "location": "Event Location",
+            "image": "www.path/to/event_image.jpg"
+        }
+    ]
+}

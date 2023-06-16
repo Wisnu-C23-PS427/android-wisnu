@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:padding="16dp"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/shape_rounded_border"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <TextView
+        android:id="@+id/tv_place_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/poppins_semibold"
+        android:textSize="12sp"
+        tools:text="Danau Bojongsoang"
+        />
+    <TextView
+        android:id="@+id/tv_adult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tv_place_name"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/black_75"
+        android:textSize="12sp"
+        android:text="Dewasa"
+        />
+    <TextView
+        android:id="@+id/tv_child"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tv_adult"
+        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/black_75"
+        android:textSize="12sp"
+        android:text="Anak - Anak"
+        />
+    <TextView
+        android:id="@+id/tv_child_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tv_adult"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/black_75"
+        android:textSize="12sp"
+        tools:text="IDR 5.000"
+        />
+    <TextView
+        android:id="@+id/tv_adult_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tv_place_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/black_75"
+        android:textSize="12sp"
+        tools:text="Dewasa"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

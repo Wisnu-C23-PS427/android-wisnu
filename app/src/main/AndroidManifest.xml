@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".WisnuApp"
         android:allowBackup="true"
@@ -14,7 +17,49 @@
         android:theme="@style/Theme.Wisnu"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.poi.list.POIListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.city.list.CityListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.event.list.EventListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.event.detail.EventDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.trip.detail.TripDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.trip.list.TripListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ticket.detail.TicketDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.order.detail.OrderDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.poi.categories.POICategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.poi.gallery.VRImageViewerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.poi.gallery.POIGalleryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.poi.detail.POIDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.city.detail.CityDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.itinerary.ItineraryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.AuthActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +67,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

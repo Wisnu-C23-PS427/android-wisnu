@@ -1,0 +1,150 @@
+{
+    "status": 200,
+    "message": "OK",
+    "data": [
+        {
+            "day": 1,
+            "poi": [
+                {
+                    "id": 1,
+                    "name": "POI Name",
+                    "location": "POI Location",
+                    "image": "www.path/to/poi_image.jpg",
+                    "tickets": {
+                        "is_ticketing_enabled": true,
+                        "adult_price": 10000,
+                        "child_price": 5000
+                    },
+                    "guides": [
+                        {
+                            "id": 1,
+                            "name": "Guide Name",
+                            "price": 10000,
+                            "image": "www.path/to/guide_image.jpg",
+                            "time_duration_in_min": 60
+                        },
+                        {
+                            "id": 2,
+                            "name": "Guide Name",
+                            "price": 10000,
+                            "image": "www.path/to/guide_image.jpg",
+                            "time_duration_in_min": 60
+                        },
+                        {
+                            "id": 3,
+                            "name": "Guide Name",
+                            "price": 10000,
+                            "image": "www.path/to/guide_image.jpg",
+                            "time_duration_in_min": 60
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "name": "POI Name",
+                    "location": "POI Location",
+                    "image": "www.path/to/poi_image.jpg",
+                    "tickets": {
+                        "is_ticketing_enabled": true,
+                        "adult_price": 10000,
+                        "child_price": 5000
+                    },
+                    "guides": [
+                        {
+                            "id": 1,
+                            "name": "Guide Name",
+                            "price": 10000,
+                            "image": "www.path/to/guide_image.jpg",
+                            "time_duration_in_min": 60
+                        },
+                        {
+                            "id": 2,
+                            "name": "Guide Name",
+                            "price": 10000,
+                            "image": "www.path/to/guide_image.jpg",
+                            "time_duration_in_min": 60
+                        },
+                        {
+                            "id": 3,
+                            "name": "Guide Name",
+                            "price": 10000,
+                            "image": "www.path/to/guide_image.jpg",
+                            "time_duration_in_min": 60
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "poi": [
+                {
+                    "id": 3,
+                    "name": "POI Name",
+                    "location": "POI Location",
+                    "image": "www.path/to/poi_image.jpg",
+                    "tickets": {
+                        "is_ticketing_enabled": true,
+                        "adult_price": 10000,
+                        "child_price": 5000
+                    },
+                    "guides": [
+                        {
+                            "id": 1,
+                            "name": "Guide Name",
+                            "price": 10000,
+                            "image": "www.path/to/guide_image.jpg",
+                            "time_duration_in_min": 60
+                        },
+                        {
+                            "id": 2,
+                            "name": "Guide Name",
+                            "price": 10000,
+                            "image": "www.path/to/guide_image.jpg",
+                            "time_duration_in_min": 60
+                        },
+                        {
+                            "id": 3,
+                            "name": "Guide Name",
+                            "price": 10000,
+                            "image": "www.path/to/guide_image.jpg",
+                            "time_duration_in_min": 60
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "name": "POI Name",
+                    "location": "POI Location",
+                    "image": "www.path/to/poi_image.jpg",
+                    "tickets": {
+                        "is_ticketing_enabled": false
+                    },
+                    "guides": [
+                        {
+                            "id": 1,
+                            "name": "Guide Name",
+                            "price": 10000,
+                            "image": "www.path/to/guide_image.jpg",
+                            "time_duration_in_min": 60
+                        },
+                        {
+                            "id": 2,
+                            "name": "Guide Name",
+                            "price": 10000,
+                            "image": "www.path/to/guide_image.jpg",
+                            "time_duration_in_min": 60
+                        },
+                        {
+                            "id": 3,
+                            "name": "Guide Name",
+                            "price": 10000,
+                            "image": "www.path/to/guide_image.jpg",
+                            "time_duration_in_min": 60
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

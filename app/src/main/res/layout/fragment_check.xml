@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.CheckFragment">
+
+    <TextView
+        android:id="@+id/tv_name_title"
+        style="@style/textPoppinsSemi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_name_check"
+        style="@style/textDescriptionMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Andika"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_title" />
+    <TextView
+        android:id="@+id/tv_email"
+        style="@style/textPoppinsSemi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="31dp"
+        android:text="@string/email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_check" />
+    <TextView
+        android:id="@+id/tv_email_check"
+        style="@style/textDescriptionMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="andika@gmail.com"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_email" />
+
+    <TextView
+        android:id="@+id/tv_handphone_title"
+        style="@style/textPoppinsSemi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="31dp"
+        android:text="@string/no_telp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_email_check" />
+    <TextView
+        android:id="@+id/tv_handphone_check"
+        style="@style/textDescriptionMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="082238383"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_handphone_title" />
+
+    <TextView
+        android:id="@+id/tv_referensi_title"
+        style="@style/textPoppinsSemi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="31dp"
+        android:text="@string/referensi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_handphone_check" />
+    <TextView
+        android:id="@+id/tv_referensi_check"
+        style="@style/textDescriptionMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pantai"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_referensi_title" />
+</LinearLayout>

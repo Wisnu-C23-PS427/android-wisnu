@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image_background"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/shape_circle_primary_25" />
+
+            <ImageView
+                android:id="@+id/image_order"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                app:layout_constraintBottom_toBottomOf="@+id/image_background"
+                app:layout_constraintEnd_toEndOf="@+id/image_background"
+                app:layout_constraintStart_toStartOf="@+id/image_background"
+                app:layout_constraintTop_toTopOf="@+id/image_background"
+                app:srcCompat="@drawable/baseline_how_to_reg_64_primary" />
+
+            <TextView
+                android:id="@+id/order_guide"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/teman_wisnu"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_order_name" />
+
+            <TextView
+                android:id="@+id/text_guide_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/black_75"
+                app:layout_constraintBottom_toTopOf="@+id/text_order_guide"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/order_guide"
+                tools:text="120 menit" />
+
+            <TextView
+                android:id="@+id/order_poi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/travel_destination"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@+id/text_order_guide"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/text_order_guide"
+                app:layout_constraintTop_toBottomOf="@+id/text_order_guide" />
+
+            <TextView
+                android:id="@+id/text_order_guide"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/playfair_display_medium"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/text_guide_duration"
+                app:layout_constraintStart_toStartOf="@+id/order_guide"
+                app:layout_constraintTop_toBottomOf="@+id/order_guide"
+                tools:text="Kang Asep" />
+
+            <TextView
+                android:id="@+id/text_order_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="32dp"
+                android:fontFamily="@font/poppins_bold"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@+id/image_background"
+                app:layout_constraintStart_toStartOf="@+id/image_background"
+                app:layout_constraintTop_toBottomOf="@+id/image_background"
+                tools:text="Paket Perjalanan" />
+
+            <TextView
+                android:id="@+id/order_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/order_date"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@+id/rv_poi"
+                app:layout_constraintStart_toStartOf="@+id/rv_poi"
+                app:layout_constraintTop_toBottomOf="@+id/rv_poi" />
+
+            <TextView
+                android:id="@+id/text_order_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/playfair_display_medium"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/order_date"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/order_date"
+                app:layout_constraintTop_toBottomOf="@+id/order_date"
+                tools:text="22 Juni 2024, 22:06" />
+
+            <TextView
+                android:id="@+id/order_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/total_price"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@+id/text_order_date"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/text_order_date"
+                app:layout_constraintTop_toBottomOf="@+id/text_order_date" />
+
+            <TextView
+                android:id="@+id/text_order_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/playfair_display_medium"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/order_price"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/order_price"
+                app:layout_constraintTop_toBottomOf="@+id/order_price"
+                tools:text="Rp. 65.000" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_poi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/order_poi"
+                app:layout_constraintStart_toStartOf="@+id/order_poi"
+                app:layout_constraintTop_toBottomOf="@+id/order_poi"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_order_poi" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_contact_guide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/primary"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/action_contact_guide"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
